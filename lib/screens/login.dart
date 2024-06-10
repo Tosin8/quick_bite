@@ -14,13 +14,25 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Logo
 
             Icon(Icons.lock_open_rounded, 
             size: 72, 
-            color: Theme.of(context).colorScheme.inversePrimary, 
+            color: Theme.of(context).colorScheme.inverseSurface, 
             ), 
+
+            const SizedBox(height: 20,), 
+            Text('Quick Bite', 
+            style: TextStyle(
+              fontSize: 16, 
+              color: Theme.of(context).colorScheme.inverseSurface, 
+            ),), 
+
+            // email textfield
+            TextField(), 
+            
           ],
         )
       ),
