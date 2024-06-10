@@ -60,6 +60,27 @@ const SizedBox(height: 25,),
                 
               },
               ), 
+
+              // Not a Member? Register Now. 
+              const SizedBox(height: 20,), 
+               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Not a member?' , 
+                  style: TextStyle(
+                    //color: Theme.of(context).colorScheme.inversePrimary
+                    color: Colors.black.withOpacity(0.6), 
+                  ),
+                  ), 
+                  const SizedBox(width: 4,), 
+                  Text('Register here', 
+                  style: TextStyle(
+                    //color: Theme.of(context).colorScheme.inversePrimary, 
+                    color: Colors.black.withOpacity(0.6),
+                    fontWeight: FontWeight.bold, 
+                  ),)
+                ],
+              ), 
           ],
         )
       ),
