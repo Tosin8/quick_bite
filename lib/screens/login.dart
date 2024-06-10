@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quick_bite/components/form/app_button.dart';
 import 'package:quick_bite/components/form/app_textfield.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -50,9 +51,15 @@ const SizedBox(height: 25,),
               obscureText: true,
             ),
 
-            SizedBox(height: 20,), 
+            const SizedBox(height: 20,), 
 
             // Sign In Button. 
+            AppButton(
+              text: 'Sign In', 
+              onTap: () {
+                
+              },
+              ), 
           ],
         )
       ),
