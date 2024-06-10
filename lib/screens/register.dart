@@ -19,6 +19,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   final TextEditingController emailController = TextEditingController(); 
   final TextEditingController passwordController = TextEditingController(); 
+  final TextEditingController confirmPasswordController = TextEditingController(); 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +56,14 @@ const SizedBox(height: 25,),
               AppTextfield(
               controller: passwordController, 
               hintText: 'Password', 
+              obscureText: true,
+            
+            ),
+
+             const SizedBox(height: 10,), 
+              AppTextfield(
+              controller: confirmPasswordController, 
+              hintText: 'Confirm Password', 
               obscureText: true,
             
             ),
