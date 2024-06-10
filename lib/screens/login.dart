@@ -1,10 +1,16 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:quick_bite/components/form/app_button.dart';
 import 'package:quick_bite/components/form/app_textfield.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({
+    super.key,
+    this.onTap,
+  });
 
+final void Function()? onTap; 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -73,12 +79,15 @@ const SizedBox(height: 25,),
                   ),
                   ), 
                   const SizedBox(width: 4,), 
-                  Text('Register here', 
-                  style: TextStyle(
-                    //color: Theme.of(context).colorScheme.inversePrimary, 
-                    color: Colors.black.withOpacity(0.6),
-                    fontWeight: FontWeight.bold, 
-                  ),)
+                  GestureDetector(
+                    onTap: widget.onTap, 
+                    child: Text('Register here', 
+                    style: TextStyle(
+                      //color: Theme.of(context).colorScheme.inversePrimary, 
+                      color: Colors.black.withOpacity(0.6),
+                      fontWeight: FontWeight.bold, 
+                    ),),
+                  )
                 ],
               ), 
           ],
