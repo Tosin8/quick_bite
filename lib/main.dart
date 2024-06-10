@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quick_bite/auth/login_or_register.dart';
 import 'package:quick_bite/screens/login.dart';
 
 import 'themes/theme_provider.dart';
@@ -18,11 +19,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return  const MaterialApp(
       debugShowCheckedModeBanner: false, 
-      home: LoginScreen(
-        onTap: (){}
-      ), 
+      home: LoginOrRegister()
+       
     );
   }
 }

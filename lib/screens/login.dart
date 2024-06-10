@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:quick_bite/components/form/app_button.dart';
 import 'package:quick_bite/components/form/app_textfield.dart';
 
+import 'home.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({
     super.key,
@@ -19,6 +21,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final TextEditingController emailController = TextEditingController(); 
   final TextEditingController passwordController = TextEditingController(); 
+
+  // login method
+  void login() {
+    /* 
+    fill out auhentication here....
+
+    */ 
+
+    // navigate to home page 
+    Navigator.push(context,
+     MaterialPageRoute(
+      builder: (context) => HomeScreen())); 
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

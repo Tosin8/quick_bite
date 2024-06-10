@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../screens/login.dart';
+import '../screens/register.dart';
+
 class LoginOrRegister extends StatefulWidget {
   const LoginOrRegister({super.key});
 
@@ -11,9 +14,20 @@ class _LoginOrRegisterState extends State<LoginOrRegister> {
 
   // initially, show login page
 
-  bool showLoginPge = true; 
+  bool showLoginScreen = true; 
+
+  // toogle between login and register page. 
+  void tooglePages() {
+    setState(() {
+      showLoginScreen = !showLoginScreen; 
+    });
+  }
   @override
   Widget build(BuildContext context) {
-    return Container();
+    if (showLoginScreen) {
+      return LoginScreen(onTap: tooglePages); 
+    } else {
+      return RegisterScreen(onTap: tooglePages,); 
+    }
   }
 }
