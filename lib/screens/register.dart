@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:quick_bite/components/form/app_button.dart';
 import 'package:quick_bite/components/form/app_textfield.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({
     super.key,
     this.onTap,
   });
 
 final void Function()? onTap; 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
 
   final TextEditingController emailController = TextEditingController(); 
   final TextEditingController passwordController = TextEditingController(); 
