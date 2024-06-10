@@ -42,7 +42,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
             style: TextStyle(
               fontSize: 16, 
               color: Theme.of(context).colorScheme.inverseSurface, 
-            ),), 
+            ),),
+             const SizedBox(height: 5,), 
+            Text('Let\'s Create your Account', 
+            style: TextStyle(
+              fontSize: 16, 
+              color: Theme.of(context).colorScheme.inverseSurface, 
+            ),),  
 
 const SizedBox(height: 25,), 
             // email textfield
@@ -70,20 +76,20 @@ const SizedBox(height: 25,),
 
             const SizedBox(height: 20,), 
 
-            // Sign In Button. 
+            // Sign Up Button. 
             AppButton(
-              text: 'Sign In', 
+              text: 'Sign Up', 
               onTap: () {
                 
               },
               ), 
 
-              // Not a Member? Register Now. 
+              // A;ready have an account , login here. . 
               const SizedBox(height: 20,), 
                Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Not a member?' , 
+                  Text('Already have an account?' , 
                   style: TextStyle(
                     //color: Theme.of(context).colorScheme.inversePrimary
                     color: Colors.black.withOpacity(0.6), 
@@ -92,7 +98,7 @@ const SizedBox(height: 25,),
                   const SizedBox(width: 4,), 
                   GestureDetector(
                     onTap: widget.onTap, 
-                    child: Text('Register here', 
+                    child: Text('Login here', 
                     style: TextStyle(
                       //color: Theme.of(context).colorScheme.inversePrimary, 
                       color: Colors.black.withOpacity(0.6),

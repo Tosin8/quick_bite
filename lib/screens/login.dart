@@ -41,6 +41,12 @@ class _LoginScreenState extends State<LoginScreen> {
               fontSize: 16, 
               color: Theme.of(context).colorScheme.inverseSurface, 
             ),), 
+            const SizedBox(height: 4,), 
+            Text('Welcome Back', 
+            style: TextStyle(
+              fontSize: 16, 
+              color: Theme.of(context).colorScheme.inverseSurface, 
+            ),), 
 
 const SizedBox(height: 25,), 
             // email textfield
