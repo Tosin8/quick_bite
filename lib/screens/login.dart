@@ -10,6 +10,20 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      body: Center(
+        child: Column(
+          children: [
+            // Logo
+
+            Icon(Icons.lock_open_rounded, 
+            size: 72, 
+            color: Theme.of(context).colorScheme.inversePrimary, 
+            ), 
+          ],
+        )
+      ),
+    );
   }
 }
