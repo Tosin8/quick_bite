@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:quick_bite/components/drawer/app_drawer_tile.dart';
+
+import '../../screens/home.dart';
+import '../../screens/settings.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -25,6 +29,30 @@ class AppDrawer extends StatelessWidget {
 
           const SizedBox(height: 10,),
           Divider(color: Theme.of(context).colorScheme.secondary, thickness: 1.5,),
+          const SizedBox(height: 10,), 
+          AppDrawerTile(
+            text: 'Home',
+             icon: Icons.home,
+              //onTap: () => Navigator.pop(context)
+              onTap: (){
+                Navigator.push(context, 
+                MaterialPageRoute(builder: (context) => const HomeScreen()));
+              },
+              ),
+              AppDrawerTile(
+            text: 'Settings',
+             icon: Icons.settings,
+              onTap: (){
+                Navigator.push(context, 
+                MaterialPageRoute(builder: (context) => const SettingsScreen()));
+              }),
+              const Spacer(), 
+              AppDrawerTile(
+            text: 'Logout',
+             icon: Icons.logout,
+              onTap: () {}, 
+              ), 
+              SizedBox(height: 10,), 
         ],
       ),
     );
