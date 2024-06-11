@@ -5,6 +5,16 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer();
+    return Drawer(
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      child: Column(
+        children: [
+          Container(
+            width: 80, 
+            height: 80,
+            child: Image.asset('assets/icons/logo.png'))
+        ],
+      ),
+    );
   }
 }

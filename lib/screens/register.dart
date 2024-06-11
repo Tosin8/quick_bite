@@ -32,10 +32,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
           children: [
             // Logo
 
-            Icon(Icons.lock_open_rounded, 
-            size: 72, 
-            color: Theme.of(context).colorScheme.inverseSurface, 
-            ), 
+            // Icon(Icons.lock_open_rounded, 
+            // size: 72, 
+            // color: Theme.of(context).colorScheme.inverseSurface, 
+            // ), 
+              Container(
+              width: 80, height: 80,
+              child: Image.asset('assets/icons/logo.png')),
 
             const SizedBox(height: 20,), 
             Text('Quick Bite', 

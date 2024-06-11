@@ -26,6 +26,7 @@ flutter:
   assets:
     - assets/animation/
     - assets/products/
+    - assets/icons/
   # example:
   # fonts:
   #   - family: Schyler
