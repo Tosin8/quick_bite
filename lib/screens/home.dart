@@ -12,6 +12,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         //automaticallyImplyLeading: false,
         title: const Text('Home'),
+        backgroundColor: Colors.grey[300],
         centerTitle: true,
       ),
       drawer: AppDrawer(), 

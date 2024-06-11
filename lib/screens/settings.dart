@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quick_bite/components/drawer/app_drawer.dart';
+import 'package:quick_bite/themes/theme_provider.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -11,10 +13,10 @@ class SettingsScreen extends StatelessWidget {
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         backgroundColor: Colors.grey[300],
-        title: Text('Settings'),
+        title: const Text('Settings'),
         centerTitle: true,
       ),
-      drawer: AppDrawer(),
+      drawer: const AppDrawer(),
       body: Column(
         children: [
           Container(
@@ -28,10 +30,16 @@ class SettingsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // dark mode
-                Text('Dark Mode', style: TextStyle(fontWeight: FontWeight.bold),), 
+                const Text('Dark Mode', style: TextStyle(fontWeight: FontWeight.bold),), 
                 
                 // Switch 
-                CupertinoSwitch(value: true, onChanged: (value){})
+                CupertinoSwitch(
+                  //value: true, 
+                  value: Provider.of<ThemeProvider>(context, listen: false).isDarkMode, 
+                  onChanged: (value) => 
+                  Provider.of<ThemeProvider>(context, 
+                  listen: false).toggleTheme(),
+                  ), 
               ],
             ),
           )
