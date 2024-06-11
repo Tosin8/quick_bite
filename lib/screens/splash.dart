@@ -7,14 +7,14 @@ import '../auth/login_or_register.dart';
 
 
 
-class SplashSCreen extends StatefulWidget {
-  const SplashSCreen({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<SplashSCreen> createState() => _SplashSCreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashSCreenState extends State<SplashSCreen> with SingleTickerProviderStateMixin{
+class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin{
   
   @override
   void initState() {
@@ -23,14 +23,17 @@ class _SplashSCreenState extends State<SplashSCreen> with SingleTickerProviderSt
   }
 
    _navigateToForm() async {
-    await Future.delayed(Duration(seconds: 3), () {});
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginOrRegister()));
+    await Future.delayed(const Duration(seconds: 5), () {});
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const LoginOrRegister()));
   }
 
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Lottie.asset('assets/animations/animation.json'),
+      body: Container(
+        color: Colors.grey[300], 
+        width: MediaQuery.of(context).size.width, 
+        height: MediaQuery.of(context).size.height, 
+        child: Lottie.asset('assets/animation/splash_screen.json'),
       ),
     );
   }

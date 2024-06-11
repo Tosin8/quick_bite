@@ -32,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
     // navigate to home page 
     Navigator.push(context,
      MaterialPageRoute(
-      builder: (context) => HomeScreen())); 
+      builder: (context) => const HomeScreen())); 
   }
   @override
   Widget build(BuildContext context) {
