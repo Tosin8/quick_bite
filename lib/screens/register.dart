@@ -53,6 +53,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 const SizedBox(height: 25,), 
             // email textfield
             AppTextfield(
+              textInputAction: TextInputAction.next,
               controller: emailController, 
               hintText: 'Email', 
               obscureText: false,
@@ -60,6 +61,7 @@ const SizedBox(height: 25,),
             
             const SizedBox(height: 10,), 
               AppTextfield(
+                textInputAction: TextInputAction.next,
               controller: passwordController, 
               hintText: 'Password', 
               obscureText: true,
@@ -68,6 +70,7 @@ const SizedBox(height: 25,),
 
              const SizedBox(height: 10,), 
               AppTextfield(
+                textInputAction: TextInputAction.done,
               controller: confirmPasswordController, 
               hintText: 'Confirm Password', 
               obscureText: true,

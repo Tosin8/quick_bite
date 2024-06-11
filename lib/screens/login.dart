@@ -66,6 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
 const SizedBox(height: 25,), 
             // email textfield
             AppTextfield(
+              textInputAction: TextInputAction.next,
               controller: emailController, 
               hintText: 'Email', 
               obscureText: false,
