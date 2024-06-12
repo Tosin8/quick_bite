@@ -64,7 +64,7 @@ AppDescriptionBox(),
         ], 
         body: TabBarView(
           controller : _tabController, 
-          children: [
+          children: const [
             Text('Hello'), 
             Text('hello 2')
           ]), 
