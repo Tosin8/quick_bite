@@ -16,6 +16,7 @@ class AppSilverApp extends StatelessWidget {
       expandedHeight: 320,
       collapsedHeight: 100, 
       floating: true,
+      pinned: true,
       actions: [
         // Cart Button
         IconButton(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quick_bite/components/app/app_current_location.dart';
+import 'package:quick_bite/components/app/app_description_box.dart';
 import 'package:quick_bite/components/app/app_silver_app.dart';
 
 import '../components/drawer/app_drawer.dart';
@@ -33,6 +34,7 @@ Divider(
 AppCurrentLocation(), 
 
 // description box
+AppDescriptionBox(), 
     ],
   ))
         ], 
