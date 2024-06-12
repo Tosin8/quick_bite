@@ -24,6 +24,12 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
   }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold( 
@@ -37,13 +43,15 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       drawer: const AppDrawer(), 
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
-const AppSilverApp(
-  title: AppTabBar(tabController: null,), 
-  child: Column(
+ AppSilverApp(
+  title: AppTabBar(tabController: _tabController), 
+  child: const Column(
     mainAxisAlignment: MainAxisAlignment.end,
     children: [
 Divider(
-  indent: 15, endIndent: 20, color: Colors.white
+  indent: 15,
+   endIndent: 20, 
+  color: Colors.white
 ), 
 
 /// current location
@@ -54,7 +62,13 @@ AppDescriptionBox(),
     ],
   ))
         ], 
-        body: Container(color: Colors.blue,),)
+        body: TabBarView(
+          controller : _tabController, 
+          children: [
+            Text('Hello'), 
+            Text('hello 2')
+          ]), 
+        )
     );
   }
 }
