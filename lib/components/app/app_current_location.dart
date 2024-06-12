@@ -3,18 +3,42 @@ import 'package:flutter/material.dart';
 class AppCurrentLocation extends StatelessWidget {
   const AppCurrentLocation({super.key});
 
+void openLocationSearchBox(BuildContext context) {
+  showDialog(context: context, 
+  builder: (context) => AlertDialog(
+    title: const Text('Your location'), 
+    content: const TextField(decoration: InputDecoration(hintText: 'Search Address'),
+    ), 
+    actions: [
+      TextButton(
+        child: const Text('Search'),
+        onPressed: () => Navigator.pop(context),
+  ), 
+    TextButton(
+        child: const Text('Cancel'),
+        onPressed: () => Navigator.pop(context),
+  ), ]
+  ));
+}
+
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Deliver Now'), 
+        const Text('Delivery Address', 
+        style: TextStyle(color: Colors.grey),), 
         // address
-        Row(
-          children: [
-            Text('6901 Hollywood Blv'),
-             // drop down menu
-        Icon(Icons.keyboard_arrow_down_rounded), 
-          ],
+        GestureDetector(
+          onTap: () => openLocationSearchBox(context),
+          child: const Row(
+            children: [
+              Text('6901 Hollywood Blv', 
+              style: TextStyle(fontWeight: FontWeight.bold),),
+               // drop down menu
+          Icon(Icons.keyboard_arrow_down_rounded), 
+            ],
+          ),
         ), 
 
        

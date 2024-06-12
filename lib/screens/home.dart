@@ -31,6 +31,7 @@ Divider(
 
 /// current location
 AppCurrentLocation(), 
+
 // description box
     ],
   ))
