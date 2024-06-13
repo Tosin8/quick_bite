@@ -22,3 +22,9 @@ enum FoodCategory{
   dessert, 
   drinks, 
 }
+
+// food addons
+class Addon{
+  String name; 
+  double price; 
+}
