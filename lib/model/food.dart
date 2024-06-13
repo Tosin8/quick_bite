@@ -1,13 +1,20 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 class Food {
   final String name; 
   final String description; 
   final String image;
   final double price; 
-  // final String category;
+  final FoodCategory category;
+  List <Addon> availableAddons; 
 
-  Food({required this.name, required this.description, required this.image, required this.price, 
-  //required this.category
-});
+  Food({
+    required this.name,
+    required this.description,
+    required this.image,
+    required this.price,
+    required this.category,
+    required this.availableAddons,
+  });
 }
 
 // Enum: a short form of enumerated type , a set of named constants where all possible values are declared. 
@@ -17,14 +24,18 @@ class Food {
 enum FoodCategory{
   burgers, 
   salads, 
-  pizza,
-  pasta, 
+  chicken,
+  sandwish, 
   dessert, 
   drinks, 
 }
 
 // food addons
-class Addon{
+class Addon {
   String name; 
   double price; 
+  Addon({
+    required this.name,
+    required this.price,
+  });
 }
