@@ -342,4 +342,16 @@ Food(
     ]
     ),
   ]; 
+
+  // GETTERS
+  List<Food> get menu => _menu;
+
+  // OPERATIONS
+
+  // 1. add to cart
+  // 2. remove from cart
+  // 3. get total price of cart. 
+  // 4. total number of items in cart. 
+
+  // HELPERS
 }
