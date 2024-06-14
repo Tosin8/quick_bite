@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:quick_bite/screens/cart_page.dart';
 
 class AppSilverApp extends StatelessWidget {
   final Widget child; 
@@ -23,6 +24,10 @@ class AppSilverApp extends StatelessWidget {
           icon: const Icon(Icons.shopping_cart),
         onPressed: () {
           
+          // go to cart page
+          Navigator.push(context,
+           MaterialPageRoute(
+            builder: (context) => const CartPage()));
         },)
       ],
       backgroundColor: Colors.grey[300], 
