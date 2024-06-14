@@ -352,6 +352,11 @@ Food(
   // 2. remove from cart
   // 3. get total price of cart. 
   // 4. total number of items in cart. 
+  // 5. clear the cart. 
 
   // HELPERS
+
+  // 1. generate a receipt
+  // 2. format double value into money
+  // 3. format list of addons into a string summary
 }
