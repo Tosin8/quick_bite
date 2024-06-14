@@ -8,12 +8,12 @@ class AppTextfield extends StatelessWidget {
   final TextInputAction? textInputAction; 
   
   const AppTextfield({
-    Key? key,
+    super.key,
     required this.controller,
     required this.hintText,
     required this.obscureText,
     this.textInputAction,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -36,6 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             // size: 72, 
             // color: Theme.of(context).colorScheme.inverseSurface, 
             // ), 
+              // ignore: sized_box_for_whitespace
               Container(
               width: 80, height: 80,
               child: Image.asset('assets/icons/logo.png')),

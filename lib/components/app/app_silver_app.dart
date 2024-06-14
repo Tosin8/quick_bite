@@ -26,7 +26,7 @@ class AppSilverApp extends StatelessWidget {
         },)
       ],
       backgroundColor: Colors.grey[300], 
-      title: Text('Quick Bite'),
+      title: const Text('Quick Bite'),
       centerTitle: true, 
       flexibleSpace: FlexibleSpaceBar(
         background: Padding(

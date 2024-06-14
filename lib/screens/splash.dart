@@ -24,9 +24,11 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
    _navigateToForm() async {
     await Future.delayed(const Duration(seconds: 5), () {});
+    // ignore: use_build_context_synchronously
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const LoginOrRegister()));
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(

@@ -13,7 +13,7 @@ class AppDescriptionBox extends StatelessWidget {
           (color: Colors.white), 
           borderRadius: BorderRadius.circular(8), 
         ),
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
          
         child: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

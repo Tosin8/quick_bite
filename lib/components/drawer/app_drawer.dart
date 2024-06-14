@@ -17,6 +17,7 @@ class AppDrawer extends StatelessWidget {
             padding: const EdgeInsets.only(top: 80.0),
             child: Column(
               children: [
+                // ignore: sized_box_for_whitespace
                 Container(
                   width: 80, 
                   height: 80,
@@ -52,7 +53,7 @@ class AppDrawer extends StatelessWidget {
              icon: Icons.logout,
               onTap: () {}, 
               ), 
-              SizedBox(height: 10,), 
+              const SizedBox(height: 10,), 
         ],
       ),
     );

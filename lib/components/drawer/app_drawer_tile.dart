@@ -18,7 +18,7 @@ class AppDrawerTile extends StatelessWidget {
       padding: const EdgeInsets.only(top:8.0, left: 15),
       child: ListTile( 
         title: Text(text, 
-        style: TextStyle(color: Colors.black),), 
+        style: const TextStyle(color: Colors.black),), 
         leading: Icon(icon, 
         color: Colors.black), 
         onTap: onTap,
