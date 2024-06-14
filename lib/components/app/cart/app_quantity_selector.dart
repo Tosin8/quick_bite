@@ -20,19 +20,44 @@ class AppQuantitySelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+
       decoration: BoxDecoration(
-        color: Colors.grey, 
+        color: Colors.grey[300],  
     
-        borderRadius: BorderRadius.circular(50),
+        borderRadius: BorderRadius.circular(10),
       ),
 padding: const EdgeInsets.all(8), 
 child: Row(
   mainAxisSize: MainAxisSize.min,
   children: [
+
+    // Decrease Button. 
 GestureDetector(
   onTap: onDecrement, 
-  child: const Icon(Icons.remove),
-)
+  child: const Icon(Icons.remove,
+   size: 20, 
+   color: Colors.white,
+   ),
+), 
+
+// Quantity Count
+Padding(
+  padding: const EdgeInsets.all(8), 
+child: SizedBox(
+  width: 20,
+  child: Center(
+    child: Text(quantity.toString()),
+  ),
+),), 
+
+// Increase Button. 
+GestureDetector(
+  onTap: onIncrement, 
+  child: const Icon(Icons.add,
+   size: 20, 
+   color: Colors.white,
+   ),
+),
   ],
 ),
     );
