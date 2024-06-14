@@ -350,6 +350,7 @@ Food(
   // OPERATIONS
 
   // 1. add to cart
+  void addToCart(Food food, List<Addon> selectedAddons){}
   // 2. remove from cart
   // 3. get total price of cart. 
   // 4. total number of items in cart. 
