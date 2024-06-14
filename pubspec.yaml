@@ -22,15 +22,15 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
-  # To add assets to your application, add an assets section, like this:
+ 
   assets:
     - assets/animation/
-    - assets/products/burger
-    - assets/products/salad
-    - assets/products/drink
-    - assets/products/desserts
-    - assets/products/chicken
-    - assets/products/sandwish
+    - assets/products/burger/
+    - assets/products/salad/
+    - assets/products/drink/
+    - assets/products/desserts/
+    - assets/products/chicken/
+    - assets/products/sandwish/
     - assets/icons/
   # example:
   # fonts:

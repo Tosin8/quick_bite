@@ -22,6 +22,8 @@ List<Tab> _buildCategoryTabs() {
     // ignore: avoid_unnecessary_containers
     return Container(
       child: TabBar(
+        tabAlignment: TabAlignment.start,
+        isScrollable: true,
         controller: tabController,
         // tabs: const [
         //   // 1st tab

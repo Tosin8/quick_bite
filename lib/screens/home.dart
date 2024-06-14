@@ -6,7 +6,9 @@ import 'package:quick_bite/components/app/app_silver_app.dart';
 import 'package:quick_bite/components/app/app_tab_bar.dart';
 import 'package:quick_bite/model/food.dart';
 import 'package:quick_bite/model/restaurant.dart';
+import 'package:quick_bite/screens/food_page.dart';
 
+import '../components/app/app_food_tile.dart';
 import '../components/drawer/app_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -50,10 +52,19 @@ List<Widget> getFoodInThisCategory(List<Food> fullMenu){
     return ListView.builder(
       itemCount: categoryMenu.length,
       physics: const NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.zero, 
+      padding: EdgeInsets.zero,
       itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(categoryMenu[index].name),
+
+        // get individual food
+        final food = categoryMenu[index]; 
+        return FoodTile(
+          food: food, 
+          onTap:() => Navigator.push(
+            context, 
+            MaterialPageRoute(builder: (context) => FoodPage(food: food), 
+            ), 
+            ), 
+        
         ); 
       }, 
       ); 
