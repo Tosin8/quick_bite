@@ -52,26 +52,29 @@ showDialog(context: context,
           ), 
           body: Column(
             children: [
-              Column(
-
-                // List of Cart Items.
-                children: [
-                  userCart.isEmpty ? const Expanded(child: Center(child: Text('Cart is empty ...'))): 
-                  Expanded(child: ListView.builder(
-                          itemCount: userCart.length,
-                    itemBuilder: (context, index)  { 
-              
-                      // get individual cart item. 
-                      final cartItem = userCart[index];
-              
-                      return 
-                    AppCartTile(cartItem: cartItem); 
-                     } )),
-                ],
+              Expanded(
+                child: Column(
+                
+                  // List of Cart Items.
+                  children: [
+                    userCart.isEmpty ? const Expanded(child: Center(child: Text('Cart is empty ...'))): 
+                    Expanded(child: ListView.builder(
+                            itemCount: userCart.length,
+                      itemBuilder: (context, index)  { 
+                
+                        // get individual cart item. 
+                        final cartItem = userCart[index];
+                
+                        return 
+                      AppCartTile(cartItem: cartItem); 
+                       } )),
+                  ],
+                ),
               ),
 
               // Button to Pay. 
-              AppButton(text: 'Checkout', onTap: (){})
+              AppButton(text: 'Checkout', onTap: (){}), 
+              SizedBox(height: 20,), 
             ],
           )
         ); 
