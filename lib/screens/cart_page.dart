@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/components/app/cart/app_cart_tile.dart';
+import 'package:quick_bite/components/form/app_button.dart';
 import 'package:quick_bite/model/restaurant.dart';
 
 class CartPage extends StatelessWidget {
@@ -17,24 +18,60 @@ final userCart = restaurant.cart;
           appBar: AppBar(
             leading: IconButton(
               onPressed:() => Navigator.pop(context),
-             icon: Icon(Icons.arrow_back_ios)), 
+             icon: const Icon(Icons.arrow_back_ios)), 
 
-            title: Text('Cart'), 
+            title: const Text('Cart'), 
             centerTitle: true,
             backgroundColor: Colors.transparent,
+            actions: [
+
+              // clear all cart items.
+              IconButton(onPressed: () {
+showDialog(context: context,
+ builder: (context) =>  AlertDialog(
+  title: const Text('Clear cart?'),
+  actions: [
+
+    // Yes Button 
+    TextButton(onPressed: (){
+      Navigator.pop(context); 
+      restaurant.clearCart(); 
+    }, 
+    child: const Text('Yes')),
+
+    // No Button
+    TextButton(onPressed: (){
+      Navigator.pop(context);
+    }, 
+    child: const Text('Cancel'))
+  ],
+ ));
+
+              }, icon: const Icon(Icons.delete_forever))
+            ],
           ), 
           body: Column(
             children: [
-              Expanded(child: ListView.builder(
-                      itemCount: userCart.length,
-                itemBuilder: (context, index)  { 
+              Column(
 
-                  // get individual cart item. 
-                  final cartItem = userCart[index];
+                // List of Cart Items.
+                children: [
+                  userCart.isEmpty ? const Expanded(child: Center(child: Text('Cart is empty ...'))): 
+                  Expanded(child: ListView.builder(
+                          itemCount: userCart.length,
+                    itemBuilder: (context, index)  { 
+              
+                      // get individual cart item. 
+                      final cartItem = userCart[index];
+              
+                      return 
+                    AppCartTile(cartItem: cartItem); 
+                     } )),
+                ],
+              ),
 
-                  return 
-                AppCartTile(cartItem: cartItem); 
-       } )),
+              // Button to Pay. 
+              AppButton(text: 'Checkout', onTap: (){})
             ],
           )
         ); 

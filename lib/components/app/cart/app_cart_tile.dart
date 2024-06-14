@@ -54,7 +54,7 @@ class AppCartTile extends StatelessWidget {
                           const SizedBox(height: 3,), 
                                       
                           Text('\$${cartItem.food.price.toString()}', 
-                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
+                          style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 14),),
                         ],
                       ),
                     ), 
@@ -80,14 +80,28 @@ class AppCartTile extends StatelessWidget {
                 height: cartItem.selectedAddons.isEmpty ? 0 : 60, 
                 child: ListView(
                   scrollDirection: Axis.horizontal, 
+                  physics: const BouncingScrollPhysics(),
+               
+                  padding: const EdgeInsets.only(left: 10, right: 10,bottom: 10),
                   children: cartItem.selectedAddons
                   .map(
-                    (addon) => FilterChip(
-                    label: const Row(
-                      children: [],
-                      ), 
-                      onSelected: (value) {},
-                  )).toList(), 
+                    (addon) => Padding(
+                      padding: const EdgeInsets.only(right:8.0),
+                      child: FilterChip(
+                      label:  Row(
+                        children: [
+                      
+                          // addon name
+                      Text(addon.name), 
+                      const SizedBox(width: 5,),     // addon price
+                      Text('\$${addon.price.toString()}'),
+                        ],
+                        ), 
+                        shape: const StadiumBorder(side: BorderSide(color: Colors.black)), 
+                        onSelected: (value) {},
+                        backgroundColor: Colors.white, labelStyle: TextStyle(color: Colors.black.withOpacity(0.6), fontSize: 12),
+                                        ),
+                    )).toList(), 
                 ),
               ), 
             ],

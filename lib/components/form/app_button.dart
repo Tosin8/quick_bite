@@ -7,7 +7,7 @@ class AppButton extends StatelessWidget {
   const AppButton({
     super.key,
     this.onTap,
-    required this.text,
+    required this.text, 
   });
 
   @override
