@@ -1,5 +1,8 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:quick_bite/model/food.dart';
+
+import 'cart_item.dart';
 
 class Restaurant extends ChangeNotifier{
 
@@ -349,12 +352,105 @@ Food(
 
   // OPERATIONS
 
+// 0. User Cart
+final List<CartItem> _cart = [];
   // 1. add to cart
-  void addToCart(Food food, List<Addon> selectedAddons){}
+  void addToCart(Food food, List<Addon> selectedAddons){
+    // see if there is a cart item already with the same food and selected addons. 
+
+    // Cartitem? cartItem = cartItems.firstWhereOrNull((cartItem) => cartItem.food == food && cartItem.selectedAddons == selectedAddons);
+
+
+    CartItem? cartItem = _cart.firstWhereOrNull((item) {
+      // check if the food items are the same. 
+bool isSameFood = item.food == food;
+
+
+      // check if the list of selected addons are the same. 
+
+      bool isSameAddons = 
+      const ListEquality().equals(item.selectedAddons, selectedAddons); 
+
+      return isSameFood && isSameAddons; 
+    }); 
+
+    // if item already exists, increment quantity
+    if(cartItem != null){
+      cartItem.quantity++; 
+    }
+
+    // otherwise, add a new cart item to the cart. 
+    else {
+      _cart.add(
+        CartItem(
+          food: food,
+           selectedAddons: selectedAddons,
+           // quantity: 1
+            )
+            );
+    }
+    notifyListeners(); 
+  }
+
+  
   // 2. remove from cart
+
+// void removeFromCart(CartItem cartItem){
+//   _cart.remove(cartItem);
+//   notifyListeners();
+// }
+
+void removeFromCart(CartItem cartItem){
+  int cartIndex = _cart.indexOf(cartItem); 
+
+  if (cartIndex != -1) {
+    if(_cart[cartIndex].quantity > 1){
+      _cart[cartIndex].quantity--;
+    }
+    else{
+      _cart.removeAt(cartIndex);
+    }
+  }
+
+  notifyListeners();
+}
+
   // 3. get total price of cart. 
+
+  double getTotalPrice(){
+    double total = 0.0;
+
+    for (CartItem cartItem in _cart) {
+      double itemTotal = cartItem.food.price; 
+
+      for (Addon addon in cartItem.selectedAddons) {
+        itemTotal += addon.price; 
+      }
+
+      total +=itemTotal*cartItem.quantity;
+    }
+
+    return total;
+  }
+
   // 4. total number of items in cart. 
+  int getTotalItemCount() {
+    int totalItemCount = 0; 
+
+    for(CartItem cartItem in _cart){
+      totalItemCount += cartItem.quantity; 
+    }
+
+    return totalItemCount; 
+  }
+
+
   // 5. clear the cart. 
+
+  void clearCart(){
+    _cart.clear(); 
+    notifyListeners(); 
+  }
 
   // HELPERS
 
