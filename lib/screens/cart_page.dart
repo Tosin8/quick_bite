@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:quick_bite/components/app/cart/app_cart_tile.dart';
 import 'package:quick_bite/components/form/app_button.dart';
 import 'package:quick_bite/model/restaurant.dart';
+import 'package:quick_bite/screens/payment_page.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -73,8 +74,11 @@ showDialog(context: context,
               ),
 
               // Button to Pay. 
-              AppButton(text: 'Checkout', onTap: (){}), 
-              SizedBox(height: 20,), 
+              AppButton(text: 'Checkout', 
+              onTap: () => Navigator.push(context,MaterialPageRoute(builder: (context) => const PaymentPage()))
+              
+              ), 
+              const SizedBox(height: 20,), 
             ],
           )
         ); 
