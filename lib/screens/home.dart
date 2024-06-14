@@ -61,7 +61,8 @@ List<Widget> getFoodInThisCategory(List<Food> fullMenu){
           food: food, 
           onTap:() => Navigator.push(
             context, 
-            MaterialPageRoute(builder: (context) => FoodPage(food: food), 
+            MaterialPageRoute(
+              builder: (context) => FoodPage(food: food), 
             ), 
             ), 
         
