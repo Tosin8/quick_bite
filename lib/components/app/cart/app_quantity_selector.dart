@@ -21,10 +21,20 @@ class AppQuantitySelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all
-        (color: Colors.white), 
-        borderRadius: BorderRadius.circular(8),
+        color: Colors.grey, 
+    
+        borderRadius: BorderRadius.circular(50),
       ),
+padding: const EdgeInsets.all(8), 
+child: Row(
+  mainAxisSize: MainAxisSize.min,
+  children: [
+GestureDetector(
+  onTap: onDecrement, 
+  child: const Icon(Icons.remove),
+)
+  ],
+),
     );
   }
 }
