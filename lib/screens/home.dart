@@ -50,6 +50,7 @@ List<Widget> getFoodInThisCategory(List<Food> fullMenu){
     return ListView.builder(
       itemCount: categoryMenu.length,
       physics: const NeverScrollableScrollPhysics(),
+      padding: EdgeInsets.zero, 
       itemBuilder: (context, index) {
         return ListTile(
           title: Text(categoryMenu[index].name),
