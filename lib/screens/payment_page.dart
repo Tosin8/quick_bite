@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:quick_bite/components/form/app_button.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});
@@ -8,6 +10,42 @@ class PaymentPage extends StatefulWidget {
 }
 
 class _PaymentPageState extends State<PaymentPage> {
+
+GlobalKey<FormState> formKey = GlobalKey<FormState>();
+String cardNumber = ''; 
+String expiryDate = ''; 
+String cardHolderName = '';
+String cvvCode = '';
+bool isCvvFocused = false; 
+
+// user wants to pay. 
+
+void userTappedPay(){
+  if (formKey.currentState!.validate()) {
+    // only show dialog if form is valid. 
+    showDialog(context: context,
+     builder: (context) => AlertDialog(
+      title: const Text('Confirm Payment?'), 
+      content: SingleChildScrollView(
+        child: ListBody( 
+          children: [
+            Text('Card Number: $cardNumber'),
+            Text('Expiry Date: $expiryDate'),
+            Text('Card Holder Name: $cardHolderName'),
+            Text('CVV: $cvvCode'),
+          ],
+        ),
+      ),
+      actions: [
+
+        // Yes Button. 
+        TextButton(
+          onPressed: () => Navigator.push(context,MaterialPageRoute(builder: (context) => DeliveryProgressPage())), 
+         child: const Text('Yes, Pay')), 
+      ],
+     ));
+  }
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,10 +58,44 @@ class _PaymentPageState extends State<PaymentPage> {
          leading: IconButton(
         onPressed: ()=> Navigator.pop(context), icon: const Icon(Icons.arrow_back_ios))
       ),
-      body: Column(
-        children: [
-          // Credit Card
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Credit Card
+            CreditCardWidget(
+              cardNumber: cardNumber,
+               expiryDate: expiryDate, 
+               cardHolderName: cardHolderName, 
+               cvvCode: cvvCode, 
+               showBackView: isCvvFocused, onCreditCardWidgetChange: (p0){}, 
+               ), 
+        
+               // Credit Card Form
+               CreditCardForm(
+                cardNumber: cardNumber, 
+                expiryDate: expiryDate, 
+                cardHolderName: cardHolderName,
+                 cvvCode: cvvCode, 
+                 onCreditCardModelChange: (data){
+        setState(() {
+          cardNumber = data.cardNumber;
+          expiryDate = data.expiryDate;
+          cardHolderName = data.cardHolderName;
+          cvvCode = data.cvvCode;
+          isCvvFocused = data.isCvvFocused;
+          
+        });
+                 }, 
+                 formKey: formKey), 
+                 SizedBox(height: 30,), 
+                 AppButton(
+                  text: 'Pay Now',
+                   onTap: userTappedPay
+                   ),
+          ],
+        
+          
+        ),
       )
     );
   }
