@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quick_bite/screens/app_receipt.dart';
 import 'package:quick_bite/screens/cart_page.dart';
 
 class DeliveryProgressPage extends StatefulWidget {
@@ -19,6 +20,7 @@ class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
           icon: const Icon(Icons.arrow_back_ios)), 
         title: const Text('Delivery in progress'),
       ),
+      body: AppReceipt(), 
     );
   }
 }

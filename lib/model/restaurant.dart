@@ -457,5 +457,9 @@ void removeFromCart(CartItem cartItem){
 
   // 1. generate a receipt
   // 2. format double value into money
+
+  String _formatPrice(double price) {
+    return '\$${price.toStringAsFixed(2)}';
+  }
   // 3. format list of addons into a string summary
 }

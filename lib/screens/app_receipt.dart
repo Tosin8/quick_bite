@@ -5,6 +5,17 @@ class AppReceipt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Padding(
+      padding: EdgeInsets.only(left: 25, right: 25, bottom: 25), 
+      child: Center(
+        child: Column(
+          children: [
+            Text('Thank you for your order!',), 
+            SizedBox(height: 25,), 
+            
+          ],
+        )
+      )
+    );
   }
 }
