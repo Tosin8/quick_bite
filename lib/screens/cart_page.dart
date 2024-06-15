@@ -74,8 +74,11 @@ showDialog(context: context,
               ),
 
               // Button to Pay. 
-              AppButton(text: 'Checkout', 
-              onTap: () => Navigator.push(context,MaterialPageRoute(builder: (context) => const PaymentPage()))
+              // AppButton( text: 'Checkout',  
+              // onTap: () => Navigator.push(context,MaterialPageRoute(builder: (context) => const PaymentPage())),
+
+              AppButton( text: 'Checkout ${restaurant.getTotalPrice().toString()}',  
+              onTap: () => Navigator.push(context,MaterialPageRoute(builder: (context) => const PaymentPage())),
               
               ), 
               const SizedBox(height: 20,), 

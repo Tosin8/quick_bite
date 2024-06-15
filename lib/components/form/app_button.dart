@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class AppButton extends StatelessWidget {
   final Function()? onTap; 
   final String text; 
-  const AppButton({
+  const AppButton(  {
     super.key,
     this.onTap,
     required this.text, 

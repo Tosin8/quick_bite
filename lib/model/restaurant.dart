@@ -348,14 +348,20 @@ Food(
     ),
   ]; 
 
+// 0. User Cart
+final List<CartItem> _cart = [];
+
+// delivery address which user can change or update. 
+String _deliveryAddress = "123 Main Street, Anytown, USA";
+
   // GETTERS
   List<Food> get menu => _menu;
   List<CartItem> get cart => _cart;
+  String get deliveryAddress => _deliveryAddress;
 
   // OPERATIONS
 
-// 0. User Cart
-final List<CartItem> _cart = [];
+
   // 1. add to cart
   void addToCart(Food food, List<Addon> selectedAddons){
     // see if there is a cart item already with the same food and selected addons. 
@@ -454,6 +460,12 @@ void removeFromCart(CartItem cartItem){
     notifyListeners(); 
   }
 
+
+// to update delivery address. 
+
+void updateDeliveryAddress(String newAddress){
+  _deliveryAddress = newAddress;
+  notifyListeners();}
   // HELPERS
 
   // 1. generate a receipt
@@ -482,6 +494,8 @@ receipt.writeln('---------------------------------');
 receipt.writeln();
 receipt.writeln('Total Items: ${getTotalItemCount()}');
 receipt.writeln('Total Price: ${_formatPrice(getTotalPrice())}');
+receipt.writeln(); 
+receipt.writeln('Delivery to: $deliveryAddress'); 
 return receipt.toString(); 
 
 }

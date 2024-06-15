@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:quick_bite/model/restaurant.dart';
 
-class AppCurrentLocation extends StatelessWidget {
+class AppCurrentLocation extends StatefulWidget {
   const AppCurrentLocation({super.key});
 
+  @override
+  State<AppCurrentLocation> createState() => _AppCurrentLocationState();
+}
+
+class _AppCurrentLocationState extends State<AppCurrentLocation> {
 void openLocationSearchBox(BuildContext context) {
   showDialog(context: context, 
   builder: (context) => AlertDialog(
@@ -13,8 +20,15 @@ void openLocationSearchBox(BuildContext context) {
     ), 
     actions: [
       TextButton(
-        child: const Text('Search'),
-        onPressed: () => Navigator.pop(context),
+        child: Text('Save'),
+        onPressed: () {
+
+          // update delivery address
+          String newAddress = textController.text; 
+          context.read<Restaurant>().updateDeliveryAddress(newAddress);
+          Navigator.pop(context); 
+          textController.clear(); 
+        }
   ), 
     TextButton(
         child: const Text('Cancel'),
@@ -23,6 +37,7 @@ void openLocationSearchBox(BuildContext context) {
   ));
 }
 
+  final textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -35,12 +50,13 @@ void openLocationSearchBox(BuildContext context) {
           // address
           GestureDetector(
             onTap: () => openLocationSearchBox(context),
-            child: const Row(
+            child: Row(
               children: [
-                Text('6901 Hollywood Blv', 
-                style: TextStyle(fontWeight: FontWeight.bold),),
-                 // drop down menu
-            Icon(Icons.keyboard_arrow_down_rounded), 
+              Consumer<Restaurant> (
+               builder: (context, restaurant, child) =>  Text(restaurant.deliveryAddress, 
+                style: const TextStyle(fontWeight: FontWeight.bold),),
+               ),  // drop down menu
+            const Icon(Icons.keyboard_arrow_down_rounded), 
               ],
             ),
           ), 
