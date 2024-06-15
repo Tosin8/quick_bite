@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:quick_bite/components/form/app_button.dart';
 import 'package:quick_bite/components/form/app_textfield.dart';
+import 'package:quick_bite/services/auth/auth_services.dart';
 
 import 'home.dart';
 
@@ -23,12 +24,25 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController passwordController = TextEditingController(); 
 
   // login method
-  void login() {
-    /* 
-    fill out auhentication here....
+  void login() async {
+     
+    // get instance of auth service. 
+    final _authService = AuthService(); 
 
-    */ 
+    // try sign in 
+    try {
+      await _authService.signInWithEmailPassword(emailController.text, passwordController.text);
+    }
 
+
+// display any errors
+
+catch(e) {
+  showDialog(context: context,
+   builder: (context) => AlertDialog(
+    title: Text(e.toString())
+   ));
+}
     // navigate to home page 
     Navigator.push(context,
      MaterialPageRoute(

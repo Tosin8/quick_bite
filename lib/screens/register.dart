@@ -31,7 +31,25 @@ void register() async {
 
   // check if passwords match -> create user. 
 
+  if (passwordController.text == confirmPasswordController.text) {
+
+    // create user.
+    try{
+   await  _authService.signUpWithEmailPassword(emailController.text, passwordController.text);
+  }
+
+  // display any errors
+  catch (e) {
+    showDialog(context: context, 
+    builder: (context) => AlertDialog(title: Text(e.toString())));
+  }
+  }
+
   // if passwords doesn't match -> show error.
+  else {
+    showDialog(context: context,
+     builder: (context) => const AlertDialog(title: Text('Passwords don\'t match')));
+  }
 }
   @override
   Widget build(BuildContext context) {
