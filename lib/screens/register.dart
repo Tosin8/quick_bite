@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:quick_bite/components/form/app_button.dart';
 import 'package:quick_bite/components/form/app_textfield.dart';
+import 'package:quick_bite/services/auth/auth_services.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({
@@ -21,6 +22,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController passwordController = TextEditingController(); 
   final TextEditingController confirmPasswordController = TextEditingController(); 
 
+
+// register method
+void register() async {
+
+  // get auth service. 
+  final _authService = AuthService(); 
+
+  // check if passwords match -> create user. 
+
+  // if passwords doesn't match -> show error.
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(

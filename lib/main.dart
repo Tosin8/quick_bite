@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:quick_bite/firebase_options.dart';
 import 'package:quick_bite/model/restaurant.dart';
 import 'package:quick_bite/screens/splash.dart';
+import 'package:quick_bite/services/auth/auth_gate.dart';
 
 
 import 'themes/theme_provider.dart';
@@ -34,10 +35,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const MaterialApp(
+    return   MaterialApp(
       debugShowCheckedModeBanner: false, 
-      home: SplashScreen()
-       
+      //home: SplashScreen(), 
+      home: AuthGate(), 
+       theme: Provider.of<ThemeProvider>(context).themeData,
     );
   }
 }
