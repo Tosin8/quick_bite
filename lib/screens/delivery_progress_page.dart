@@ -16,10 +16,12 @@ class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
       appBar: AppBar(
         centerTitle: true,
         leading: IconButton(
-          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const CartPage())),
+          onPressed: () => Navigator.pop(context),
           icon: const Icon(Icons.arrow_back_ios)), 
         title: const Text('Delivery in progress'),
       ),
+
+      bottomNavigationBar: _buildBottomNavBar(context),
       body: AppReceipt(), 
     );
   }
