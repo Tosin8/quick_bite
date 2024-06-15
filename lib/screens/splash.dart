@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../auth/login_or_register.dart';
+import '../services/auth/login_or_register.dart';
 
 
 
