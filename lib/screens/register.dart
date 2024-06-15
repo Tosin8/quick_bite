@@ -116,9 +116,7 @@ const SizedBox(height: 25,),
             // Sign Up Button. 
             AppButton(
               text: 'Sign Up', 
-              onTap: () {
-                
-              },
+              onTap: register, 
               ), 
 
               // A;ready have an account , login here. . 

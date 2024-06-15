@@ -44,9 +44,9 @@ catch(e) {
    ));
 }
     // navigate to home page 
-    Navigator.push(context,
-     MaterialPageRoute(
-      builder: (context) => const HomeScreen())); 
+    // Navigator.push(context,
+    //  MaterialPageRoute(
+    //   builder: (context) => const HomeScreen())); 
   }
   @override
   Widget build(BuildContext context) {
