@@ -66,7 +66,7 @@ class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
             ), 
 
             // Buttons. 
-            Spacer(), 
+            const Spacer(), 
             Row(
             
               children: [
@@ -77,16 +77,16 @@ class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
                     shape: BoxShape.circle, 
                   ),
                   child: IconButton(onPressed: (){}, 
-                  icon: Icon(Icons.message, size: 24,),),
+                  icon: const Icon(Icons.message, size: 24,),),
                 ), 
-SizedBox(width: 10,), 
+const SizedBox(width: 10,), 
                  Container(
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     shape: BoxShape.circle, 
                   ),
                   child: IconButton(onPressed: (){}, 
-                  icon: Icon(Icons.call, color: Colors.green, size: 24,),),
+                  icon: const Icon(Icons.call, color: Colors.green, size: 24,),),
                 ),
               ],
             )
