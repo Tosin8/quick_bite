@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/firebase_options.dart';
 import 'package:quick_bite/model/restaurant.dart';
-import 'package:quick_bite/screens/splash.dart';
 import 'package:quick_bite/services/auth/auth_gate.dart';
 
 
@@ -38,7 +37,7 @@ class MyApp extends StatelessWidget {
     return   MaterialApp(
       debugShowCheckedModeBanner: false, 
       //home: SplashScreen(), 
-      home: AuthGate(), 
+      home: const AuthGate(), 
        theme: Provider.of<ThemeProvider>(context).themeData,
     );
   }

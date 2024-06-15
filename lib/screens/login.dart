@@ -5,7 +5,6 @@ import 'package:quick_bite/components/form/app_button.dart';
 import 'package:quick_bite/components/form/app_textfield.dart';
 import 'package:quick_bite/services/auth/auth_services.dart';
 
-import 'home.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({
@@ -27,17 +26,18 @@ class _LoginScreenState extends State<LoginScreen> {
   void login() async {
      
     // get instance of auth service. 
-    final _authService = AuthService(); 
+    final authService = AuthService(); 
 
     // try sign in 
     try {
-      await _authService.signInWithEmailPassword(emailController.text, passwordController.text);
+      await authService.signInWithEmailPassword(emailController.text, passwordController.text);
     }
 
 
 // display any errors
 
 catch(e) {
+  // ignore: use_build_context_synchronously
   showDialog(context: context,
    builder: (context) => AlertDialog(
     title: Text(e.toString())

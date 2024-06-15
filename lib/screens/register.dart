@@ -27,7 +27,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 void register() async {
 
   // get auth service. 
-  final _authService = AuthService(); 
+  final authService = AuthService(); 
 
   // check if passwords match -> create user. 
 
@@ -35,11 +35,12 @@ void register() async {
 
     // create user.
     try{
-   await  _authService.signUpWithEmailPassword(emailController.text, passwordController.text);
+   await  authService.signUpWithEmailPassword(emailController.text, passwordController.text);
   }
 
   // display any errors
   catch (e) {
+    // ignore: use_build_context_synchronously
     showDialog(context: context, 
     builder: (context) => AlertDialog(title: Text(e.toString())));
   }

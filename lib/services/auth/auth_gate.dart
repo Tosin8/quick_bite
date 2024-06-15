@@ -1,7 +1,6 @@
 // to check if the current user is logged in or not. 
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:quick_bite/screens/home.dart';
 import 'package:quick_bite/services/auth/login_or_register.dart';
