@@ -24,7 +24,7 @@ class AppQuantitySelector extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.grey[300],  
     
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(5),
       ),
 padding: const EdgeInsets.all(8), 
 child: Row(

@@ -41,26 +41,19 @@ class AppCartTile extends StatelessWidget {
                     ), 
                 const SizedBox(width: 10,), 
                     // name and price. 
-                    Flexible(
-                      child: Column(
+                     Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(cartItem.food.name, 
-                          softWrap:false ,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                         
+                          
                           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
                                       
-                          const SizedBox(height: 3,), 
+                          const SizedBox(height: 5,), 
                                       
                           Text('\$${cartItem.food.price.toString()}', 
                           style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 14),),
-                        ],
-                      ),
-                    ), 
-                    const Spacer(), 
-                
-                    // increment or decrement quantity. 
+                          // increment or decrement quantity. 
                     AppQuantitySelector(
                       quantity: cartItem.quantity, 
                       food: cartItem.food, 
@@ -71,6 +64,22 @@ class AppCartTile extends StatelessWidget {
                          restaurant.addToCart(cartItem.food, cartItem.selectedAddons); 
                        }
                        ), 
+                        ],
+                      ),
+                    
+                    const Spacer(), 
+                
+                    // increment or decrement quantity. 
+                    // AppQuantitySelector(
+                    //   quantity: cartItem.quantity, 
+                    //   food: cartItem.food, 
+                    //   onDecrement: (){
+                    //     restaurant.removeFromCart(cartItem); 
+                    //   },
+                    //    onIncrement: (){
+                    //      restaurant.addToCart(cartItem.food, cartItem.selectedAddons); 
+                    //    }
+                    //    ), 
                   ],
                 ),
               ),
