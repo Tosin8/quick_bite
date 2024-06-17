@@ -55,6 +55,20 @@ void logout(){
                 Navigator.push(context, 
                 MaterialPageRoute(builder: (context) => const SettingsScreen()));
               }),
+              AppDrawerTile(
+            text: 'Favorites',
+             icon: Icons.favorite,
+              onTap: (){
+                Navigator.push(context, 
+                MaterialPageRoute(builder: (context) => const SettingsScreen()));
+              }),
+              AppDrawerTile(
+            text: 'Profile',
+             icon: Icons.person,
+              onTap: (){
+                Navigator.push(context, 
+                MaterialPageRoute(builder: (context) => const SettingsScreen()));
+              }),
               const Spacer(), 
               AppDrawerTile(
             text: 'Logout',

@@ -129,10 +129,6 @@ const SizedBox(height: 25,),
                   )
                 ],
               ), 
-          
-          SizedBox(height: 10,), 
-          TextButton(onPressed: (){},
-           child: Text('Forgot Password'))
           ],
         )
       ),
