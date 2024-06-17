@@ -1,10 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:quick_bite/components/form/app_button.dart';
 import 'package:quick_bite/components/form/app_textfield.dart';
 import 'package:quick_bite/screens/form/forgotpwd.dart';
 import 'package:quick_bite/services/auth/auth_services.dart';
+
+import 'providers/login_providers.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -51,6 +54,7 @@ catch(e) {
   }
   @override
   Widget build(BuildContext context) {
+     final loginProvider = Provider.of<LoginProvider>(context);
     return Scaffold(
       //backgroundColor: Theme.of(context).colorScheme.surface,
       backgroundColor: Colors.grey[300],
@@ -85,21 +89,21 @@ catch(e) {
 const SizedBox(height: 25,), 
             // email textfield
             AppTextfield(
-              validator: (value) {
-                
-              },
+              validator: loginProvider.emailValidator,
               textInputAction: TextInputAction.next,
-              controller: emailController, 
+             // controller: emailController, 
+              controller: loginProvider.emailController, 
               hintText: 'Email', 
               obscureText: false,
             ), 
             
             const SizedBox(height: 10,), 
               AppTextfield(
-              controller: passwordController, 
+              //controller: passwordController, 
               hintText: 'Password', 
               obscureText: true,
-            
+            controller: loginProvider.passwordController, 
+            validator: loginProvider.passwordValidator,
             ),
 
             const SizedBox(height: 20,), 
@@ -107,7 +111,8 @@ const SizedBox(height: 25,),
             // Sign In Button. 
             AppButton(
               text: 'Sign In', 
-              onTap: login, 
+             // onTap: login, 
+           onTap: () =>   loginProvider.login(context),
               ), 
 
               // Not a Member? Register Now. 
@@ -135,12 +140,12 @@ const SizedBox(height: 25,),
               ), 
           
           const SizedBox(height: 10,), 
-          TextButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgotpwdScreen())),
-           child: const Text('Forgot Password', 
+          // TextButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgotpwdScreen())),
+          //  child: const Text('Forgot Password', 
            
-           style: TextStyle(color: Colors.black, 
-           decoration: TextDecoration.underline),
-           ))
+          //  style: TextStyle(color: Colors.black, 
+          //  decoration: TextDecoration.underline),
+          //  ))
           ],
         )
       ),
