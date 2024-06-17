@@ -1,4 +1,6 @@
 
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:quick_bite/services/auth/auth_services.dart';
@@ -42,18 +44,26 @@ class SignUpProvider with ChangeNotifier {
   }
 
 
-  Future<void> register(BuildContext context) async {
+  Future<void> signUp(BuildContext context) async {
 
-    final authService = AuthService();
+
+  //  final authService = AuthService();
     if (!formKey.currentState!.validate()) {
       return;
     }
-    formKey.currentState!.save();
+   
     try {
-      await authService.signUpWithEmailPassword(
-        emailController.text,
-         passwordController.text);
+      // await authService.signUpWithEmailPassword(
+      //   emailController.text,
+      //    passwordController.text);
+       await _auth.createUserWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
       
+      
+  
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign up successful')));
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign up failed: $e')));

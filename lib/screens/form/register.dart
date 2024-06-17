@@ -124,12 +124,15 @@ const SizedBox(height: 25,),
             const SizedBox(height: 20,), 
 
             // Sign Up Button. 
-            AppButton(
-              text: 'Sign Up', 
-             // onTap: register, 
-             onTap: () => signUpProvider.register(context), 
-              ), 
-
+            // AppButton(
+            //   text: 'Sign Up', 
+            //  // onTap: register, 
+            //  onTap: () => signUpProvider.signUp(context), 
+            //   ), 
+ ElevatedButton(
+                onPressed: () => signUpProvider.signUp(context),
+                child: Text('Sign Up'),
+              ),
               // A;ready have an account , login here. . 
               const SizedBox(height: 20,), 
                Row(

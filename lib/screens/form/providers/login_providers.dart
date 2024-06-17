@@ -35,14 +35,16 @@ class LoginProvider with ChangeNotifier {
     if (!formKey.currentState!.validate()) {
       return;
     }
-    final authService = AuthService();
+   // final authService = AuthService();
     
     try {
       // await _auth.signInWithEmailAndPassword(
       //   email: emailController.text,
       //   password: passwordController.text,
       // );
-await authService.signInWithEmailPassword(emailController.text, passwordController.text);
+await _auth.signInWithEmailAndPassword(
+  email: emailController.text, 
+  password:passwordController.text);
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Login successful')));
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login failed: $e')));
