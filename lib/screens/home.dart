@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quick_bite/components/app/app_current_location.dart';
-import 'package:quick_bite/components/app/app_description_box.dart';
-import 'package:quick_bite/components/app/app_silver_app.dart';
-import 'package:quick_bite/components/app/app_tab_bar.dart';
+import 'package:quick_bite/components/app/home/app_current_location.dart';
+import 'package:quick_bite/components/app/home/app_description_box.dart';
+import 'package:quick_bite/components/app/home/app_silver_app.dart';
+import 'package:quick_bite/components/app/home/app_tab_bar.dart';
 import 'package:quick_bite/model/food.dart';
 import 'package:quick_bite/model/restaurant.dart';
 import 'package:quick_bite/screens/components/food_page.dart';
 
-import '../components/app/app_food_tile.dart';
+import '../components/app/home/app_food_tile.dart';
 import '../components/drawer/app_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
