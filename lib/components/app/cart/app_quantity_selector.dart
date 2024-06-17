@@ -22,11 +22,11 @@ class AppQuantitySelector extends StatelessWidget {
     return Container(
 
       decoration: BoxDecoration(
-        color: Colors.grey[300],  
+       // color: Colors.grey[300],  
     
         borderRadius: BorderRadius.circular(5),
       ),
-padding: const EdgeInsets.all(8), 
+//padding: const EdgeInsets.all(8), 
 child: Row(
   mainAxisSize: MainAxisSize.min,
   children: [
@@ -34,10 +34,16 @@ child: Row(
     // Decrease Button. 
 GestureDetector(
   onTap: onDecrement, 
-  child: const Icon(Icons.remove,
-   size: 20, 
-   color: Colors.white,
-   ),
+  child: Container(
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+       color: Colors.grey[300], 
+    ),
+    child: const Icon(Icons.remove,
+     size: 20, 
+     color: Colors.white,
+     ),
+  ),
 ), 
 
 // Quantity Count
@@ -53,10 +59,13 @@ child: SizedBox(
 // Increase Button. 
 GestureDetector(
   onTap: onIncrement, 
-  child: const Icon(Icons.add,
-   size: 20, 
-   color: Colors.white,
-   ),
+  child: Container(
+    decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey[300], ),
+    child: const Icon(Icons.add,
+     size: 20, 
+     color: Colors.white,
+     ),
+  ),
 ),
   ],
 ),
