@@ -77,7 +77,7 @@ showDialog(context: context,
               // AppButton( text: 'Checkout',  
               // onTap: () => Navigator.push(context,MaterialPageRoute(builder: (context) => const PaymentPage())),
 
-              AppButton( text: 'Checkout' + restaurant.getTotalPrice().toString(),  
+              AppButton( text: 'Checkout  \$${restaurant.getTotalPrice().toStringAsFixed(2)}',  
               onTap: () => Navigator.push(context,MaterialPageRoute(builder: (context) => const PaymentPage())),
               
               ), 
