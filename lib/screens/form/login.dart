@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:quick_bite/components/form/app_button.dart';
 import 'package:quick_bite/components/form/app_textfield.dart';
+import 'package:quick_bite/screens/form/forgotpwd.dart';
 import 'package:quick_bite/services/auth/auth_services.dart';
 
 
@@ -84,6 +85,9 @@ catch(e) {
 const SizedBox(height: 25,), 
             // email textfield
             AppTextfield(
+              validator: (value) {
+                
+              },
               textInputAction: TextInputAction.next,
               controller: emailController, 
               hintText: 'Email', 
@@ -130,9 +134,13 @@ const SizedBox(height: 25,),
                 ],
               ), 
           
-          SizedBox(height: 10,), 
-          TextButton(onPressed: (){},
-           child: Text('Forgot Password'))
+          const SizedBox(height: 10,), 
+          TextButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgotpwdScreen())),
+           child: const Text('Forgot Password', 
+           
+           style: TextStyle(color: Colors.black, 
+           decoration: TextDecoration.underline),
+           ))
           ],
         )
       ),

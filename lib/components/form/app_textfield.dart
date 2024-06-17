@@ -5,7 +5,9 @@ class AppTextfield extends StatelessWidget {
   final TextEditingController controller; 
   final String hintText; 
   final bool obscureText; 
-  final TextInputAction? textInputAction; 
+  final TextInputAction? textInputAction;
+  
+  final FormFieldValidator<String> validator; 
   
   const AppTextfield({
     super.key,
@@ -13,6 +15,7 @@ class AppTextfield extends StatelessWidget {
     required this.hintText,
     required this.obscureText,
     this.textInputAction,
+    required this.validator,
   });
 
   @override
@@ -22,7 +25,9 @@ class AppTextfield extends StatelessWidget {
       child: TextField(
         textInputAction: textInputAction,
         controller: controller, 
+         
         obscureText: obscureText, 
+       // validator: validator,
         decoration: InputDecoration(
           enabledBorder: const OutlineInputBorder(
             //borderSide: BorderSide(color: Theme.of(context).colorScheme.tertiary), 

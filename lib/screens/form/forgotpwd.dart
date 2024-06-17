@@ -1,53 +1,31 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import 'package:quick_bite/components/form/app_button.dart';
 import 'package:quick_bite/components/form/app_textfield.dart';
-import 'package:quick_bite/services/auth/auth_services.dart';
+
+import '../../components/form/app_button.dart';
+import 'login.dart';
 
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({
+class ForgotpwdScreen extends StatefulWidget {
+  const ForgotpwdScreen({
     super.key,
     this.onTap,
   });
 
 final void Function()? onTap; 
+
+void reset () {}
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ForgotpwdScreen> createState() => _ForgotpwdScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ForgotpwdScreenState extends State<ForgotpwdScreen> {
 
-  final TextEditingController emailController = TextEditingController(); 
-  final TextEditingController passwordController = TextEditingController(); 
-
-  // login method
-  void login() async {
-     
-    // get instance of auth service. 
-    final authService = AuthService(); 
-
-    // try sign in 
-    try {
-      await authService.signInWithEmailPassword(emailController.text, passwordController.text);
-    }
-
-
-// display any errors
-
-catch(e) {
-  // ignore: use_build_context_synchronously
-  showDialog(context: context,
-   builder: (context) => AlertDialog(
-    title: Text(e.toString())
-   ));
-}
-    // navigate to home page 
-    // Navigator.push(context,
-    //  MaterialPageRoute(
-    //   builder: (context) => const HomeScreen())); 
-  }
+  final TextEditingController emailController = TextEditingController();
+  
+ 
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +53,7 @@ catch(e) {
               color: Theme.of(context).colorScheme.inverseSurface, 
             ),), 
             const SizedBox(height: 4,), 
-            Text('Welcome Back', 
+            Text('Reset Your Password', 
             style: TextStyle(
               fontSize: 16, 
               color: Theme.of(context).colorScheme.inverseSurface, 
@@ -90,45 +68,31 @@ const SizedBox(height: 25,),
               obscureText: false,
             ), 
             
-            const SizedBox(height: 10,), 
-              AppTextfield(
-              controller: passwordController, 
-              hintText: 'Password', 
-              obscureText: true,
-            
-            ),
+           
 
             const SizedBox(height: 20,), 
 
-            // Sign In Button. 
-            AppButton(
-              text: 'Sign In', 
-              onTap: login, 
+           // Sign In Button. 
+            const AppButton(
+              text: 'Reset Password', 
+             // onTap: reset, 
               ), 
 
               // Not a Member? Register Now. 
               const SizedBox(height: 20,), 
-               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Not a member?' , 
-                  style: TextStyle(
-                    //color: Theme.of(context).colorScheme.inversePrimary
-                    color: Colors.black.withOpacity(0.6), 
-                  ),
-                  ), 
-                  const SizedBox(width: 4,), 
-                  GestureDetector(
-                    onTap: widget.onTap, 
-                    child: Text('Register here', 
+                GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen())); 
+                    }, 
+                    child: Text('Sign In', 
                     style: TextStyle(
                       //color: Theme.of(context).colorScheme.inversePrimary, 
                       color: Colors.black.withOpacity(0.6),
                       fontWeight: FontWeight.bold, 
+                      decoration: TextDecoration.underline
                     ),),
-                  )
-                ],
-              ), 
+                  ), 
+              
           ],
         )
       ),

@@ -1,9 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:quick_bite/components/form/app_button.dart';
 import 'package:quick_bite/components/form/app_textfield.dart';
 import 'package:quick_bite/services/auth/auth_services.dart';
+
+import 'providers/register_providers.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({
@@ -54,6 +57,7 @@ void register() async {
 }
   @override
   Widget build(BuildContext context) {
+    final signUpProvider = Provider.of<SignUpProvider>(context);
     return Scaffold(
       //backgroundColor: Theme.of(context).colorScheme.surface,
       backgroundColor: Colors.grey[300],
@@ -89,9 +93,11 @@ const SizedBox(height: 25,),
             // email textfield
             AppTextfield(
               textInputAction: TextInputAction.next,
-              controller: emailController, 
+              //controller: emailController, 
+             controller:  signUpProvider.emailController, 
               hintText: 'Email', 
               obscureText: false,
+              validator: signUpProvider.emailValidator
             ), 
             
             const SizedBox(height: 10,), 
@@ -100,6 +106,7 @@ const SizedBox(height: 25,),
               controller: passwordController, 
               hintText: 'Password', 
               obscureText: true,
+           validator: signUpProvider.passwordValidator,
             
             ),
 
@@ -109,6 +116,7 @@ const SizedBox(height: 25,),
               controller: confirmPasswordController, 
               hintText: 'Confirm Password', 
               obscureText: true,
+               validator: signUpProvider.confirmPasswordValidator,
             
             ),
 
@@ -117,7 +125,8 @@ const SizedBox(height: 25,),
             // Sign Up Button. 
             AppButton(
               text: 'Sign Up', 
-              onTap: register, 
+             // onTap: register, 
+             onTap: () => signUpProvider.register(context), 
               ), 
 
               // A;ready have an account , login here. . 
