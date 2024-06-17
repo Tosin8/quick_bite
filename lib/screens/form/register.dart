@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'package:quick_bite/components/form/app_button.dart';
 import 'package:quick_bite/components/form/app_textfield.dart';
+import 'package:quick_bite/screens/form/login.dart';
 import 'package:quick_bite/services/auth/auth_services.dart';
 
 import 'providers/register_providers.dart';
@@ -27,34 +28,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
 
 // register method
-void register() async {
+// void register() async {
 
-  // get auth service. 
-  final authService = AuthService(); 
+//   // get auth service. 
+//   final authService = AuthService(); 
 
-  // check if passwords match -> create user. 
+//   // check if passwords match -> create user. 
 
-  if (passwordController.text == confirmPasswordController.text) {
+//   if (passwordController.text == confirmPasswordController.text) {
 
-    // create user.
-    try{
-   await  authService.signUpWithEmailPassword(emailController.text, passwordController.text);
-  }
+//     // create user.
+//     try{
+//    await  authService.signUpWithEmailPassword(emailController.text, passwordController.text);
+//   }
 
-  // display any errors
-  catch (e) {
-    // ignore: use_build_context_synchronously
-    showDialog(context: context, 
-    builder: (context) => AlertDialog(title: Text(e.toString())));
-  }
-  }
+//   // display any errors
+//   catch (e) {
+//     // ignore: use_build_context_synchronously
+//     showDialog(context: context, 
+//     builder: (context) => AlertDialog(title: Text(e.toString())));
+//   }
+//   }
 
-  // if passwords doesn't match -> show error.
-  else {
-    showDialog(context: context,
-     builder: (context) => const AlertDialog(title: Text('Passwords don\'t match')));
-  }
-}
+//   // if passwords doesn't match -> show error.
+//   else {
+//     showDialog(context: context,
+//      builder: (context) => const AlertDialog(title: Text('Passwords don\'t match')));
+//   }
+// }
   @override
   Widget build(BuildContext context) {
     final signUpProvider = Provider.of<SignUpProvider>(context);
@@ -142,7 +143,8 @@ const SizedBox(height: 25,),
                   ), 
                   const SizedBox(width: 4,), 
                   GestureDetector(
-                    onTap: widget.onTap, 
+                    //onTap: widget.onTap, 
+                    onTap: () => const LoginScreen(), 
                     child: Text('Login here', 
                     style: TextStyle(
                       //color: Theme.of(context).colorScheme.inversePrimary, 

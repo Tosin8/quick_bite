@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/firebase_options.dart';
 import 'package:quick_bite/model/restaurant.dart';
+import 'package:quick_bite/screens/form/providers/login_providers.dart';
+// ignore: unused_import
 import 'package:quick_bite/services/auth/auth_gate.dart';
 
 
+import 'screens/form/providers/register_providers.dart';
+import 'screens/splash.dart';
 import 'themes/theme_provider.dart';
 
 void main() async { 
@@ -20,7 +24,8 @@ void main() async {
       create: (context) => ThemeProvider(), 
       child: const MyApp(), 
     ), 
-
+ChangeNotifierProvider(create: (_) => SignUpProvider()),
+        ChangeNotifierProvider(create: (_) => LoginProvider()),
     // restaurant provider
     ChangeNotifierProvider(create: (context) => Restaurant()), 
       ], 
@@ -36,8 +41,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return   MaterialApp(
       debugShowCheckedModeBanner: false, 
-      //home: SplashScreen(), 
-      home: const AuthGate(), 
+      home: SplashScreen(), 
+     // home: const AuthGate(), 
        theme: Provider.of<ThemeProvider>(context).themeData,
     );
   }
