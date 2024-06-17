@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/components/form/app_button.dart';
 
-import '../model/food.dart';
-import '../model/restaurant.dart';
+import '../../model/food.dart';
+import '../../model/restaurant.dart';
 
 class FoodPage extends StatefulWidget {
   final Food food; 

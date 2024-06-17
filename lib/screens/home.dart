@@ -6,7 +6,7 @@ import 'package:quick_bite/components/app/app_silver_app.dart';
 import 'package:quick_bite/components/app/app_tab_bar.dart';
 import 'package:quick_bite/model/food.dart';
 import 'package:quick_bite/model/restaurant.dart';
-import 'package:quick_bite/screens/food_page.dart';
+import 'package:quick_bite/screens/components/food_page.dart';
 
 import '../components/app/app_food_tile.dart';
 import '../components/drawer/app_drawer.dart';

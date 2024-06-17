@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/model/restaurant.dart';
-import 'package:quick_bite/screens/app_receipt.dart';
+import 'package:quick_bite/screens/components/app_receipt.dart';
 import 'package:quick_bite/services/database/firestore.dart';
 
 class DeliveryProgressPage extends StatefulWidget {
