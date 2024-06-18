@@ -10,10 +10,12 @@ import 'package:quick_bite/screens/home.dart';
 import 'package:quick_bite/services/auth/auth_gate.dart';
 
 
+import 'screens/form/congrats_screen.dart';
 import 'screens/form/forgotpwd.dart';
 import 'screens/form/login.dart';
 import 'screens/form/providers/forgotpwd_providers.dart';
 import 'screens/form/providers/register_providers.dart';
+import 'screens/form/verifyemail.dart';
 import 'screens/splash.dart';
 import 'themes/theme_provider.dart';
 
@@ -65,6 +67,8 @@ class MyApp extends StatelessWidget {
           '/signup': (context) => const RegisterScreen(),
           '/login': (context) => const LoginScreen(),
           '/forgot_password': (context) => const ForgotpwdScreen(),
+          '/verify_email': (context) => VerifyEmailScreen(),
+'/congrats': (context) => CongratsScreen(),
         },
     );
   }

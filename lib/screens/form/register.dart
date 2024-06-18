@@ -23,7 +23,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController emailController = TextEditingController(); 
   final TextEditingController passwordController = TextEditingController(); 
   final TextEditingController confirmPasswordController = TextEditingController(); 
-
+final  TextEditingController  firstNameController = TextEditingController ();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  
 
 // register method
 // void register() async {
@@ -102,7 +105,40 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 obscureText: false,
                 validator: signUpProvider.emailValidator
               ), 
-              
+              SizedBox(height: 10,), 
+              // first name
+               AppTextfield(
+                textInputAction: TextInputAction.next,
+                //controller: emailController, 
+               controller:  signUpProvider.firstNameController, 
+                hintText: 'First Name', 
+                obscureText: false,
+                validator: signUpProvider.firstNameValidator, 
+              ), 
+  SizedBox(height: 10,), 
+// last name
+ AppTextfield(
+                textInputAction: TextInputAction.next,
+                //controller: emailController, 
+               controller:  signUpProvider.lastNameController, 
+                hintText: 'Last Name', 
+                obscureText: false,
+                validator: signUpProvider.lastNameValidator, 
+              ), 
+
+          SizedBox(height: 10,), 
+
+          // phone no. 
+         AppTextfield(
+                textInputAction: TextInputAction.next,
+                //controller: emailController, 
+               controller:  signUpProvider.phoneNumberController, 
+                hintText: 'Phone Number', 
+                obscureText: false,
+                validator: signUpProvider.phoneNumberValidator, 
+              ), 
+
+            
               const SizedBox(height: 10,), 
                 AppTextfield(
                   textInputAction: TextInputAction.next,
@@ -151,7 +187,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   onPressed: () => signUpProvider.signUp(context),
                   child: Text('Sign Up'),
                 ),
-                // A;ready have an account , login here. . 
+                // Already have an account , login here. . 
                 const SizedBox(height: 20,), 
                  Row(
                   mainAxisAlignment: MainAxisAlignment.center,

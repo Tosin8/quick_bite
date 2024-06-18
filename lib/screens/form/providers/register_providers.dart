@@ -23,6 +23,15 @@ class SignUpProvider with ChangeNotifier {
   bool get isPasswordVisible => _isPasswordVisible;
   bool get isConfirmPasswordVisible => _isConfirmPasswordVisible;
 
+   bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
+
+  void setLoading(bool loading) {
+    _isLoading = loading;
+    notifyListeners();
+  }
+
   void togglePasswordVisibility() {
     _isPasswordVisible = !_isPasswordVisible;
     notifyListeners();
@@ -44,6 +53,29 @@ class SignUpProvider with ChangeNotifier {
     return null;
   }
 
+   String? firstNameValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your first name';
+    }
+    return null;
+  }
+
+  String? lastNameValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your last name';
+    }
+    return null;
+  }
+String? phoneNumberValidator(String? value) {
+  if (value == null || value.isEmpty) {
+    return 'Please enter your phone number';
+  }
+  // Check if it contains exactly 11 digits
+  if (!RegExp(r'^\d{11}$').hasMatch(value)) {
+    return 'Phone number must be 11 digits';
+  }
+  return null;
+}
   String? passwordValidator(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please enter a password';
@@ -79,6 +111,7 @@ Future<bool> isEmailAlreadyRegistered(String email) async {
       return;
     }
    
+   setLoading(true);
    final email = emailController.text;
 
     if (await isEmailAlreadyRegistered(email)) {
@@ -87,27 +120,48 @@ Future<bool> isEmailAlreadyRegistered(String email) async {
       return;
     }
     try {
+      final firstName = firstNameController.text;
+      final lastName = lastNameController.text;
+      final email = emailController.text;
+      final password = passwordController.text;
+      final phoneNumber = phoneNumberController.text;
        _auth.setLanguageCode(Localizations.localeOf(context).languageCode);
       // await authService.signUpWithEmailPassword(
       //   emailController.text,
       //    passwordController.text);
-       await _auth.createUserWithEmailAndPassword(
+       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: email,
-        password: passwordController.text,
+        password: password, 
       );
       
-      
+       // Send email verification
+      await userCredential.user!.sendEmailVerification();
+
+       // Show success message
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Sign up successful. Verification email sent.'),
+        backgroundColor: Colors.green,
+      ),
+    );
+
+      // Navigate to verify email screen
+      Navigator.pushReplacementNamed(context, '/verify_email');
+
   
       // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign up successful'), 
-      backgroundColor: Colors.green,)
-      );
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign up failed: $e'), 
+      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign up successful'), 
+      // backgroundColor: Colors.green,)
+      // );
+      // Navigator.of(context).pushReplacement(
+      //   MaterialPageRoute(builder: (context) => HomeScreen()),
+      // );
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign up failed: ${e.message}'), 
       backgroundColor: Colors.red,));
+    }
+    finally {
+      setLoading(false);
     }
   }
 
@@ -116,6 +170,9 @@ Future<bool> isEmailAlreadyRegistered(String email) async {
     emailController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    phoneNumberController.dispose();
     super.dispose();
   }
 }
