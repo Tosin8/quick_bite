@@ -1,6 +1,7 @@
 
 // ignore_for_file: prefer_const_constructors, deprecated_member_use
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:quick_bite/screens/home.dart';
@@ -133,6 +134,13 @@ Future<bool> isEmailAlreadyRegistered(String email) async {
         email: email,
         password: password, 
       );
+        // Save user details to Firestore
+    await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
+      'firstName': firstName,
+      'lastName': lastName,
+      'email': email,
+      'phoneNumber': phoneNumber,
+    });
       
        // Send email verification
       await userCredential.user!.sendEmailVerification();
