@@ -6,6 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/components/drawer/app_drawer.dart';
+
+import 'components/notification_provider.dart';
 // Make sure to create and import NotificationProvider
 
 class ProfileScreen extends StatelessWidget {
