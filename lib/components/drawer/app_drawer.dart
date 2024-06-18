@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quick_bite/components/drawer/app_drawer_tile.dart';
+import 'package:quick_bite/screens/fav.dart';
 import 'package:quick_bite/screens/form/login.dart';
+import 'package:quick_bite/screens/profile.dart';
 import 'package:quick_bite/services/auth/auth_services.dart';
 
 import '../../screens/home.dart';
@@ -70,15 +72,17 @@ void logout(){
              icon: Icons.favorite,
               onTap: (){
                 Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => const SettingsScreen()));
+                MaterialPageRoute(builder: (context) => const FavScreen()));
               }),
               AppDrawerTile(
             text: 'Profile',
              icon: Icons.person,
               onTap: (){
                 Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => const SettingsScreen()));
+                MaterialPageRoute(builder: (context) => const ProfileScreen()));
               }),
+
+
               const Spacer(), 
               AppDrawerTile(
             text: 'Logout',
