@@ -11,7 +11,14 @@ class LoginProvider with ChangeNotifier {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
     bool _isLoading = false;
+    bool _isPasswordVisible = false;
      bool get isLoading => _isLoading;
+     bool get isPasswordVisible => _isPasswordVisible;
+
+     void togglePasswordVisibility() {
+    _isPasswordVisible = !_isPasswordVisible;
+    notifyListeners();
+  }
 
   String? emailValidator(String? value) {
     if (value == null || value.isEmpty) {

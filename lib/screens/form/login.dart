@@ -2,9 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:quick_bite/components/form/app_button.dart';
 import 'package:quick_bite/components/form/app_textfield.dart';
-import 'package:quick_bite/screens/form/forgotpwd.dart';
+import 'package:quick_bite/screens/form/register.dart';
 import 'package:quick_bite/services/auth/auth_services.dart';
 
 import 'providers/login_providers.dart';
@@ -54,6 +53,7 @@ catch(e) {
   }
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
      final loginProvider = Provider.of<LoginProvider>(context);
     return Scaffold(
       //backgroundColor: Theme.of(context).colorScheme.surface,
@@ -61,6 +61,7 @@ catch(e) {
       body: Center(
         child: Form(
            key: loginProvider.formKey,
+            //key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -96,32 +97,34 @@ catch(e) {
                // controller: emailController, 
                 controller: loginProvider.emailController, 
                 hintText: 'Email', 
-                obscureText: false,
+                obscureText: false, 
+              
               ), 
               
               const SizedBox(height: 10,), 
                 AppTextfield(
                 //controller: passwordController, 
                 hintText: 'Password', 
-                obscureText: true,
+                obscureText:  !loginProvider.isPasswordVisible,
+               
               controller: loginProvider.passwordController, 
               validator: loginProvider.passwordValidator,
-              ),
+              suffixIcon: IconButton(
+                    icon: Icon(
+                      loginProvider.isPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ), 
+                     onPressed: loginProvider.togglePasswordVisibility,
+                )),
           
-              const SizedBox(height: 20,), 
+               SizedBox(height: 20,), 
           
-            //   // Sign In Button. 
-            //   AppButton(
-            //     text: 'Sign In', 
-            //    // onTap: login, 
-            //  onTap: () =>   loginProvider.login(context),
-            //     ), 
-            ElevatedButton(
-                onPressed: loginProvider.isLoading ? null : () => loginProvider.login(context),
-                child: loginProvider.isLoading
-                    ? const CircularProgressIndicator()
-                    :  const Text('Login'),
-              ),
+        
+           
+            // login button
+
+            loginButton(loginProvider: loginProvider), 
           
                 // Not a Member? Register Now. 
                 const SizedBox(height: 20,), 
@@ -136,7 +139,8 @@ catch(e) {
                     ), 
                     const SizedBox(width: 4,), 
                     GestureDetector(
-                      onTap: widget.onTap, 
+                    //  onTap: widget.onTap, 
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterScreen())),
                       child: Text('Register here', 
                       style: TextStyle(
                         //color: Theme.of(context).colorScheme.inversePrimary, 
@@ -160,5 +164,53 @@ catch(e) {
         )
       ),
     );
+  }
+}
+
+class loginButton extends StatelessWidget {
+  const loginButton({
+    super.key,
+    required this.loginProvider,
+  });
+
+  final LoginProvider loginProvider;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+          onTap: loginProvider.isLoading ? null : () => loginProvider.login(context), 
+          child: Container(
+            padding: const EdgeInsets.all(25), 
+            margin: const EdgeInsets.symmetric(horizontal: 25),
+            decoration: BoxDecoration(
+              color: Colors.white, 
+              //color: Theme.of(context).colorScheme.secondary, 
+            borderRadius: BorderRadius.circular(8)), 
+            child: Center(
+              child: loginProvider.isLoading ? Center(
+    child: Row(
+      children: [
+        Container(
+          height: 30, width: 30, 
+          child: const CircularProgressIndicator()),
+        const SizedBox(width: 10,), 
+        Text('Please wait...', 
+        style: TextStyle(
+          //color: Theme.of(context).colorScheme.inversePrimary
+          color: Colors.black.withOpacity(0.6), 
+        ),
+        ),
+      ],
+    ),
+              ) : const Text('Login', 
+              
+              style: TextStyle(fontWeight: FontWeight.bold, 
+              fontSize: 14,
+            //  color: Theme.of(context).colorScheme.inversePrimary),
+            color: Colors.black, 
+            ), 
+            ),
+          )
+         ) );
   }
 }

@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quick_bite/components/drawer/app_drawer_tile.dart';
+import 'package:quick_bite/screens/form/login.dart';
 import 'package:quick_bite/services/auth/auth_services.dart';
 
 import '../../screens/home.dart';
@@ -15,6 +17,14 @@ void logout(){
   final authService = AuthService();
   authService.signOut();
 }
+
+  Future<void> _logout(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => LoginScreen()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -73,7 +83,8 @@ void logout(){
               AppDrawerTile(
             text: 'Logout',
              icon: Icons.logout,
-              onTap: logout, 
+              //onTap: logout, 
+              onTap: () => _logout(context),
               ), 
               const SizedBox(height: 10,), 
         ],

@@ -5,6 +5,7 @@ class AppTextfield extends StatelessWidget {
   final TextEditingController controller; 
   final String hintText; 
   final bool obscureText; 
+  final Widget? suffixIcon;  
   final TextInputAction? textInputAction;
   
   final FormFieldValidator<String> validator; 
@@ -14,6 +15,7 @@ class AppTextfield extends StatelessWidget {
     required this.controller,
     required this.hintText,
     required this.obscureText,
+     this.suffixIcon,
     this.textInputAction,
     required this.validator,
   });
@@ -37,6 +39,7 @@ class AppTextfield extends StatelessWidget {
             borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
           ), 
           hintText: hintText, 
+          suffixIcon: suffixIcon,
           hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary), 
         ),
       ),

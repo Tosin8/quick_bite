@@ -3,7 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:quick_bite/services/auth/auth_services.dart';
+import 'package:quick_bite/screens/home.dart';
 
 
 class SignUpProvider with ChangeNotifier {
@@ -14,6 +14,21 @@ class SignUpProvider with ChangeNotifier {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
+  bool _isPasswordVisible = false;
+  bool _isConfirmPasswordVisible = false;
+
+  bool get isPasswordVisible => _isPasswordVisible;
+  bool get isConfirmPasswordVisible => _isConfirmPasswordVisible;
+
+  void togglePasswordVisibility() {
+    _isPasswordVisible = !_isPasswordVisible;
+    notifyListeners();
+  }
+
+  void toggleConfirmPasswordVisibility() {
+    _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+    notifyListeners();
+  }
   
 
   String? emailValidator(String? value) {
@@ -43,6 +58,15 @@ class SignUpProvider with ChangeNotifier {
     return null;
   }
 
+Future<bool> isEmailAlreadyRegistered(String email) async {
+    try {
+      final result = await _auth.fetchSignInMethodsForEmail(email);
+      return result.isNotEmpty;
+    } catch (e) {
+      print('Error checking email: $e');
+      return false;
+    }
+  }
 
   Future<void> signUp(BuildContext context) async {
 
@@ -52,21 +76,34 @@ class SignUpProvider with ChangeNotifier {
       return;
     }
    
+   final email = emailController.text;
+
+    if (await isEmailAlreadyRegistered(email)) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Email is already registered'), 
+      backgroundColor: Colors.red,));
+      return;
+    }
     try {
       // await authService.signUpWithEmailPassword(
       //   emailController.text,
       //    passwordController.text);
        await _auth.createUserWithEmailAndPassword(
-        email: emailController.text,
+        email: email,
         password: passwordController.text,
       );
       
       
   
       // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign up successful')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign up successful'), 
+      backgroundColor: Colors.green,)
+      );
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+      );
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign up failed: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign up failed: $e'), 
+      backgroundColor: Colors.red,));
     }
   }
 

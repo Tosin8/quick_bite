@@ -58,13 +58,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
 // }
   @override
   Widget build(BuildContext context) {
+     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     final signUpProvider = Provider.of<SignUpProvider>(context);
     return Scaffold(
       //backgroundColor: Theme.of(context).colorScheme.surface,
       backgroundColor: Colors.grey[300],
       body: Center(
         child: Form(
-           key: signUpProvider.formKey,
+         // key: _formKey,
+          key: signUpProvider.formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
