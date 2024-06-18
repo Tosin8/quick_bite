@@ -16,6 +16,7 @@ import 'screens/form/login.dart';
 import 'screens/form/providers/forgotpwd_providers.dart';
 import 'screens/form/providers/register_providers.dart';
 import 'screens/form/verifyemail.dart';
+import 'screens/profile.dart';
 import 'screens/splash.dart';
 import 'themes/theme_provider.dart';
 
@@ -61,13 +62,15 @@ class MyApp extends StatelessWidget {
       home: SplashScreen(), 
      // home: const AuthGate(), 
        theme: Provider.of<ThemeProvider>(context).themeData,
-
+    initialRoute: '/',
         routes: {
+          '/': (context) => SplashScreen(),
           '/home': (context) => const HomeScreen(),
           '/signup': (context) => const RegisterScreen(),
           '/login': (context) => const LoginScreen(),
           '/forgot_password': (context) => const ForgotpwdScreen(),
           '/verify_email': (context) => VerifyEmailScreen(),
+          '/profile': (context) => ProfileScreen(),
 '/congrats': (context) => CongratsScreen(),
         },
     );
