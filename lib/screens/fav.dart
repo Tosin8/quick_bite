@@ -10,7 +10,8 @@ class FavScreen extends StatelessWidget {
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         backgroundColor: Colors.grey[300],
-        title: Text('Favorites')
+        title: Text('Favorites'), 
+        centerTitle: true,
       ),
       drawer: AppDrawer(),
       body: Center(child: Text('Fav Screen'))
