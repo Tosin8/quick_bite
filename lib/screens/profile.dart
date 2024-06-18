@@ -1,39 +1,45 @@
 
-
-
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/components/drawer/app_drawer.dart';
-
+import 'package:shimmer/shimmer.dart';
 import 'components/notification_provider.dart';
-// Make sure to create and import NotificationProvider
+import 'notification_provider.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
+
     return Scaffold(
-        backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey[300],
       appBar: AppBar(
-       
-         backgroundColor: Colors.grey[300],
+        backgroundColor: Colors.grey[300],
         title: Text('Profile'),
-          centerTitle: true,
-          
+        centerTitle: true,
       ),
-       drawer: AppDrawer(),
+      drawer: AppDrawer(),
       body: FutureBuilder<DocumentSnapshot>(
         future: FirebaseFirestore.instance.collection('users').doc(user!.uid).get(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return _buildShimmerEffect();
           }
-          if (!snapshot.hasData || snapshot.hasError) {
+          if (snapshot.hasError) {
             return Center(child: Text('Error loading profile data'));
           }
-          var userData = snapshot.data!.data() as Map<String, dynamic>;
+          if (!snapshot.hasData || snapshot.data == null || !snapshot.data!.exists) {
+            return Center(child: Text('No profile data found'));
+          }
+
+          var userData = snapshot.data!.data() as Map<String, dynamic>?;
+
+          if (userData == null) {
+            return Center(child: Text('No profile data found'));
+          }
+
           return ListView(
             padding: const EdgeInsets.all(16.0),
             children: [
@@ -146,6 +152,69 @@ class ProfileScreen extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+
+  Widget _buildShimmerEffect() {
+    return ListView(
+      padding: const EdgeInsets.all(16.0),
+      children: [
+        Shimmer.fromColors(
+          baseColor: Colors.grey[300]!,
+          highlightColor: Colors.grey[100]!,
+          child: Column(
+            children: [
+              ListTile(
+                leading: CircleAvatar(backgroundColor: Colors.white),
+                title: Container(height: 10.0, color: Colors.white),
+                subtitle: Container(height: 10.0, color: Colors.white),
+              ),
+              ListTile(
+                leading: CircleAvatar(backgroundColor: Colors.white),
+                title: Container(height: 10.0, color: Colors.white),
+                subtitle: Container(height: 10.0, color: Colors.white),
+              ),
+              Divider(),
+              ListTile(
+                leading: Icon(Icons.edit, color: Colors.grey),
+                title: Container(height: 10.0, color: Colors.white),
+              ),
+              ListTile(
+                leading: Icon(Icons.history, color: Colors.grey),
+                title: Container(height: 10.0, color: Colors.white),
+              ),
+              ListTile(
+                leading: Icon(Icons.rate_review, color: Colors.grey),
+                title: Container(height: 10.0, color: Colors.white),
+              ),
+              ListTile(
+                leading: Icon(Icons.share, color: Colors.grey),
+                title: Container(height: 10.0, color: Colors.white),
+              ),
+              ListTile(
+                leading: Icon(Icons.help, color: Colors.grey),
+                title: Container(height: 10.0, color: Colors.white),
+              ),
+              ListTile(
+                leading: Icon(Icons.settings, color: Colors.grey),
+                title: Container(height: 10.0, color: Colors.white),
+              ),
+              ListTile(
+                leading: Icon(Icons.update, color: Colors.grey),
+                title: Container(height: 10.0, color: Colors.white),
+              ),
+              ListTile(
+                leading: Icon(Icons.notifications, color: Colors.grey),
+                title: Container(height: 10.0, color: Colors.white),
+              ),
+              ListTile(
+                leading: Icon(Icons.delete, color: Colors.grey),
+                title: Container(height: 10.0, color: Colors.white),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

@@ -28,3 +28,5 @@ class NotificationProvider with ChangeNotifier {
     prefs.setBool('isNotificationEnabled', _isNotificationEnabled);
   }
 }
+
+
