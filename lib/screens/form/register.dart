@@ -63,101 +63,106 @@ class _RegisterScreenState extends State<RegisterScreen> {
       //backgroundColor: Theme.of(context).colorScheme.surface,
       backgroundColor: Colors.grey[300],
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Logo
-
-            // Icon(Icons.lock_open_rounded, 
-            // size: 72, 
-            // color: Theme.of(context).colorScheme.inverseSurface, 
-            // ), 
-              // ignore: sized_box_for_whitespace
-              Container(
-              width: 80, height: 80,
-              child: Image.asset('assets/icons/logo.png')),
-
-            const SizedBox(height: 20,), 
-            Text('Quick Bite', 
-            style: TextStyle(
-              fontSize: 16, 
-              color: Theme.of(context).colorScheme.inverseSurface, 
-            ),),
-             const SizedBox(height: 5,), 
-            Text('Let\'s Create your Account', 
-            style: TextStyle(
-              fontSize: 16, 
-              color: Theme.of(context).colorScheme.inverseSurface, 
-            ),),  
-
-const SizedBox(height: 25,), 
-            // email textfield
-            AppTextfield(
-              textInputAction: TextInputAction.next,
-              //controller: emailController, 
-             controller:  signUpProvider.emailController, 
-              hintText: 'Email', 
-              obscureText: false,
-              validator: signUpProvider.emailValidator
-            ), 
-            
-            const SizedBox(height: 10,), 
+        child: Form(
+           key: signUpProvider.formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Logo
+          
+              // Icon(Icons.lock_open_rounded, 
+              // size: 72, 
+              // color: Theme.of(context).colorScheme.inverseSurface, 
+              // ), 
+                // ignore: sized_box_for_whitespace
+                Container(
+                width: 80, height: 80,
+                child: Image.asset('assets/icons/logo.png')),
+          
+              const SizedBox(height: 20,), 
+              Text('Quick Bite', 
+              style: TextStyle(
+                fontSize: 16, 
+                color: Theme.of(context).colorScheme.inverseSurface, 
+              ),),
+               const SizedBox(height: 5,), 
+              Text('Let\'s Create your Account', 
+              style: TextStyle(
+                fontSize: 16, 
+                color: Theme.of(context).colorScheme.inverseSurface, 
+              ),),  
+          
+          const SizedBox(height: 25,), 
+              // email textfield
               AppTextfield(
                 textInputAction: TextInputAction.next,
-              controller: passwordController, 
-              hintText: 'Password', 
-              obscureText: true,
-           validator: signUpProvider.passwordValidator,
-            
-            ),
-
-             const SizedBox(height: 10,), 
-              AppTextfield(
-                textInputAction: TextInputAction.done,
-              controller: confirmPasswordController, 
-              hintText: 'Confirm Password', 
-              obscureText: true,
-               validator: signUpProvider.confirmPasswordValidator,
-            
-            ),
-
-            const SizedBox(height: 20,), 
-
-            // Sign Up Button. 
-            // AppButton(
-            //   text: 'Sign Up', 
-            //  // onTap: register, 
-            //  onTap: () => signUpProvider.signUp(context), 
-            //   ), 
- ElevatedButton(
-                onPressed: () => signUpProvider.signUp(context),
-                child: Text('Sign Up'),
-              ),
-              // A;ready have an account , login here. . 
-              const SizedBox(height: 20,), 
-               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Already have an account?' , 
-                  style: TextStyle(
-                    //color: Theme.of(context).colorScheme.inversePrimary
-                    color: Colors.black.withOpacity(0.6), 
-                  ),
-                  ), 
-                  const SizedBox(width: 4,), 
-                  GestureDetector(
-                    //onTap: widget.onTap, 
-                    onTap: () => const LoginScreen(), 
-                    child: Text('Login here', 
-                    style: TextStyle(
-                      //color: Theme.of(context).colorScheme.inversePrimary, 
-                      color: Colors.black.withOpacity(0.6),
-                      fontWeight: FontWeight.bold, 
-                    ),),
-                  )
-                ],
+                //controller: emailController, 
+               controller:  signUpProvider.emailController, 
+                hintText: 'Email', 
+                obscureText: false,
+                validator: signUpProvider.emailValidator
               ), 
-          ],
+              
+              const SizedBox(height: 10,), 
+                AppTextfield(
+                  textInputAction: TextInputAction.next,
+                controller: passwordController, 
+                hintText: 'Password', 
+                obscureText: true,
+             validator: signUpProvider.passwordValidator,
+              
+              ),
+          
+               const SizedBox(height: 10,), 
+                AppTextfield(
+                  textInputAction: TextInputAction.done,
+                controller: confirmPasswordController, 
+                hintText: 'Confirm Password', 
+                obscureText: true,
+                 validator: signUpProvider.confirmPasswordValidator,
+              
+              ),
+          
+              const SizedBox(height: 20,), 
+          
+              // Sign Up Button. 
+              // AppButton(
+              //   text: 'Sign Up', 
+              //  // onTap: register, 
+              //  onTap: () => signUpProvider.signUp(context), 
+              //   ), 
+           ElevatedButton(
+                  onPressed: () => signUpProvider.signUp(context),
+                  child: Text('Sign Up'),
+                ),
+                // A;ready have an account , login here. . 
+                const SizedBox(height: 20,), 
+                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Already have an account?' , 
+                    style: TextStyle(
+                      //color: Theme.of(context).colorScheme.inversePrimary
+                      color: Colors.black.withOpacity(0.6), 
+                    ),
+                    ), 
+                    const SizedBox(width: 4,), 
+                    // GestureDetector(
+                    //   //onTap: widget.onTap, 
+                    //   onTap: () => const LoginScreen(), 
+                    //   child: Text('Login here', 
+                    //   style: TextStyle(
+                    //     //color: Theme.of(context).colorScheme.inversePrimary, 
+                    //     color: Colors.black.withOpacity(0.6),
+                    //     fontWeight: FontWeight.bold, 
+                    //   ),),
+                    // )
+                    TextButton(onPressed: () => Navigator.push(context,MaterialPageRoute(builder: (context) => const LoginScreen())), child: Text('Login here', 
+                    style: TextStyle(color: Colors.black.withOpacity(0.6), fontWeight: FontWeight.bold),))
+                  ],
+                ), 
+            ],
+          ),
         )
       ),
     );

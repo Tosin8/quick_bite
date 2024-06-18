@@ -48,7 +48,7 @@ class SignUpProvider with ChangeNotifier {
 
 
   //  final authService = AuthService();
-    if (!formKey.currentState!.validate()) {
+    if (formKey.currentState == null || !formKey.currentState!.validate()) {
       return;
     }
    

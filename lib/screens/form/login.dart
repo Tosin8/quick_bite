@@ -59,94 +59,104 @@ catch(e) {
       //backgroundColor: Theme.of(context).colorScheme.surface,
       backgroundColor: Colors.grey[300],
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Logo
-
-            // Icon(Icons.lock_open_rounded, 
-            // size: 72, 
-            // color: Theme.of(context).colorScheme.inverseSurface, 
-            // ), 
-            // ignore: sized_box_for_whitespace
-            Container(
-              width: 80, height: 80,
-              child: Image.asset('assets/icons/logo.png')),
-
-            const SizedBox(height: 20,), 
-            Text('Quick Bite', 
-            style: TextStyle(
-              fontSize: 16, 
-              color: Theme.of(context).colorScheme.inverseSurface, 
-            ),), 
-            const SizedBox(height: 4,), 
-            Text('Welcome Back', 
-            style: TextStyle(
-              fontSize: 16, 
-              color: Theme.of(context).colorScheme.inverseSurface, 
-            ),), 
-
-const SizedBox(height: 25,), 
-            // email textfield
-            AppTextfield(
-              validator: loginProvider.emailValidator,
-              textInputAction: TextInputAction.next,
-             // controller: emailController, 
-              controller: loginProvider.emailController, 
-              hintText: 'Email', 
-              obscureText: false,
-            ), 
+        child: Form(
+           key: loginProvider.formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Logo
+          
+              // Icon(Icons.lock_open_rounded, 
+              // size: 72, 
+              // color: Theme.of(context).colorScheme.inverseSurface, 
+              // ), 
+              // ignore: sized_box_for_whitespace
+              Container(
+                width: 80, height: 80,
+                child: Image.asset('assets/icons/logo.png')),
+          
+              const SizedBox(height: 20,), 
+              Text('Quick Bite', 
+              style: TextStyle(
+                fontSize: 16, 
+                color: Theme.of(context).colorScheme.inverseSurface, 
+              ),), 
+              const SizedBox(height: 4,), 
+              Text('Welcome Back', 
+              style: TextStyle(
+                fontSize: 16, 
+                color: Theme.of(context).colorScheme.inverseSurface, 
+              ),), 
+          
+          const SizedBox(height: 25,), 
+              // email textfield
+              AppTextfield(
+                validator: loginProvider.emailValidator,
+                textInputAction: TextInputAction.next,
+               // controller: emailController, 
+                controller: loginProvider.emailController, 
+                hintText: 'Email', 
+                obscureText: false,
+              ), 
+              
+              const SizedBox(height: 10,), 
+                AppTextfield(
+                //controller: passwordController, 
+                hintText: 'Password', 
+                obscureText: true,
+              controller: loginProvider.passwordController, 
+              validator: loginProvider.passwordValidator,
+              ),
+          
+              const SizedBox(height: 20,), 
+          
+            //   // Sign In Button. 
+            //   AppButton(
+            //     text: 'Sign In', 
+            //    // onTap: login, 
+            //  onTap: () =>   loginProvider.login(context),
+            //     ), 
+            ElevatedButton(
+                onPressed: loginProvider.isLoading ? null : () => loginProvider.login(context),
+                child: loginProvider.isLoading
+                    ? const CircularProgressIndicator()
+                    :  const Text('Login'),
+              ),
+          
+                // Not a Member? Register Now. 
+                const SizedBox(height: 20,), 
+                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Not a member?' , 
+                    style: TextStyle(
+                      //color: Theme.of(context).colorScheme.inversePrimary
+                      color: Colors.black.withOpacity(0.6), 
+                    ),
+                    ), 
+                    const SizedBox(width: 4,), 
+                    GestureDetector(
+                      onTap: widget.onTap, 
+                      child: Text('Register here', 
+                      style: TextStyle(
+                        //color: Theme.of(context).colorScheme.inversePrimary, 
+                        color: Colors.black.withOpacity(0.6),
+                        fontWeight: FontWeight.bold, 
+                      ),
+                      ),
+                    ), 
+                  ],
+                ), 
             
             const SizedBox(height: 10,), 
-              AppTextfield(
-              //controller: passwordController, 
-              hintText: 'Password', 
-              obscureText: true,
-            controller: loginProvider.passwordController, 
-            validator: loginProvider.passwordValidator,
-            ),
-
-            const SizedBox(height: 20,), 
-
-            // Sign In Button. 
-            AppButton(
-              text: 'Sign In', 
-             // onTap: login, 
-           onTap: () =>   loginProvider.login(context),
-              ), 
-
-              // Not a Member? Register Now. 
-              const SizedBox(height: 20,), 
-               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Not a member?' , 
-                  style: TextStyle(
-                    //color: Theme.of(context).colorScheme.inversePrimary
-                    color: Colors.black.withOpacity(0.6), 
-                  ),
-                  ), 
-                  const SizedBox(width: 4,), 
-                  GestureDetector(
-                    onTap: widget.onTap, 
-                    child: Text('Register here', 
-                    style: TextStyle(
-                      //color: Theme.of(context).colorScheme.inversePrimary, 
-                      color: Colors.black.withOpacity(0.6),
-                      fontWeight: FontWeight.bold, 
-                    ),),
-                  )
-                ],
-              ), 
-          
-          const SizedBox(height: 10,), 
-          // TextButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgotpwdScreen())),
-          //  child: const Text('Forgot Password', 
-           
-          //  style: TextStyle(color: Colors.black, 
-          //  decoration: TextDecoration.underline),
-          //  ))
-          ],
+            // TextButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgotpwdScreen())),
+            //  child: const Text('Forgot Password', 
+             
+            //  style: TextStyle(color: Colors.black, 
+            //  decoration: TextDecoration.underline),
+            //  ))
+            ],
+          ),
         )
       ),
     );

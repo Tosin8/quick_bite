@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:quick_bite/screens/home.dart';
 
-import '../../../services/auth/auth_services.dart';
 
 class LoginProvider with ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -10,6 +10,8 @@ class LoginProvider with ChangeNotifier {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+    bool _isLoading = false;
+     bool get isLoading => _isLoading;
 
   String? emailValidator(String? value) {
     if (value == null || value.isEmpty) {
@@ -32,11 +34,13 @@ class LoginProvider with ChangeNotifier {
   }
 
   Future<void> login(BuildContext context) async {
-    if (!formKey.currentState!.validate()) {
+    if (formKey.currentState == null || !formKey.currentState!.validate()) {
       return;
     }
    // final authService = AuthService();
-    
+     _isLoading = true;
+    notifyListeners();
+
     try {
       // await _auth.signInWithEmailAndPassword(
       //   email: emailController.text,
@@ -45,9 +49,19 @@ class LoginProvider with ChangeNotifier {
 await _auth.signInWithEmailAndPassword(
   email: emailController.text, 
   password:passwordController.text);
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Login successful')));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        backgroundColor: Colors.black,
+        behavior: SnackBarBehavior.floating,
+        
+
+        content: Text('Login successful')));
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => HomeScreen()));
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login failed: $e')));
+    } finally {
+      _isLoading = false;
+      notifyListeners();
     }
   }
 
