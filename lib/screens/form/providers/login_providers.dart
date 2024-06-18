@@ -89,17 +89,26 @@ void setLoading(bool loading) {
     }
   }
 
-Future<void> sendSignInEmail(String email) async {
-    HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('sendSignInEmail');
-    final results = await callable.call(<String, dynamic>{
-      'email': email,
-    });
-    if (!results.data['success']) {
-      print('Failed to send sign-in email: ${results.data['error']}');
+// Future<void> sendSignInEmail(String email) async {
+//     HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('sendSignInEmail');
+//     final results = await callable.call(<String, dynamic>{
+//       'email': email,
+//     });
+//     if (!results.data['success']) {
+//       print('Failed to send sign-in email: ${results.data['error']}');
+//     }
+//   }
+
+  Future<void> sendSignInEmail(String email) async {
+    try {
+      HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('sendSignInEmail');
+      await callable.call(<String, dynamic>{
+        'email': email,
+      });
+    } catch (e) {
+      print('Error sending sign-in email: $e');
     }
   }
-
-  
   @override
   void dispose() {
     emailController.dispose();
