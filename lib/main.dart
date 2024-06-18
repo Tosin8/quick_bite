@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/firebase_options.dart';
 import 'package:quick_bite/model/restaurant.dart';
-import 'package:quick_bite/screens/form/providers/login_providers.dart';
+import 'package:quick_bite/screens/form/providers/login_providers.dart';import 'package:flutter_localizations/flutter_localizations.dart';
 // ignore: unused_import
 import 'package:quick_bite/services/auth/auth_gate.dart';
 
@@ -41,6 +41,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return   MaterialApp(
       debugShowCheckedModeBanner: false, 
+        supportedLocales: [
+          const Locale('en', ''), // English, no country code
+          // Add other supported locales here
+        ],
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
       home: SplashScreen(), 
      // home: const AuthGate(), 
        theme: Provider.of<ThemeProvider>(context).themeData,

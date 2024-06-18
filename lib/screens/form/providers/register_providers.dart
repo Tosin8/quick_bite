@@ -1,5 +1,5 @@
 
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, deprecated_member_use
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -84,6 +84,7 @@ Future<bool> isEmailAlreadyRegistered(String email) async {
       return;
     }
     try {
+       _auth.setLanguageCode(Localizations.localeOf(context).languageCode);
       // await authService.signUpWithEmailPassword(
       //   emailController.text,
       //    passwordController.text);

@@ -6,6 +6,7 @@ import 'package:quick_bite/components/form/app_textfield.dart';
 import 'package:quick_bite/screens/form/register.dart';
 import 'package:quick_bite/services/auth/auth_services.dart';
 
+import 'forgotpwd.dart';
 import 'providers/login_providers.dart';
 
 
@@ -153,12 +154,12 @@ catch(e) {
                 ), 
             
             const SizedBox(height: 10,), 
-            // TextButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgotpwdScreen())),
-            //  child: const Text('Forgot Password', 
+            TextButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgotpwdScreen())),
+             child: const Text('Forgot Password', 
              
-            //  style: TextStyle(color: Colors.black, 
-            //  decoration: TextDecoration.underline),
-            //  ))
+             style: TextStyle(color: Colors.black, 
+             decoration: TextDecoration.underline),
+             ))
             ],
           ),
         )

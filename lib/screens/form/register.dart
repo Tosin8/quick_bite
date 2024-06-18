@@ -110,7 +110,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   textInputAction: TextInputAction.next,
                 controller: passwordController, 
                 hintText: 'Password', 
-                obscureText: true,
+                obscureText: !signUpProvider.isPasswordVisible,
+                suffixIcon: IconButton(
+                icon: Icon(
+                  signUpProvider.isPasswordVisible
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                ),
+                onPressed: signUpProvider.togglePasswordVisibility,
+              ),
              validator: signUpProvider.passwordValidator,
               
               ),
@@ -120,8 +128,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   textInputAction: TextInputAction.done,
                 controller: confirmPasswordController, 
                 hintText: 'Confirm Password', 
-                obscureText: true,
+                obscureText: !signUpProvider.isConfirmPasswordVisible,
                  validator: signUpProvider.confirmPasswordValidator,
+                  suffixIcon: IconButton(
+                icon: Icon(
+                  signUpProvider.isConfirmPasswordVisible
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                ),
+                onPressed: signUpProvider.toggleConfirmPasswordVisibility,
+              ),
               
               ),
           
