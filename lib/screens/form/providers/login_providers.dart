@@ -1,10 +1,10 @@
 
 import 'package:cloud_functions/cloud_functions.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:quick_bite/functions/index.js';
-import 'package:quick_bite/screens/home.dart';
+import 'package:flutter/material.dart';
 
+
+import 'package:quick_bite/screens/home.dart';
 
 class LoginProvider with ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -52,8 +52,10 @@ void setLoading(bool loading) {
       return;
     }
    // final authService = AuthService();
-     _isLoading = true;
-    notifyListeners();
+    //  _isLoading = true;
+    // notifyListeners();
+
+    setLoading(true);
 
     try {
      
@@ -80,8 +82,10 @@ void setLoading(bool loading) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login failed: ${e.message}'), 
       backgroundColor: Colors.red,));
     } finally {
-      _isLoading = false;
-      notifyListeners();
+      // _isLoading = false;
+      // notifyListeners();
+
+      setLoading(false);
     }
   }
 
