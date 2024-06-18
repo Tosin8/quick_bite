@@ -87,9 +87,9 @@ class _ForgotpwdScreenState extends State<ForgotpwdScreen> {
               //   ), 
 
               provider.isLoading
-                  ? CircularProgressIndicator()  : ElevatedButton(
+                  ? const CircularProgressIndicator()  : ElevatedButton(
                       onPressed: () => provider.sendPasswordResetEmail(context),
-                      child: Text('Send Password Reset Email'),
+                      child: const Text('Send Password Reset Email'),
                     ),
           
                 // Not a Member? Register Now. 

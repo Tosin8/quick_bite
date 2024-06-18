@@ -1,6 +1,8 @@
 
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:quick_bite/functions/index.js';
 import 'package:quick_bite/screens/home.dart';
 
 
@@ -17,6 +19,11 @@ class LoginProvider with ChangeNotifier {
 
      void togglePasswordVisibility() {
     _isPasswordVisible = !_isPasswordVisible;
+    notifyListeners();
+  }
+
+void setLoading(bool loading) {
+    _isLoading = loading;
     notifyListeners();
   }
 
@@ -49,13 +56,18 @@ class LoginProvider with ChangeNotifier {
     notifyListeners();
 
     try {
-      // await _auth.signInWithEmailAndPassword(
-      //   email: emailController.text,
-      //   password: passwordController.text,
-      // );
-await _auth.signInWithEmailAndPassword(
-  email: emailController.text, 
-  password:passwordController.text);
+     
+        final email = emailController.text;
+        final password = passwordController.text;
+      
+ UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+  email: email,  
+  password:password, 
+  
+  );
+  await sendSignInEmail(email);
+
+  
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         backgroundColor: Colors.black,
         behavior: SnackBarBehavior.floating,
@@ -64,14 +76,26 @@ await _auth.signInWithEmailAndPassword(
         content: Text('Login successful')));
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => HomeScreen()));
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login failed: $e')));
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login failed: ${e.message}'), 
+      backgroundColor: Colors.red,));
     } finally {
       _isLoading = false;
       notifyListeners();
     }
   }
 
+Future<void> sendSignInEmail(String email) async {
+    HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('sendSignInEmail');
+    final results = await callable.call(<String, dynamic>{
+      'email': email,
+    });
+    if (!results.data['success']) {
+      print('Failed to send sign-in email: ${results.data['error']}');
+    }
+  }
+
+  
   @override
   void dispose() {
     emailController.dispose();

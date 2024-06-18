@@ -84,7 +84,18 @@ void logout(){
             text: 'Logout',
              icon: Icons.logout,
               //onTap: logout, 
-              onTap: () => _logout(context),
+            // onTap: () => _logout(context),
+              onTap: 
+                () async {
+              await FirebaseAuth.instance.signOut();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Logout successful'),
+                ),
+              );
+              Navigator.pushReplacementNamed(context, '/login');
+            
+              },
               ), 
               const SizedBox(height: 10,), 
         ],

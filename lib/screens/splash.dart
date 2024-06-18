@@ -47,6 +47,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:quick_bite/screens/form/register.dart';
 import 'package:quick_bite/screens/home.dart';
 
+import 'form/login.dart';
+
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -62,13 +64,13 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _checkLoginStatus() async {
     await Future.delayed(const Duration(seconds: 2)); // Simulate a splash screen delay
     User? user = FirebaseAuth.instance.currentUser;
-    if (mounted && user != null) {
+    if ( user == null) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const LoginScreen()),
+      );
+    } else {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const HomeScreen()),
-      );
-    } else if (mounted){
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const RegisterScreen()),
       );
     }
   }

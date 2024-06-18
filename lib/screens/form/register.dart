@@ -2,10 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:quick_bite/components/form/app_button.dart';
 import 'package:quick_bite/components/form/app_textfield.dart';
 import 'package:quick_bite/screens/form/login.dart';
-import 'package:quick_bite/services/auth/auth_services.dart';
 
 import 'providers/register_providers.dart';
 

@@ -4,10 +4,15 @@ import 'package:provider/provider.dart';
 import 'package:quick_bite/firebase_options.dart';
 import 'package:quick_bite/model/restaurant.dart';
 import 'package:quick_bite/screens/form/providers/login_providers.dart';import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:quick_bite/screens/form/register.dart';
+import 'package:quick_bite/screens/home.dart';
 // ignore: unused_import
 import 'package:quick_bite/services/auth/auth_gate.dart';
 
 
+import 'screens/form/forgotpwd.dart';
+import 'screens/form/login.dart';
+import 'screens/form/providers/forgotpwd_providers.dart';
 import 'screens/form/providers/register_providers.dart';
 import 'screens/splash.dart';
 import 'themes/theme_provider.dart';
@@ -26,6 +31,7 @@ void main() async {
     ), 
 ChangeNotifierProvider(create: (_) => SignUpProvider()),
         ChangeNotifierProvider(create: (_) => LoginProvider()),
+         ChangeNotifierProvider(create: (_) => ForgotPasswordProvider()),
     // restaurant provider
     ChangeNotifierProvider(create: (context) => Restaurant()), 
       ], 
@@ -41,11 +47,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return   MaterialApp(
       debugShowCheckedModeBanner: false, 
-        supportedLocales: [
-          const Locale('en', ''), // English, no country code
+        supportedLocales: const [
+          Locale('en', ''), // English, no country code
           // Add other supported locales here
         ],
-        localizationsDelegates: [
+        localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
@@ -53,6 +59,13 @@ class MyApp extends StatelessWidget {
       home: SplashScreen(), 
      // home: const AuthGate(), 
        theme: Provider.of<ThemeProvider>(context).themeData,
+
+        routes: {
+          '/home': (context) => const HomeScreen(),
+          '/signup': (context) => const RegisterScreen(),
+          '/login': (context) => const LoginScreen(),
+          '/forgot_password': (context) => const ForgotpwdScreen(),
+        },
     );
   }
 }
