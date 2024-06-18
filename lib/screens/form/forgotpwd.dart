@@ -6,6 +6,7 @@ import 'package:quick_bite/components/form/app_textfield.dart';
 
 import '../../components/form/app_button.dart';
 import 'login.dart';
+import 'providers/forgotpwd_providers.dart';
 
 
 class ForgotpwdScreen extends StatefulWidget {
@@ -34,69 +35,80 @@ class _ForgotpwdScreenState extends State<ForgotpwdScreen> {
       //backgroundColor: Theme.of(context).colorScheme.surface,
       backgroundColor: Colors.grey[300],
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Logo
+        child: Form(
 
-            // Icon(Icons.lock_open_rounded, 
-            // size: 72, 
-            // color: Theme.of(context).colorScheme.inverseSurface, 
-            // ), 
-            // ignore: sized_box_for_whitespace
-            Container(
-              width: 80, height: 80,
-              child: Image.asset('assets/icons/logo.png')),
-
-            const SizedBox(height: 20,), 
-            Text('Quick Bite', 
-            style: TextStyle(
-              fontSize: 16, 
-              color: Theme.of(context).colorScheme.inverseSurface, 
-            ),), 
-            const SizedBox(height: 4,), 
-            Text('Reset Your Password', 
-            style: TextStyle(
-              fontSize: 16, 
-              color: Theme.of(context).colorScheme.inverseSurface, 
-            ),), 
-
-const SizedBox(height: 25,), 
-            // email textfield
-            AppTextfield(
-              textInputAction: TextInputAction.next,
-              controller: emailController, 
-              hintText: 'Email', 
-              obscureText: false,
-              validator: ,
-            ), 
-            
-           
-
-            const SizedBox(height: 20,), 
-
-           // Sign In Button. 
-            const AppButton(
-              text: 'Reset Password', 
-             // onTap: reset, 
-              ), 
-
-              // Not a Member? Register Now. 
+ key: provider.formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Logo
+          
+              // Icon(Icons.lock_open_rounded, 
+              // size: 72, 
+              // color: Theme.of(context).colorScheme.inverseSurface, 
+              // ), 
+              // ignore: sized_box_for_whitespace
+              Container(
+                width: 80, height: 80,
+                child: Image.asset('assets/icons/logo.png')),
+          
               const SizedBox(height: 20,), 
-                GestureDetector(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen())); 
-                    }, 
-                    child: Text('Sign In', 
-                    style: TextStyle(
-                      //color: Theme.of(context).colorScheme.inversePrimary, 
-                      color: Colors.black.withOpacity(0.6),
-                      fontWeight: FontWeight.bold, 
-                      decoration: TextDecoration.underline
-                    ),),
-                  ), 
+              Text('Quick Bite', 
+              style: TextStyle(
+                fontSize: 16, 
+                color: Theme.of(context).colorScheme.inverseSurface, 
+              ),), 
+              const SizedBox(height: 4,), 
+              Text('Reset Your Password', 
+              style: TextStyle(
+                fontSize: 16, 
+                color: Theme.of(context).colorScheme.inverseSurface, 
+              ),), 
+          
+          const SizedBox(height: 25,), 
+              // email textfield
+              AppTextfield(
+                textInputAction: TextInputAction.next,
+              //  controller: emailController, 
+            controller:   provider.emailController,
+                hintText: 'Email', 
+                obscureText: false,
+                validator: provider.emailValidator,
+              ), 
               
-          ],
+             
+          
+              const SizedBox(height: 20,), 
+          
+             // Sign In Button. 
+              // const AppButton(
+              //   text: 'Reset Password', 
+              //  // onTap: reset, 
+              //   ), 
+
+              provider.isLoading
+                  ? CircularProgressIndicator()  : ElevatedButton(
+                      onPressed: () => provider.sendPasswordResetEmail(context),
+                      child: Text('Send Password Reset Email'),
+                    ),
+          
+                // Not a Member? Register Now. 
+                const SizedBox(height: 20,), 
+                  GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen())); 
+                      }, 
+                      child: Text('Sign In', 
+                      style: TextStyle(
+                        //color: Theme.of(context).colorScheme.inversePrimary, 
+                        color: Colors.black.withOpacity(0.6),
+                        fontWeight: FontWeight.bold, 
+                        decoration: TextDecoration.underline
+                      ),),
+                    ), 
+                
+            ],
+          ),
         )
       ),
     );
