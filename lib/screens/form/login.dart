@@ -141,7 +141,7 @@ catch(e) {
                     const SizedBox(width: 4,), 
                     GestureDetector(
                     //  onTap: widget.onTap, 
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterScreen())),
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen())),
                       child: Text('Register here', 
                       style: TextStyle(
                         //color: Theme.of(context).colorScheme.inversePrimary, 

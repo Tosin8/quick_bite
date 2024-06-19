@@ -32,7 +32,7 @@ void main() async {
       create: (context) => ThemeProvider(), 
       child: const MyApp(), 
     ), 
-ChangeNotifierProvider(create: (_) => SignUpProvider()),
+//ChangeNotifierProvider(create: (_) => SignUpProvider()),
         ChangeNotifierProvider(create: (_) => LoginProvider()),
          ChangeNotifierProvider(create: (_) => ForgotPasswordProvider()),
     // restaurant provider
@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
         routes: {
          // '/': (context) => SplashScreen(),
           '/home': (context) => const HomeScreen(),
-          '/signup': (context) => const RegisterScreen(),
+          '/signup': (context) =>  RegisterScreen(),
           '/login': (context) => const LoginScreen(),
           '/forgot_password': (context) => const ForgotpwdScreen(),
           '/verify_email': (context) => VerifyEmailScreen(),

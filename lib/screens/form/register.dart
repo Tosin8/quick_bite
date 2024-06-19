@@ -1,223 +1,363 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// // ignore_for_file: public_member_api_docs, sort_constructors_first
+// import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
+
+// import 'package:quick_bite/components/form/app_textfield.dart';
+// import 'package:quick_bite/screens/form/login.dart';
+
+// import 'providers/register_providers.dart';
+
+// class RegisterScreen extends StatefulWidget {
+//   const RegisterScreen({
+//     super.key,
+//     this.onTap,
+//   });
+
+// final void Function()? onTap; 
+//   @override
+//   State<RegisterScreen> createState() => _RegisterScreenState();
+// }
+
+// class _RegisterScreenState extends State<RegisterScreen> {
+
+//   final TextEditingController emailController = TextEditingController(); 
+//   final TextEditingController passwordController = TextEditingController(); 
+//   final TextEditingController confirmPasswordController = TextEditingController(); 
+// final  TextEditingController  firstNameController = TextEditingController ();
+//   final TextEditingController lastNameController = TextEditingController();
+//   final TextEditingController phoneController = TextEditingController();
+  
+
+// // register method
+// // void register() async {
+
+// //   // get auth service. 
+// //   final authService = AuthService(); 
+
+// //   // check if passwords match -> create user. 
+
+// //   if (passwordController.text == confirmPasswordController.text) {
+
+// //     // create user.
+// //     try{
+// //    await  authService.signUpWithEmailPassword(emailController.text, passwordController.text);
+// //   }
+
+// //   // display any errors
+// //   catch (e) {
+// //     // ignore: use_build_context_synchronously
+// //     showDialog(context: context, 
+// //     builder: (context) => AlertDialog(title: Text(e.toString())));
+// //   }
+// //   }
+
+// //   // if passwords doesn't match -> show error.
+// //   else {
+// //     showDialog(context: context,
+// //      builder: (context) => const AlertDialog(title: Text('Passwords don\'t match')));
+// //   }
+// // }
+//   @override
+//   Widget build(BuildContext context) {
+//      final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+//     final signUpProvider = Provider.of<SignUpProvider>(context);
+//     return Scaffold(
+//       //backgroundColor: Theme.of(context).colorScheme.surface,
+//       backgroundColor: Colors.grey[300],
+//       body: Center(
+//         child: Form(
+//          // key: _formKey,
+//           key: signUpProvider.formKey,
+//           child: SingleChildScrollView(
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: [
+//                 // Logo
+            
+//                 // Icon(Icons.lock_open_rounded, 
+//                 // size: 72, 
+//                 // color: Theme.of(context).colorScheme.inverseSurface, 
+//                 // ), 
+//                   // ignore: sized_box_for_whitespace
+//                   Container(
+//                   width: 80, height: 80,
+//                   child: Image.asset('assets/icons/logo.png')),
+            
+//                 const SizedBox(height: 20,), 
+//                 Text('Quick Bite', 
+//                 style: TextStyle(
+//                   fontSize: 16, 
+//                   color: Theme.of(context).colorScheme.inverseSurface, 
+//                 ),),
+//                  const SizedBox(height: 5,), 
+//                 Text('Let\'s Create your Account', 
+//                 style: TextStyle(
+//                   fontSize: 16, 
+//                   color: Theme.of(context).colorScheme.inverseSurface, 
+//                 ),),  
+            
+//             const SizedBox(height: 25,), 
+//                 // email textfield
+//                 AppTextfield(
+//                   textInputAction: TextInputAction.next,
+//                   //controller: emailController, 
+//                  controller:  signUpProvider.emailController, 
+//                   hintText: 'Email', 
+//                   obscureText: false,
+//                   validator: signUpProvider.emailValidator
+//                 ), 
+//                 SizedBox(height: 10,), 
+//                 // first name
+//                  AppTextfield(
+//                   textInputAction: TextInputAction.next,
+//                   //controller: emailController, 
+//                  controller:  signUpProvider.firstNameController, 
+//                   hintText: 'First Name', 
+//                   obscureText: false,
+//                   validator: signUpProvider.firstNameValidator, 
+//                 ), 
+//               SizedBox(height: 10,), 
+//             // last name
+//              AppTextfield(
+//                   textInputAction: TextInputAction.next,
+//                   //controller: emailController, 
+//                  controller:  signUpProvider.lastNameController, 
+//                   hintText: 'Last Name', 
+//                   obscureText: false,
+//                   validator: signUpProvider.lastNameValidator, 
+//                 ), 
+            
+//             SizedBox(height: 10,), 
+            
+//             // phone no. 
+//                      AppTextfield(
+//                   textInputAction: TextInputAction.next,
+//                   //controller: emailController, 
+//                  controller:  signUpProvider.phoneNumberController, 
+//                   hintText: 'Phone Number', 
+//                   obscureText: false,
+//                   validator: signUpProvider.phoneNumberValidator, 
+//                 ), 
+            
+              
+//                 const SizedBox(height: 10,), 
+//                   AppTextfield(
+//                     textInputAction: TextInputAction.next,
+//                   controller: passwordController, 
+//                   hintText: 'Password', 
+//                   obscureText: !signUpProvider.isPasswordVisible,
+//                   suffixIcon: IconButton(
+//                   icon: Icon(
+//                     signUpProvider.isPasswordVisible
+//                         ? Icons.visibility
+//                         : Icons.visibility_off,
+//                   ),
+//                   onPressed: signUpProvider.togglePasswordVisibility,
+//                 ),
+//                validator: signUpProvider.passwordValidator,
+                
+//                 ),
+            
+//                  const SizedBox(height: 10,), 
+//                   AppTextfield(
+//                     textInputAction: TextInputAction.done,
+//                   controller: confirmPasswordController, 
+//                   hintText: 'Confirm Password', 
+//                   obscureText: !signUpProvider.isConfirmPasswordVisible,
+//                    validator: signUpProvider.confirmPasswordValidator,
+//                     suffixIcon: IconButton(
+//                   icon: Icon(
+//                     signUpProvider.isConfirmPasswordVisible
+//                         ? Icons.visibility
+//                         : Icons.visibility_off,
+//                   ),
+//                   onPressed: signUpProvider.toggleConfirmPasswordVisibility,
+//                 ),
+                
+//                 ),
+            
+//                 const SizedBox(height: 20,), 
+            
+//                 // Sign Up Button. 
+//                 // AppButton(
+//                 //   text: 'Sign Up', 
+//                 //  // onTap: register, 
+//                 //  onTap: () => signUpProvider.signUp(context), 
+//                 //   ), 
+//              ElevatedButton(
+//                     onPressed: () => signUpProvider.signUp(context),
+//                     child: Text('Sign Up'),
+//                   ),
+//                   // Already have an account , login here. . 
+//                   const SizedBox(height: 20,), 
+//                    Row(
+//                     mainAxisAlignment: MainAxisAlignment.center,
+//                     children: [
+//                       Text('Already have an account?' , 
+//                       style: TextStyle(
+//                         //color: Theme.of(context).colorScheme.inversePrimary
+//                         color: Colors.black.withOpacity(0.6), 
+//                       ),
+//                       ), 
+//                       const SizedBox(width: 4,), 
+//                       // GestureDetector(
+//                       //   //onTap: widget.onTap, 
+//                       //   onTap: () => const LoginScreen(), 
+//                       //   child: Text('Login here', 
+//                       //   style: TextStyle(
+//                       //     //color: Theme.of(context).colorScheme.inversePrimary, 
+//                       //     color: Colors.black.withOpacity(0.6),
+//                       //     fontWeight: FontWeight.bold, 
+//                       //   ),),
+//                       // )
+//                       TextButton(onPressed: () => Navigator.push(context,MaterialPageRoute(builder: (context) => const LoginScreen())), child: Text('Login here', 
+//                       style: TextStyle(color: Colors.black.withOpacity(0.6), fontWeight: FontWeight.bold),))
+//                     ],
+//                   ), 
+//               ],
+//             ),
+//           ),
+//         )
+//       ),
+//     );
+//   }
+// }
+
+
+
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:quick_bite/components/form/app_textfield.dart';
-import 'package:quick_bite/screens/form/login.dart';
-
-import 'providers/register_providers.dart';
+import 'providers/register_providers.dart'; // Replace with the actual import
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({
-    super.key,
-    this.onTap,
-  });
-
-final void Function()? onTap; 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  _RegisterScreenState createState() => _RegisterScreenState();
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
+  final _phoneNumberController = TextEditingController();
 
-  final TextEditingController emailController = TextEditingController(); 
-  final TextEditingController passwordController = TextEditingController(); 
-  final TextEditingController confirmPasswordController = TextEditingController(); 
-final  TextEditingController  firstNameController = TextEditingController ();
-  final TextEditingController lastNameController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  
+  bool _isLoading = false;
 
-// register method
-// void register() async {
+  void _signUp(BuildContext context) async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
 
-//   // get auth service. 
-//   final authService = AuthService(); 
+      String? error = await Provider.of<AuthService>(context, listen: false).signUp(
+        _emailController.text,
+        _passwordController.text,
+        _firstNameController.text,
+        _lastNameController.text,
+        _phoneNumberController.text,
+      );
 
-//   // check if passwords match -> create user. 
+      setState(() {
+        _isLoading = false;
+      });
 
-//   if (passwordController.text == confirmPasswordController.text) {
+      if (error == null) {
+        // Navigate to verify email screen
+        Navigator.pushNamed(context, '/verify-email');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign up failed: $error')));
+      }
+    }
+  }
 
-//     // create user.
-//     try{
-//    await  authService.signUpWithEmailPassword(emailController.text, passwordController.text);
-//   }
-
-//   // display any errors
-//   catch (e) {
-//     // ignore: use_build_context_synchronously
-//     showDialog(context: context, 
-//     builder: (context) => AlertDialog(title: Text(e.toString())));
-//   }
-//   }
-
-//   // if passwords doesn't match -> show error.
-//   else {
-//     showDialog(context: context,
-//      builder: (context) => const AlertDialog(title: Text('Passwords don\'t match')));
-//   }
-// }
   @override
   Widget build(BuildContext context) {
-     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-    final signUpProvider = Provider.of<SignUpProvider>(context);
     return Scaffold(
-      //backgroundColor: Theme.of(context).colorScheme.surface,
-      backgroundColor: Colors.grey[300],
-      body: Center(
+      appBar: AppBar(
+        title: Text('Sign Up'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Form(
-         // key: _formKey,
-          key: signUpProvider.formKey,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Logo
-            
-                // Icon(Icons.lock_open_rounded, 
-                // size: 72, 
-                // color: Theme.of(context).colorScheme.inverseSurface, 
-                // ), 
-                  // ignore: sized_box_for_whitespace
-                  Container(
-                  width: 80, height: 80,
-                  child: Image.asset('assets/icons/logo.png')),
-            
-                const SizedBox(height: 20,), 
-                Text('Quick Bite', 
-                style: TextStyle(
-                  fontSize: 16, 
-                  color: Theme.of(context).colorScheme.inverseSurface, 
-                ),),
-                 const SizedBox(height: 5,), 
-                Text('Let\'s Create your Account', 
-                style: TextStyle(
-                  fontSize: 16, 
-                  color: Theme.of(context).colorScheme.inverseSurface, 
-                ),),  
-            
-            const SizedBox(height: 25,), 
-                // email textfield
-                AppTextfield(
-                  textInputAction: TextInputAction.next,
-                  //controller: emailController, 
-                 controller:  signUpProvider.emailController, 
-                  hintText: 'Email', 
-                  obscureText: false,
-                  validator: signUpProvider.emailValidator
-                ), 
-                SizedBox(height: 10,), 
-                // first name
-                 AppTextfield(
-                  textInputAction: TextInputAction.next,
-                  //controller: emailController, 
-                 controller:  signUpProvider.firstNameController, 
-                  hintText: 'First Name', 
-                  obscureText: false,
-                  validator: signUpProvider.firstNameValidator, 
-                ), 
-              SizedBox(height: 10,), 
-            // last name
-             AppTextfield(
-                  textInputAction: TextInputAction.next,
-                  //controller: emailController, 
-                 controller:  signUpProvider.lastNameController, 
-                  hintText: 'Last Name', 
-                  obscureText: false,
-                  validator: signUpProvider.lastNameValidator, 
-                ), 
-            
-            SizedBox(height: 10,), 
-            
-            // phone no. 
-                     AppTextfield(
-                  textInputAction: TextInputAction.next,
-                  //controller: emailController, 
-                 controller:  signUpProvider.phoneNumberController, 
-                  hintText: 'Phone Number', 
-                  obscureText: false,
-                  validator: signUpProvider.phoneNumberValidator, 
-                ), 
-            
-              
-                const SizedBox(height: 10,), 
-                  AppTextfield(
-                    textInputAction: TextInputAction.next,
-                  controller: passwordController, 
-                  hintText: 'Password', 
-                  obscureText: !signUpProvider.isPasswordVisible,
-                  suffixIcon: IconButton(
-                  icon: Icon(
-                    signUpProvider.isPasswordVisible
-                        ? Icons.visibility
-                        : Icons.visibility_off,
-                  ),
-                  onPressed: signUpProvider.togglePasswordVisibility,
-                ),
-               validator: signUpProvider.passwordValidator,
-                
-                ),
-            
-                 const SizedBox(height: 10,), 
-                  AppTextfield(
-                    textInputAction: TextInputAction.done,
-                  controller: confirmPasswordController, 
-                  hintText: 'Confirm Password', 
-                  obscureText: !signUpProvider.isConfirmPasswordVisible,
-                   validator: signUpProvider.confirmPasswordValidator,
-                    suffixIcon: IconButton(
-                  icon: Icon(
-                    signUpProvider.isConfirmPasswordVisible
-                        ? Icons.visibility
-                        : Icons.visibility_off,
-                  ),
-                  onPressed: signUpProvider.toggleConfirmPasswordVisibility,
-                ),
-                
-                ),
-            
-                const SizedBox(height: 20,), 
-            
-                // Sign Up Button. 
-                // AppButton(
-                //   text: 'Sign Up', 
-                //  // onTap: register, 
-                //  onTap: () => signUpProvider.signUp(context), 
-                //   ), 
-             ElevatedButton(
-                    onPressed: () => signUpProvider.signUp(context),
-                    child: Text('Sign Up'),
-                  ),
-                  // Already have an account , login here. . 
-                  const SizedBox(height: 20,), 
-                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Already have an account?' , 
-                      style: TextStyle(
-                        //color: Theme.of(context).colorScheme.inversePrimary
-                        color: Colors.black.withOpacity(0.6), 
-                      ),
-                      ), 
-                      const SizedBox(width: 4,), 
-                      // GestureDetector(
-                      //   //onTap: widget.onTap, 
-                      //   onTap: () => const LoginScreen(), 
-                      //   child: Text('Login here', 
-                      //   style: TextStyle(
-                      //     //color: Theme.of(context).colorScheme.inversePrimary, 
-                      //     color: Colors.black.withOpacity(0.6),
-                      //     fontWeight: FontWeight.bold, 
-                      //   ),),
-                      // )
-                      TextButton(onPressed: () => Navigator.push(context,MaterialPageRoute(builder: (context) => const LoginScreen())), child: Text('Login here', 
-                      style: TextStyle(color: Colors.black.withOpacity(0.6), fontWeight: FontWeight.bold),))
-                    ],
-                  ), 
-              ],
-            ),
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: _emailController,
+                decoration: InputDecoration(labelText: 'Email'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: _passwordController,
+                decoration: InputDecoration(labelText: 'Password'),
+                obscureText: true,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your password';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: _confirmPasswordController,
+                decoration: InputDecoration(labelText: 'Confirm Password'),
+                obscureText: true,
+                validator: (value) {
+                  if (value == null || value != _passwordController.text) {
+                    return 'Passwords do not match';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: _firstNameController,
+                decoration: InputDecoration(labelText: 'First Name'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your first name';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: _lastNameController,
+                decoration: InputDecoration(labelText: 'Last Name'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your last name';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: _phoneNumberController,
+                decoration: InputDecoration(labelText: 'Phone Number'),
+                validator: (value) {
+                  if (value == null || value.isEmpty || value.length != 11) {
+                    return 'Please enter a valid phone number';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 20),
+              _isLoading
+                  ? CircularProgressIndicator()
+                  : ElevatedButton(
+                      onPressed: () => _signUp(context),
+                      child: Text('Sign Up'),
+                    ),
+            ],
           ),
-        )
+        ),
       ),
     );
   }
