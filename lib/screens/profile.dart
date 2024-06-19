@@ -17,10 +17,10 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         backgroundColor: Colors.grey[300],
-        title: Text('Profile'),
+        title: const Text('Profile'),
         centerTitle: true,
       ),
-      drawer: AppDrawer(),
+      drawer: const AppDrawer(),
       body: FutureBuilder<DocumentSnapshot>(
         future: FirebaseFirestore.instance.collection('users').doc(user!.uid).get(),
         builder: (context, snapshot) {
@@ -28,84 +28,84 @@ class ProfileScreen extends StatelessWidget {
             return _buildShimmerEffect();
           }
           if (snapshot.hasError) {
-            return Center(child: Text('Error loading profile data'));
+            return const Center(child: Text('Error loading profile data'));
           }
           if (!snapshot.hasData || snapshot.data == null || !snapshot.data!.exists) {
-            return Center(child: Text('No profile data found'));
+            return const Center(child: Text('No profile data found'));
           }
 
           var userData = snapshot.data!.data() as Map<String, dynamic>?;
 
           if (userData == null) {
-            return Center(child: Text('No profile data found'));
+            return const Center(child: Text('No profile data found'));
           }
 
           return ListView(
             padding: const EdgeInsets.all(16.0),
             children: [
               ListTile(
-                leading: Icon(Icons.email),
-                title: Text('Email'),
+                leading: const Icon(Icons.email),
+                title: const Text('Email'),
                 subtitle: Text(user.email ?? 'No email'),
               ),
               ListTile(
-                leading: Icon(Icons.person),
-                title: Text('First Name'),
+                leading: const Icon(Icons.person),
+                title: const Text('First Name'),
                 subtitle: Text(userData['firstName'] ?? 'No first name'),
               ),
-              Divider(),
+              const Divider(),
               ListTile(
-                leading: Icon(Icons.edit),
-                title: Text('Edit Profile'),
+                leading: const Icon(Icons.edit),
+                title: const Text('Edit Profile'),
                 onTap: () {
                   // Navigate to Edit Profile Screen
                 },
               ),
               ListTile(
-                leading: Icon(Icons.history),
-                title: Text('Order History'),
+                leading: const Icon(Icons.history),
+                title: const Text('Order History'),
                 onTap: () {
                   // Navigate to Order History Screen
                 },
               ),
               ListTile(
-                leading: Icon(Icons.rate_review),
-                title: Text('Reviews'),
+                leading: const Icon(Icons.rate_review),
+                title: const Text('Reviews'),
                 onTap: () {
                   // Navigate to Reviews Screen
                 },
               ),
               ListTile(
-                leading: Icon(Icons.share),
-                title: Text('Share App'),
+                leading: const Icon(Icons.share),
+                title: const Text('Share App'),
                 onTap: () {
                   // Share App Logic
                 },
               ),
               ListTile(
-                leading: Icon(Icons.help),
-                title: Text('FAQ'),
+                leading: const Icon(Icons.help),
+                title: const Text('FAQ'),
                 onTap: () {
                   // Navigate to FAQ Screen
                 },
               ),
               ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Settings'),
+                leading: const Icon(Icons.settings),
+                title: const Text('Settings'),
                 onTap: () {
                   // Navigate to Settings Screen
                 },
               ),
               ListTile(
-                leading: Icon(Icons.update),
-                title: Text('Update App'),
+                leading: const Icon(Icons.update),
+                title: const Text('Update App'),
                 onTap: () {
                   // Update App Logic
                 },
               ),
               ListTile(
-                leading: Icon(Icons.notifications),
-                title: Text('Notification'),
+                leading: const Icon(Icons.notifications),
+                title: const Text('Notification'),
                 trailing: Consumer<NotificationProvider>(
                   builder: (context, notificationProvider, _) {
                     return Switch(
@@ -118,22 +118,22 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.delete),
-                title: Text('Delete Account'),
+                leading: const Icon(Icons.delete),
+                title: const Text('Delete Account'),
                 onTap: () async {
                   bool? confirm = await showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                      title: Text('Delete Account'),
-                      content: Text('Are you sure you want to delete your account? This action cannot be undone.'),
+                      title: const Text('Delete Account'),
+                      content: const Text('Are you sure you want to delete your account? This action cannot be undone.'),
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.of(context).pop(false),
-                          child: Text('Cancel'),
+                          child: const Text('Cancel'),
                         ),
                         TextButton(
                           onPressed: () => Navigator.of(context).pop(true),
-                          child: Text('Delete'),
+                          child: const Text('Delete'),
                         ),
                       ],
                     ),
@@ -142,7 +142,7 @@ class ProfileScreen extends StatelessWidget {
                     // Delete user account
                     await user.delete();
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Account deleted successfully')),
+                      const SnackBar(content: Text('Account deleted successfully')),
                     );
                     Navigator.pushReplacementNamed(context, '/signup');
                   }
@@ -165,50 +165,50 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             children: [
               ListTile(
-                leading: CircleAvatar(backgroundColor: Colors.white),
+                leading: const CircleAvatar(backgroundColor: Colors.white),
                 title: Container(height: 10.0, color: Colors.white),
                 subtitle: Container(height: 10.0, color: Colors.white),
               ),
               ListTile(
-                leading: CircleAvatar(backgroundColor: Colors.white),
+                leading: const CircleAvatar(backgroundColor: Colors.white),
                 title: Container(height: 10.0, color: Colors.white),
                 subtitle: Container(height: 10.0, color: Colors.white),
               ),
-              Divider(),
+              const Divider(),
               ListTile(
-                leading: Icon(Icons.edit, color: Colors.grey),
+                leading: const Icon(Icons.edit, color: Colors.grey),
                 title: Container(height: 10.0, color: Colors.white),
               ),
               ListTile(
-                leading: Icon(Icons.history, color: Colors.grey),
+                leading: const Icon(Icons.history, color: Colors.grey),
                 title: Container(height: 10.0, color: Colors.white),
               ),
               ListTile(
-                leading: Icon(Icons.rate_review, color: Colors.grey),
+                leading: const Icon(Icons.rate_review, color: Colors.grey),
                 title: Container(height: 10.0, color: Colors.white),
               ),
               ListTile(
-                leading: Icon(Icons.share, color: Colors.grey),
+                leading: const Icon(Icons.share, color: Colors.grey),
                 title: Container(height: 10.0, color: Colors.white),
               ),
               ListTile(
-                leading: Icon(Icons.help, color: Colors.grey),
+                leading: const Icon(Icons.help, color: Colors.grey),
                 title: Container(height: 10.0, color: Colors.white),
               ),
               ListTile(
-                leading: Icon(Icons.settings, color: Colors.grey),
+                leading: const Icon(Icons.settings, color: Colors.grey),
                 title: Container(height: 10.0, color: Colors.white),
               ),
               ListTile(
-                leading: Icon(Icons.update, color: Colors.grey),
+                leading: const Icon(Icons.update, color: Colors.grey),
                 title: Container(height: 10.0, color: Colors.white),
               ),
               ListTile(
-                leading: Icon(Icons.notifications, color: Colors.grey),
+                leading: const Icon(Icons.notifications, color: Colors.grey),
                 title: Container(height: 10.0, color: Colors.white),
               ),
               ListTile(
-                leading: Icon(Icons.delete, color: Colors.grey),
+                leading: const Icon(Icons.delete, color: Colors.grey),
                 title: Container(height: 10.0, color: Colors.white),
               ),
             ],
