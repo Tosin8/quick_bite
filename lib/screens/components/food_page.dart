@@ -54,9 +54,23 @@ class _FoodPageState extends State<FoodPage> {
             children: [
         
               // food image
-              Hero(
-                tag: widget.food.image,
-                child: Image.asset(widget.food.image)), 
+              Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.black, 
+                      Colors.transparent, 
+                      Colors.black12, 
+                    ],
+                    begin: Alignment.centerLeft, 
+                    end: Alignment.topRight, 
+                    ), 
+                    
+                ),
+                child: Hero(
+                  tag: widget.food.image,
+                  child: Image.asset(widget.food.image)),
+              ), 
         
               // food name
               Padding(
