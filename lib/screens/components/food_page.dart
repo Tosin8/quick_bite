@@ -54,7 +54,9 @@ class _FoodPageState extends State<FoodPage> {
             children: [
         
               // food image
-              Image.asset(widget.food.image), 
+              Hero(
+                tag: widget.food.image,
+                child: Image.asset(widget.food.image)), 
         
               // food name
               Padding(
