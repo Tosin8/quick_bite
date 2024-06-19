@@ -27,11 +27,15 @@ void main() async {
     MultiProvider(
 
       providers: [
+        Provider<AuthService>(
+          create: (_) => AuthService(),
+        ), 
         // theme provider
     ChangeNotifierProvider(
       create: (context) => ThemeProvider(), 
       child: const MyApp(), 
     ), 
+
 //ChangeNotifierProvider(create: (_) => SignUpProvider()),
         ChangeNotifierProvider(create: (_) => LoginProvider()),
          ChangeNotifierProvider(create: (_) => ForgotPasswordProvider()),
