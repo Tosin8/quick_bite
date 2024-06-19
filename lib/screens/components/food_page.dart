@@ -54,24 +54,48 @@ class _FoodPageState extends State<FoodPage> {
             children: [
         
               // food image
-              Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.black, 
-                      Colors.transparent, 
-                      Colors.black12, 
-                    ],
-                    begin: Alignment.centerLeft, 
-                    end: Alignment.topRight, 
-                    ), 
+              // Container(
+              //   decoration: const BoxDecoration(
+              //     gradient: LinearGradient(
+              //       colors: [
+              //         Colors.black, 
+              //         Colors.transparent, 
+              //         Colors.black12, 
+              //       ],
+              //       begin: Alignment.centerLeft, 
+              //       end: Alignment.topRight, 
+              //       ), 
                     
+              //   ),
+              //   child: Hero(
+              //     tag: widget.food.image,
+              //     child: Image.asset(widget.food.image)),
+              // ), 
+        Hero(
+          tag: widget.food.image, 
+          child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 350,
+                decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(widget.food.image),
+            fit: BoxFit.cover,
+          ),
                 ),
-                child: Hero(
-                  tag: widget.food.image,
-                  child: Image.asset(widget.food.image)),
-              ), 
-        
+                child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.transparent,
+              Colors.black12, 
+               Colors.black],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+                ),
+          ),
+        ), 
+
               // food name
               Padding(
                 padding: const EdgeInsets.all(20.0),
