@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/components/form/app_button.dart';
+import 'package:quick_bite/screens/form/resetpwd.dart';
 
 import '../../services/auth/auth_services.dart';
 import 'signup.dart';
@@ -157,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                  // button. 
                   _isLoading
-                    ? CircularProgressIndicator()
+                    ? const CircularProgressIndicator()
                     : AppButton(text: 'Login', 
                     onTap: () => _login(context),
                     ), 
@@ -165,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     //     onPressed: () => _login(context),
                     //     child: Text('Login'),
                     //   ),
-                      SizedBox(height: 20,), 
+                      const SizedBox(height: 20,), 
                  Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -178,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(width: 4,), 
                     GestureDetector(
                     //  onTap: widget.onTap, 
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen())),
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpScreen())),
                       child: Text('Register here', 
                       style: TextStyle(
                         //color: Theme.of(context).colorScheme.inversePrimary, 
@@ -190,9 +191,9 @@ class _LoginScreenState extends State<LoginScreen> {
                
               ],
             ),
-            SizedBox(height: 10,), 
-            TextButton(onPressed: (){},
-             child: Text('Reset Password')), 
+            const SizedBox(height: 10,), 
+            TextButton(onPressed: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const ResetPasswordScreen())),
+             child: const Text('Reset Password')), 
          ] ),
         ),
       ),
