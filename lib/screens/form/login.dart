@@ -70,18 +70,39 @@ class _LoginScreenState extends State<LoginScreen> {
               ),), 
           
           const SizedBox(height: 25,), 
-              TextFormField(
-                controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email';
-                  } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                    return 'Please enter a valid email';
-                  }
-                  return null;
-                },
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: TextFormField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    errorBorder: const OutlineInputBorder(
+            //borderSide: BorderSide(color: Theme.of(context).colorScheme.tertiary), 
+            borderSide: BorderSide(color:  Colors.black), 
+          ), 
+                    enabledBorder: const OutlineInputBorder(
+            //borderSide: BorderSide(color: Theme.of(context).colorScheme.tertiary), 
+            borderSide: BorderSide(color:  Colors.black), 
+          ), 
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
+          ), 
+          hintText: 'Email', 
+       
+          hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),  
+                    labelText: 'Email'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your email';
+                    } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                      return 'Please enter a valid email';
+                    }
+                    return null;
+                  },
+                ),
               ),
+
+              // Password. 
+              
               TextFormField(
                 controller: _passwordController,
                 decoration: InputDecoration(
