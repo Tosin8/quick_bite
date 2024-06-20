@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:quick_bite/components/form/app_textfield.dart';
 import 'package:quick_bite/screens/form/signup.dart';
 
+import '../../services/auth/auth_services.dart';
 import 'forgotpwd.dart';
 import 'providers/login_providers.dart';
 
@@ -12,55 +13,58 @@ import 'providers/login_providers.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({
     super.key,
-    this.onTap,
+   /// this.onTap,
   });
 
-final void Function()? onTap; 
+//final void Function()? onTap; 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
 
-  final TextEditingController emailController = TextEditingController(); 
-  final TextEditingController passwordController = TextEditingController(); 
+  
 
-  // login method
-//   void login() async {
-     
-//     // get instance of auth service. 
-//     final authService = AuthService(); 
+ 
+final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
-//     // try sign in 
-//     try {
-//       await authService.signInWithEmailPassword(emailController.text, passwordController.text);
-//     }
+  bool _isLoading = false;
+  bool _isPasswordVisible = false;
 
+  void _login(BuildContext context) async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
 
-// // display any errors
+      String? error = await Provider.of<AuthService>(context, listen: false).login(
+        _emailController.text,
+        _passwordController.text,
+      );
 
-// catch(e) {
-//   // ignore: use_build_context_synchronously
-//   showDialog(context: context,
-//    builder: (context) => AlertDialog(
-//     title: Text(e.toString())
-//    ));
-// }
-//     // navigate to home page 
-//     // Navigator.push(context,
-//     //  MaterialPageRoute(
-//     //   builder: (context) => const HomeScreen())); 
-//   }
+      setState(() {
+        _isLoading = false;
+      });
+
+      if (error == null) {
+        // Navigate to home screen
+        Navigator.pushNamed(context, '/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login failed: $error')));
+      }
+    }
+  }
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-     final loginProvider = Provider.of<LoginProvider>(context);
+   
     return Scaffold(
       //backgroundColor: Theme.of(context).colorScheme.surface,
       backgroundColor: Colors.grey[300],
       body: Center(
         child: Form(
-           key: loginProvider.formKey,
+      key: _formKey,
             //key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
