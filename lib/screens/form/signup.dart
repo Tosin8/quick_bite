@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/components/form/app_button.dart';
+import 'package:quick_bite/screens/form/login.dart';
 
 import '../../services/auth/auth_services.dart';
 // Replace with the actual import
@@ -83,7 +84,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     color: Theme.of(context).colorScheme.inverseSurface, 
                   ),),  
               
-              const SizedBox(height: 25,),
+              const SizedBox(height: 15,),
               // Email field. 
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical:10),
@@ -279,11 +280,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       //     child: Text('Sign Up'),
                       //   ),
                       : AppButton(text: 'Sign Up', onTap: () => _signUp(context)),
-                      SizedBox(height: 20,), 
+                      const SizedBox(height: 20,), 
                       Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Not a member?' , 
+                    Text('Already have an account?' , 
                     style: TextStyle(
                       //color: Theme.of(context).colorScheme.inversePrimary
                       color: Colors.black.withOpacity(0.6), 
@@ -292,8 +293,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const SizedBox(width: 4,), 
                     GestureDetector(
                     //  onTap: widget.onTap, 
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen())),
-                      child: Text('Register here', 
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen())),
+                      child: Text('Login', 
                       style: TextStyle(
                         //color: Theme.of(context).colorScheme.inversePrimary, 
                         color: Colors.black.withOpacity(0.6),
