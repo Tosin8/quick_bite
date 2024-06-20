@@ -49,6 +49,7 @@ import '../../model/usermodel.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   Future<String?> signUp(String email, String password, String firstName, String lastName, String phoneNumber) async {
@@ -91,7 +92,12 @@ class AuthService {
     User? user = currentUser;
     if (user != null) {
       DocumentSnapshot doc = await _firestore.collection('users').doc(user.uid).get();
-      return UserModel.fromMap(doc.data() as Map<String, dynamic>);
+      if (doc.exists) {
+        return UserModel.fromMap(doc.data() as Map<String, dynamic>);
+      } else {
+        throw Exception('User data not found');
+      }
+     
     } else {
       throw Exception('No user logged in');
     }

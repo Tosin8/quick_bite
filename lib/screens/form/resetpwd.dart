@@ -66,13 +66,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           
           const SizedBox(height: 25,), 
 
-              const Text(
-                'Enter your email to reset your password',
-                style: TextStyle(fontSize: 18),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 16),
-
+           
               // Email address. 
               Padding(
                 padding:  EdgeInsets.symmetric(horizontal: 25.0),
