@@ -1,29 +1,40 @@
-
 import 'package:flutter/material.dart';
+import 'dart:async';
 
-class CongratsScreen extends StatelessWidget {
-  const CongratsScreen({super.key});
+class CongratulatoryScreen extends StatefulWidget {
+  const CongratulatoryScreen({super.key});
+
+  @override
+  _CongratulatoryScreenState createState() => _CongratulatoryScreenState();
+}
+
+class _CongratulatoryScreenState extends State<CongratulatoryScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _navigateToHome();
+  }
+
+  _navigateToHome() async {
+    await Future.delayed(const Duration(seconds: 3), () {});
+    Navigator.pushReplacementNamed(context, '/home');
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Congratulations'),
-      ),
+    return const Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'Congratulations! Your email has been verified.',
-              textAlign: TextAlign.center,
+            Text(
+              'Congratulations!',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, '/home');
-              },
-              child: const Text('Continue to Home'),
+            SizedBox(height: 16),
+            Text(
+              'Your email has been verified successfully.',
+              textAlign: TextAlign.center,
             ),
           ],
         ),
