@@ -99,8 +99,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
               borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
             ), 
             hintText: 'Email',
+          
              hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary), 
-                      //  labelText: 'Email'
+                       labelText: 'Email'
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -127,6 +128,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
             ), 
                        hintText: 'Password',
+                         labelText: 'Password', 
              hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),    
                         //labelText: 'Password'
                          suffixIcon: IconButton(
@@ -165,6 +167,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
             ), 
             hintText: 'Confirm Password',
+              labelText: 'Confirm Password', 
+              
              hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
               
                           suffixIcon: IconButton(
@@ -205,6 +209,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
             ), 
                     hintText: 'First Name',
+                    labelText: 'First Name', 
              hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),      
                       //  labelText: 'First Name'
                         
@@ -232,6 +237,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
             ), 
                     hintText: 'Last Name',
+                    labelText: 'Last Name', 
              hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),      
                         //labelText: 'Last Name'
                         
@@ -260,6 +266,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
             ), 
             hintText: 'Phone Number',
+            labelText: 'Password', 
              hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary), 
                         
                         //labelText: 'Phone Number'
