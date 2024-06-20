@@ -293,7 +293,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const SizedBox(width: 4,), 
                     GestureDetector(
                     //  onTap: widget.onTap, 
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen())),
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen())),
                       child: Text('Login', 
                       style: TextStyle(
                         //color: Theme.of(context).colorScheme.inversePrimary, 

@@ -6,6 +6,7 @@ import 'package:quick_bite/components/form/app_textfield.dart';
 
 import '../../components/form/app_button.dart';
 import 'login.dart';
+import 'login_trash.dart';
 import 'providers/forgotpwd_providers.dart';
 
 
@@ -96,7 +97,7 @@ class _ForgotpwdScreenState extends State<ForgotpwdScreen> {
                 const SizedBox(height: 20,), 
                   GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen())); 
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen())); 
                       }, 
                       child: Text('Sign In', 
                       style: TextStyle(

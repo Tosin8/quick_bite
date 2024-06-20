@@ -13,6 +13,7 @@ import 'package:quick_bite/services/auth/auth_gate.dart';
 import 'screens/form/congrats_screen.dart';
 import 'screens/form/forgotpwd.dart';
 import 'screens/form/login.dart';
+import 'screens/form/login_trash.dart';
 import 'screens/form/providers/forgotpwd_providers.dart';
 import 'screens/form/verifyemail.dart';
 import 'screens/profile.dart';
@@ -71,7 +72,7 @@ class MyApp extends StatelessWidget {
          // '/': (context) => SplashScreen(),
           '/home': (context) => const HomeScreen(),
           '/signup': (context) =>  const SignUpScreen(),
-          '/login': (context) => const LoginScreen(),
+          '/login': (context) => LoginScreen(),
           '/forgot_password': (context) => const ForgotpwdScreen(),
           '/verify_email': (context) => VerifyEmailScreen(),
           '/profile': (context) => ProfileScreen(),

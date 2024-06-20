@@ -48,6 +48,7 @@ import 'package:quick_bite/screens/form/trash/register.dart';
 import 'package:quick_bite/screens/home.dart';
 
 import 'form/login.dart';
+import 'form/login_trash.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -66,7 +67,7 @@ class _SplashScreenState extends State<SplashScreen> {
     User? user = FirebaseAuth.instance.currentUser;
     if ( user == null) {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const LoginScreen()),
+        MaterialPageRoute(builder: (context) =>  LoginScreen()),
       );
     } else {
       Navigator.of(context).pushReplacement(

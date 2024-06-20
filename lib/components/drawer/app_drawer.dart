@@ -2,10 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quick_bite/components/drawer/app_drawer_tile.dart';
 import 'package:quick_bite/screens/fav.dart';
-import 'package:quick_bite/screens/form/login.dart';
 import 'package:quick_bite/screens/profile.dart';
-import 'package:quick_bite/services/auth/auth_services.dart';
 
+import '../../screens/form/login.dart';
 import '../../screens/home.dart';
 import '../../screens/settings.dart';
 
