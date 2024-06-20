@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'package:quick_bite/components/form/app_textfield.dart';
 import 'package:quick_bite/screens/form/register.dart';
+import 'package:quick_bite/screens/form/signup.dart';
 import 'package:quick_bite/services/auth/auth_services.dart';
 
 import 'forgotpwd.dart';
@@ -141,7 +142,7 @@ catch(e) {
                     const SizedBox(width: 4,), 
                     GestureDetector(
                     //  onTap: widget.onTap, 
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen())),
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen())),
                       child: Text('Register here', 
                       style: TextStyle(
                         //color: Theme.of(context).colorScheme.inversePrimary, 

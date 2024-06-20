@@ -98,7 +98,7 @@
             
 //             const SizedBox(height: 25,), 
 //                 // email textfield
-//                 AppTextfield(
+      //          AppTextfield(
 //                   textInputAction: TextInputAction.next,
 //                   //controller: emailController, 
 //                  controller:  signUpProvider.emailController, 

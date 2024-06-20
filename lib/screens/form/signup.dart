@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quick_bite/components/form/app_button.dart';
 
 import 'providers/register_providers.dart'; // Replace with the actual import
 
@@ -21,6 +22,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _phoneNumberController = TextEditingController();
 
   bool _isLoading = false;
+   bool _isPasswordVisible = false;
+  bool _isConfirmPasswordVisible = false;
 
   void _signUp(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
@@ -62,76 +65,202 @@ class _SignUpScreenState extends State<SignUpScreen> {
           key: _formKey,
           child: SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextFormField(
-                  controller: _emailController,
-                  decoration: InputDecoration(labelText: 'Email'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
-                    }
-                    return null;
-                  },
+                // logo
+                Container(
+                  width: 80, height: 80, child: Image.asset('assets/icons/logo.png'),
                 ),
-                TextFormField(
-                  controller: _passwordController,
-                  decoration: InputDecoration(labelText: 'Password'),
-                  obscureText: true,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your password';
+                const SizedBox(height: 20,), 
+                Text('Quick Bite', style: TextStyle(fontSize: 16, 
+                color: Theme.of(context).colorScheme.inverseSurface,  ),), 
+                const SizedBox(height: 5,), 
+                Text('Let\'s Create your Account', 
+                style: TextStyle(
+                  fontSize: 16, 
+                  color: Theme.of(context).colorScheme.inverseSurface, 
+                ),),  
+            
+            const SizedBox(height: 25,),
+            // Email field. 
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: TextFormField(
+                    keyboardType: TextInputType.emailAddress,
+                    textInputAction: TextInputAction.next,
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
+          ), 
+          hintText: 'Email',
+           hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary), 
+                    //  labelText: 'Email'
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your email';
+                      } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                      return 'Please enter a valid email';
                     }
-                    return null;
-                  },
+                      return null;
+                    },
+                  ),
                 ),
-                TextFormField(
-                  controller: _confirmPasswordController,
-                  decoration: InputDecoration(labelText: 'Confirm Password'),
-                  obscureText: true,
-                  validator: (value) {
-                    if (value == null || value != _passwordController.text) {
-                      return 'Passwords do not match';
-                    }
-                    return null;
-                  },
+
+                // Password. 
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: TextFormField(
+                     keyboardType: TextInputType.visiblePassword,
+                    textInputAction: TextInputAction.next,
+                    controller: _passwordController,
+                    decoration: InputDecoration(
+                       enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
+          ), 
+                     hintText: 'Password',
+           hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),    
+                      //labelText: 'Password'
+                       suffixIcon: IconButton(
+                      icon: Icon(
+                        _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _isPasswordVisible = !_isPasswordVisible;
+                        });
+                      },
+                    ),
+                  ),
+                      
+                    obscureText: !_isPasswordVisible,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      return null;
+                    },
+                  ),
                 ),
-                TextFormField(
-                  controller: _firstNameController,
-                  decoration: InputDecoration(labelText: 'First Name'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your first name';
-                    }
-                    return null;
-                  },
+
+                // Confirm Password. 
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: TextFormField(
+                    keyboardType: TextInputType.visiblePassword,
+                    textInputAction: TextInputAction.next,
+                    controller: _confirmPasswordController,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
+          ), 
+          hintText: 'Confirm Password',
+           hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary), 
+                      
+                      //labelText: 'Confirm Password'
+                      
+                      ),
+                    obscureText: true,
+                    validator: (value) {
+                      if (value == null || value != _passwordController.text) {
+                        return 'Passwords do not match';
+                      }
+                      return null;
+                    },
+                  ),
                 ),
-                TextFormField(
-                  controller: _lastNameController,
-                  decoration: InputDecoration(labelText: 'Last Name'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your last name';
-                    }
-                    return null;
-                  },
+
+                // First Name
+                Padding(
+                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: TextFormField(
+                     keyboardType: TextInputType.name,
+ textInputAction: TextInputAction.next,
+                    controller: _firstNameController,
+                    decoration: InputDecoration(
+                             enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
+          ), 
+                  hintText: 'First Name',
+           hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),      
+                    //  labelText: 'First Name'
+                      
+                      ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your first name';
+                      }
+                      return null;
+                    },
+                  ),
                 ),
-                TextFormField(
-                  controller: _phoneNumberController,
-                  decoration: InputDecoration(labelText: 'Phone Number'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty || value.length != 11) {
-                      return 'Please enter a valid phone number';
-                    }
-                    return null;
-                  },
+
+                // Last Name. 
+                Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: TextFormField(
+                      keyboardType: TextInputType.name,
+                    textInputAction: TextInputAction.next,
+                    controller: _lastNameController,
+                    decoration: InputDecoration(
+                      
+                      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
+          ), 
+                  hintText: 'Last Name',
+           hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),      
+                      //labelText: 'Last Name'
+                      
+                      ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your last name';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+
+
+                // phone no
+                Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: TextFormField(
+                     keyboardType: TextInputType.phone,
+                    textInputAction: TextInputAction.done,
+                    controller: _phoneNumberController,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
+          ), 
+          hintText: 'Phone Number',
+           hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary), 
+                      
+                      //labelText: 'Phone Number'
+                      ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty || value.length != 11) {
+                        return 'Please enter a valid phone number';
+                      }
+                      return null;
+                    },
+                  ),
                 ),
                 SizedBox(height: 20),
                 _isLoading
                     ? CircularProgressIndicator()
-                    : ElevatedButton(
-                        onPressed: () => _signUp(context),
-                        child: Text('Sign Up'),
-                      ),
+                    // : ElevatedButton(
+                    //     onPressed: () => _signUp(context),
+                    //     child: Text('Sign Up'),
+                    //   ),
+                    : AppButton(text: 'Sign Up', onTap: () => _signUp(context)),
               ],
             ),
           ),
