@@ -5,6 +5,7 @@ import 'package:quick_bite/firebase_options.dart';
 import 'package:quick_bite/model/restaurant.dart';
 import 'package:quick_bite/screens/form/providers/login_providers.dart';import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:quick_bite/screens/form/register.dart';
+import 'package:quick_bite/screens/form/signup.dart';
 import 'package:quick_bite/screens/home.dart';
 // ignore: unused_import
 import 'package:quick_bite/services/auth/auth_gate.dart';
@@ -36,7 +37,7 @@ void main() async {
       child: const MyApp(), 
     ), 
 
-//ChangeNotifierProvider(create: (_) => SignUpProvider()),
+
         ChangeNotifierProvider(create: (_) => LoginProvider()),
          ChangeNotifierProvider(create: (_) => ForgotPasswordProvider()),
     // restaurant provider
@@ -70,12 +71,12 @@ class MyApp extends StatelessWidget {
         routes: {
          // '/': (context) => SplashScreen(),
           '/home': (context) => const HomeScreen(),
-          '/signup': (context) =>  RegisterScreen(),
+          '/signup': (context) =>  const SignUpScreen(),
           '/login': (context) => const LoginScreen(),
           '/forgot_password': (context) => const ForgotpwdScreen(),
           '/verify_email': (context) => VerifyEmailScreen(),
           '/profile': (context) => ProfileScreen(),
-'/congrats': (context) => CongratsScreen(),
+'/congrats': (context) => const CongratsScreen(),
         },
     );
   }
