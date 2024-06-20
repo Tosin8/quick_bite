@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:quick_bite/components/form/app_button.dart';
 
 import '../../services/auth/auth_services.dart';
-import 'providers/register_providers.dart'; // Replace with the actual import
+// Replace with the actual import
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -57,9 +57,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
-      appBar: AppBar(
-        title: Text('Sign Up'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Sign Up'),
+      // ),
       body: Center(
       
         child: Form(
@@ -85,13 +85,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
             const SizedBox(height: 25,),
             // Email field. 
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical:15),
                   child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
                     controller: _emailController,
                     decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                         errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
+                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
                         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
           ), 
@@ -118,7 +119,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputAction: TextInputAction.next,
                     controller: _passwordController,
                     decoration: InputDecoration(
-                       enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                         errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
+                       enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
                         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
           ), 
@@ -155,17 +157,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputAction: TextInputAction.next,
                     controller: _confirmPasswordController,
                     decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                         errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
+                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
                         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
           ), 
           hintText: 'Confirm Password',
-           hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary), 
-                      
+           hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
+            
+                        suffixIcon: IconButton(
+                      icon: Icon(
+                        _isConfirmPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+                        });
+                      },
+                    ),
+                  ),
                       //labelText: 'Confirm Password'
                       
-                      ),
-                    obscureText: true,
+                      
+                    obscureText: !_isConfirmPasswordVisible,
                     validator: (value) {
                       if (value == null || value != _passwordController.text) {
                         return 'Passwords do not match';
@@ -183,7 +197,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
  textInputAction: TextInputAction.next,
                     controller: _firstNameController,
                     decoration: InputDecoration(
-                             enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                         errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
+                             enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
                         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
           ), 
@@ -209,8 +224,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputAction: TextInputAction.next,
                     controller: _lastNameController,
                     decoration: InputDecoration(
-                      
-                      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                         errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
+                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
                         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
           ), 
@@ -237,7 +252,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputAction: TextInputAction.done,
                     controller: _phoneNumberController,
                     decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                      errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
+                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
                         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
           ), 
@@ -254,9 +270,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     },
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 _isLoading
-                    ? CircularProgressIndicator()
+                    ? const CircularProgressIndicator()
                     // : ElevatedButton(
                     //     onPressed: () => _signUp(context),
                     //     child: Text('Sign Up'),
