@@ -304,7 +304,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ), 
                   ],
                 ), 
-SizedBox(height: 10,), 
+const SizedBox(height: 10,), 
                 ],
               ),
             ),
