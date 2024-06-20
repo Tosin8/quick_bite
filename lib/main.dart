@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:quick_bite/firebase_options.dart';
 import 'package:quick_bite/model/restaurant.dart';
 import 'package:quick_bite/screens/form/providers/login_providers.dart';import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:quick_bite/screens/form/register.dart';
 import 'package:quick_bite/screens/form/signup.dart';
 import 'package:quick_bite/screens/home.dart';
 // ignore: unused_import
@@ -15,7 +14,6 @@ import 'screens/form/congrats_screen.dart';
 import 'screens/form/forgotpwd.dart';
 import 'screens/form/login.dart';
 import 'screens/form/providers/forgotpwd_providers.dart';
-import 'screens/form/providers/register_providers.dart';
 import 'screens/form/verifyemail.dart';
 import 'screens/profile.dart';
 import 'screens/splash.dart';

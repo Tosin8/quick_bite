@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:quick_bite/components/form/app_textfield.dart';
-import 'package:quick_bite/screens/form/register.dart';
 import 'package:quick_bite/screens/form/signup.dart';
-import 'package:quick_bite/services/auth/auth_services.dart';
 
 import 'forgotpwd.dart';
 import 'providers/login_providers.dart';

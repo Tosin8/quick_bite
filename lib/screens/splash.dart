@@ -44,7 +44,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:quick_bite/screens/form/register.dart';
+import 'package:quick_bite/screens/form/trash/register.dart';
 import 'package:quick_bite/screens/home.dart';
 
 import 'form/login.dart';
