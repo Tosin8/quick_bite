@@ -19,6 +19,7 @@ import 'screens/form/providers/register_providers.dart';
 import 'screens/form/verifyemail.dart';
 import 'screens/profile.dart';
 import 'screens/splash.dart';
+import 'services/auth/auth_services.dart';
 import 'themes/theme_provider.dart';
 
 void main() async { 

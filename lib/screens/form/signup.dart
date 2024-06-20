@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/components/form/app_button.dart';
 
+import '../../services/auth/auth_services.dart';
 import 'providers/register_providers.dart'; // Replace with the actual import
 
 class SignUpScreen extends StatefulWidget {

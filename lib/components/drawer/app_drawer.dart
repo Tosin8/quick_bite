@@ -13,12 +13,12 @@ class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
 
 
-void logout(){
+// void logout(){
 
-  // get instance of auth service.
-  final authService = AuthService();
-  authService.signOut();
-}
+//   // get instance of auth service.
+//   final authService = AuthService();
+//   authService.signOut();
+// }
 
   Future<void> _logout(BuildContext context) async {
     await FirebaseAuth.instance.signOut();

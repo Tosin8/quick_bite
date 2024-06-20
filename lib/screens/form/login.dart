@@ -28,31 +28,31 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController passwordController = TextEditingController(); 
 
   // login method
-  void login() async {
+//   void login() async {
      
-    // get instance of auth service. 
-    final authService = AuthService(); 
+//     // get instance of auth service. 
+//     final authService = AuthService(); 
 
-    // try sign in 
-    try {
-      await authService.signInWithEmailPassword(emailController.text, passwordController.text);
-    }
+//     // try sign in 
+//     try {
+//       await authService.signInWithEmailPassword(emailController.text, passwordController.text);
+//     }
 
 
-// display any errors
+// // display any errors
 
-catch(e) {
-  // ignore: use_build_context_synchronously
-  showDialog(context: context,
-   builder: (context) => AlertDialog(
-    title: Text(e.toString())
-   ));
-}
-    // navigate to home page 
-    // Navigator.push(context,
-    //  MaterialPageRoute(
-    //   builder: (context) => const HomeScreen())); 
-  }
+// catch(e) {
+//   // ignore: use_build_context_synchronously
+//   showDialog(context: context,
+//    builder: (context) => AlertDialog(
+//     title: Text(e.toString())
+//    ));
+// }
+//     // navigate to home page 
+//     // Navigator.push(context,
+//     //  MaterialPageRoute(
+//     //   builder: (context) => const HomeScreen())); 
+//   }
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
