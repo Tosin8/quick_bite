@@ -190,6 +190,9 @@ class _LoginScreenState extends State<LoginScreen> {
                
               ],
             ),
+            SizedBox(height: 10,), 
+            TextButton(onPressed: (){},
+             child: Text('Reset Password')), 
          ] ),
         ),
       ),

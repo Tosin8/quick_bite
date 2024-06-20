@@ -4,10 +4,10 @@ import 'package:provider/provider.dart';
 
 import 'package:quick_bite/components/form/app_textfield.dart';
 
-import '../../components/form/app_button.dart';
-import 'login.dart';
+import '../../../components/form/app_button.dart';
+import '../login.dart';
 import 'login_trash.dart';
-import 'providers/forgotpwd_providers.dart';
+import '../providers/forgotpwd_providers.dart';
 
 
 class ForgotpwdScreen extends StatefulWidget {

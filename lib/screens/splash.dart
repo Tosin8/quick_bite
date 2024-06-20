@@ -48,7 +48,7 @@ import 'package:quick_bite/screens/form/trash/register.dart';
 import 'package:quick_bite/screens/home.dart';
 
 import 'form/login.dart';
-import 'form/login_trash.dart';
+import 'form/trash/login_trash.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

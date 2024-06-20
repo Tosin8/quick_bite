@@ -11,9 +11,9 @@ import 'package:quick_bite/services/auth/auth_gate.dart';
 
 
 import 'screens/form/congrats_screen.dart';
-import 'screens/form/forgotpwd.dart';
+import 'screens/form/trash/forgotpwd.dart';
 import 'screens/form/login.dart';
-import 'screens/form/login_trash.dart';
+import 'screens/form/trash/login_trash.dart';
 import 'screens/form/providers/forgotpwd_providers.dart';
 import 'screens/form/verifyemail.dart';
 import 'screens/profile.dart';
