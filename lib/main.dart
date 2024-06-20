@@ -11,6 +11,8 @@ import 'package:quick_bite/services/auth/auth_gate.dart';
 
 
 import 'screens/form/congrats_screen.dart';
+import 'screens/form/pwd_reset_congrats.dart';
+import 'screens/form/resetpwd.dart';
 import 'screens/form/trash/forgotpwd.dart';
 import 'screens/form/login.dart';
 import 'screens/form/trash/login_trash.dart';
@@ -77,6 +79,8 @@ class MyApp extends StatelessWidget {
           '/verify_email': (context) => const VerificationScreen(),
           '/profile': (context) => ProfileScreen(),
 '/congrats': (context) => const CongratulatoryScreen(),
+'/reset-password': (context) => const ResetPasswordScreen(),
+          '/reset-congratulations': (context) => const PasswordResetCongratulatoryScreen(),
         },
     );
   }
