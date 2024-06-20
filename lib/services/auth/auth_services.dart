@@ -44,6 +44,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../../model/usermodel.dart';
+
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -83,6 +85,17 @@ class AuthService {
     }
   }
 
+ User? get currentUser => _auth.currentUser;
+
+  Future<UserModel> getUserData() async {
+    User? user = currentUser;
+    if (user != null) {
+      DocumentSnapshot doc = await _firestore.collection('users').doc(user.uid).get();
+      return UserModel.fromMap(doc.data() as Map<String, dynamic>);
+    } else {
+      throw Exception('No user logged in');
+    }
+  }
   Future<void> signOut() async {
     await _auth.signOut();
   }
