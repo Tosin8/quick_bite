@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:quick_bite/components/form/app_button.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
+  const ResetPasswordScreen({super.key});
+
   @override
   _ResetPasswordScreenState createState() => _ResetPasswordScreenState();
 }
@@ -71,27 +74,45 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               const SizedBox(height: 16),
 
               // Email address. 
-              TextFormField(
-                controller: _emailController,
-                decoration: const InputDecoration(labelText: 'Email'),
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email';
-                  }
-                  if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                    return 'Please enter a valid email';
-                  }
-                  return null;
-                },
+              Padding(
+                padding:  EdgeInsets.symmetric(horizontal: 25.0),
+                child: TextFormField(
+                  
+                  textInputAction: TextInputAction.done,
+                  controller: _emailController,
+                  decoration:  InputDecoration(
+                    
+                     enabledBorder:  OutlineInputBorder(
+            //borderSide: BorderSide(color: Theme.of(context).colorScheme.tertiary), 
+            borderSide: BorderSide(color:  Colors.black), 
+          ), 
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
+          ), 
+                    hintText: 'Email',
+                    labelText: 'Email'),
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your email';
+                    }
+                    if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                      return 'Please enter a valid email';
+                    }
+                    return null;
+                  },
+                ),
               ),
               const SizedBox(height: 16),
               _isLoading
                   ? const CircularProgressIndicator()
-                  : ElevatedButton(
-                      onPressed: _resetPassword,
-                      child: const Text('Reset Password'),
-                    ),
+                   : AppButton(text: 'Reset Password', 
+                   onTap: _resetPassword,)
+                   
+                   //ElevatedButton(
+                  //     onPressed: _resetPassword,
+                  //     child: const Text('Reset Password'),
+                  //   ),
             ],
           ),
         ),
