@@ -1,42 +1,18 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 
-class PasswordResetCongratulatoryScreen extends StatefulWidget {
-  const PasswordResetCongratulatoryScreen({super.key});
-
-  @override
-  _PasswordResetCongratulatoryScreenState createState() => _PasswordResetCongratulatoryScreenState();
-}
-
-class _PasswordResetCongratulatoryScreenState extends State<PasswordResetCongratulatoryScreen> {
-  @override
-  void initState() {
-    super.initState();
-    _navigateToHome();
-  }
-
-  _navigateToHome() async {
-    await Future.delayed(const Duration(seconds: 3), () {});
-    Navigator.pushReplacementNamed(context, '/home');
-  }
-
+class PasswordResetSuccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.pushReplacementNamed(context, '/home');
+    });
+
+    return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Password Reset Successfully!',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 16),
-            Text(
-              'You can now log in with your new password.',
-              textAlign: TextAlign.center,
-            ),
-          ],
+        child: Text(
+          'Your password has been reset successfully!',
+          style: TextStyle(fontSize: 18),
+          textAlign: TextAlign.center,
         ),
       ),
     );

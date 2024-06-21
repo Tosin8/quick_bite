@@ -102,6 +102,19 @@ class AuthService {
       throw Exception('No user logged in');
     }
   }
+
+   Future<void> sendPasswordResetEmail(String email) async {
+    await _auth.sendPasswordResetEmail(email: email);
+  }
+
+  Future<void> updatePassword(String newPassword) async {
+    User? user = _auth.currentUser;
+    if (user != null) {
+      await user.updatePassword(newPassword);
+    } else {
+      throw Exception('No user logged in');
+    }
+  }
   Future<void> signOut() async {
     await _auth.signOut();
   }

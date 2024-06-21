@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'pwd_reset_congrats.dart';
+
 class NewPasswordScreen extends StatefulWidget {
   final String email;
 
-  NewPasswordScreen({required this.email});
+  NewPasswordScreen({super.key, required this.email});
 
   @override
   _NewPasswordScreenState createState() => _NewPasswordScreenState();

@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
           '/profile': (context) => ProfileScreen(),
 '/congratulations': (context) => const CongratulatoryScreen(),
 '/reset-password': (context) => const ResetPasswordScreen(),
-          '/reset-congratulations': (context) => const PasswordResetCongratulatoryScreen(),
+          '/reset-congratulations': (context) => PasswordResetSuccessScreen(),
         },
     );
   }
