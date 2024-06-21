@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:quick_bite/components/form/app_button.dart';
 
 import 'pwd_reset_congrats.dart';
 
@@ -44,65 +45,113 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
-          child: Column(
-            children: [
-              Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical:10),
-             
-                child: TextFormField(
-                  keyboardType: TextInputType.visiblePassword,
-                  textInputAction: TextInputAction.next, 
-                  controller: _passwordController,
-                  decoration: InputDecoration(
-                     suffixIcon: IconButton(
-                        icon: Icon(
-                          _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+
+                  // logo
+                  Container(
+                    width: 80, height: 80, child: Image.asset('assets/icons/logo.png'),
+                  ),
+                  const SizedBox(height: 20,), 
+                  Text('Quick Bite', style: TextStyle(fontSize: 16, 
+                  color: Theme.of(context).colorScheme.inverseSurface,  ),), 
+                  const SizedBox(height: 5,), 
+                  Text('Type in your New Password', 
+                  style: TextStyle(
+                    fontSize: 16, 
+                    color: Theme.of(context).colorScheme.inverseSurface, 
+                  ),),  
+              
+              const SizedBox(height: 15,),
+                Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical:10),
+               
+                  child: TextFormField(
+                    keyboardType: TextInputType.visiblePassword,
+                    textInputAction: TextInputAction.next, 
+                    controller: _passwordController,
+                    decoration: InputDecoration(
+                       suffixIcon: IconButton(
+                          icon: Icon(
+                            _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isPasswordVisible = !_isPasswordVisible;
+                            });
+                          },
                         ),
-                        onPressed: () {
-                          setState(() {
-                            _isPasswordVisible = !_isPasswordVisible;
-                          });
-                        },
-                      ),
-                     errorBorder:  OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
-                         enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-                          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
-            ), 
-                    hintText: 'New Password',
-                    labelText: 'New Password'),
-                  obscureText: !_isPasswordVisible,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your new password';
-                    }
-                    if (value.length < 6) {
-                      return 'Password must be at least 6 characters long';
-                    }
-                    return null;
-                  },
+                       errorBorder:  const OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
+                           enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
+              ), 
+                      hintText: 'New Password',
+                      labelText: 'New Password'),
+                    obscureText: !_isPasswordVisible,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your new password';
+                      }
+                      if (value.length < 6) {
+                        return 'Password must be at least 6 characters long';
+                      }
+                      return null;
+                    },
+                  ),
                 ),
-              ),
-              TextFormField(
-                controller: _confirmPasswordController,
-                decoration: const InputDecoration(labelText: 'Confirm Password'),
-                obscureText: true,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please confirm your password';
-                  }
-                  if (value != _passwordController.text) {
-                    return 'Passwords do not match';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _resetPassword,
-                child: const Text('Reset Password'),
-              ),
-            ],
+            
+                // Confirm Password. 
+            
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical:10),
+                  child: TextFormField(
+                    
+                    textInputAction: TextInputAction.done, 
+                    keyboardType: TextInputType.visiblePassword,
+                    controller: _confirmPasswordController,
+                    decoration:  InputDecoration
+                    
+                    (
+                          suffixIcon: IconButton(
+                          icon: Icon(
+                            _isConfirmPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+                            });
+                          },
+                        ),
+                      errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
+                          enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
+              ), 
+                      hintText: 'Confirm Password',
+                      labelText: 'Confirm Password'),
+                    
+                    obscureText: !_isConfirmPasswordVisible,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please confirm your password';
+                      }
+                      if (value != _passwordController.text) {
+                        return 'Passwords do not match';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                const SizedBox(height: 20),
+                _isLoading ? const CircularProgressIndicator(): 
+                AppButton(text: 'Reset Password, ', 
+                onTap: () => _resetPassword,), 
+                
+              ],
+            ),
           ),
         ),
       ),

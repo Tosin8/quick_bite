@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quick_bite/components/form/app_button.dart';
+import 'package:quick_bite/screens/form/login.dart';
 
 import 'newpwdscreen.dart';
 
@@ -97,14 +98,14 @@ void _navigateToNewPasswordScreen() {
            
               // Email address. 
               Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 25.0),
+                padding:  const EdgeInsets.symmetric(horizontal: 25.0),
                 child: TextFormField(
                   
                   textInputAction: TextInputAction.done,
                   controller: _emailController,
                   decoration:  InputDecoration(
                     
-                     enabledBorder:  OutlineInputBorder(
+                     enabledBorder:  const OutlineInputBorder(
             //borderSide: BorderSide(color: Theme.of(context).colorScheme.tertiary), 
             borderSide: BorderSide(color:  Colors.black), 
           ), 
@@ -125,16 +126,22 @@ void _navigateToNewPasswordScreen() {
                   },
                 ),
               ),
-              const SizedBox(height: 16),
+                const SizedBox(height: 16),
               _isLoading
                   ? const CircularProgressIndicator()
                    : AppButton(text: 'Reset Password', 
-                   onTap: _navigateToNewPasswordScreen,)
+                   onTap: _navigateToNewPasswordScreen,), 
                    
                    //ElevatedButton(
                   //     onPressed: _resetPassword,
                   //     child: const Text('Reset Password'),
                   //   ),
+
+                   TextButton(onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+              }, 
+              child: Text('Back to Login')), 
+           
             ],
           ),
         ),
