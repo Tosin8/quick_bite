@@ -11,6 +11,7 @@ import 'package:quick_bite/services/auth/auth_gate.dart';
 
 
 import 'screens/form/congrats_screen.dart';
+import 'screens/form/newpwdscreen.dart';
 import 'screens/form/pwd_reset_congrats.dart';
 import 'screens/form/resetpwd.dart';
 import 'screens/form/trash/forgotpwd.dart';
@@ -81,6 +82,7 @@ class MyApp extends StatelessWidget {
 '/congratulations': (context) => const CongratulatoryScreen(),
 '/reset-password': (context) => const ResetPasswordScreen(),
           '/reset-congratulations': (context) => PasswordResetSuccessScreen(),
+          '/new_password': (context) => NewPasswordScreen(oobCode: '',),
         },
     );
   }

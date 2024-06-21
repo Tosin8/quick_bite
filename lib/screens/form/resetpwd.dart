@@ -43,12 +43,16 @@ Future<void> _resetPassword() async {
                     String email = _emailController.text;
                     await Provider.of<AuthService>(context, listen: false)
                         .sendPasswordResetEmail(email);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => NewPasswordScreen(email: email),
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => NewPasswordScreen(email: email, oobCode: '',),
+                    //   ),
+                    // );
+
+                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text('Password reset link sent to $email'),
+                    ));
                   }
 }
   @override

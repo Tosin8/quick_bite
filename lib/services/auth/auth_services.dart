@@ -107,6 +107,12 @@ class AuthService {
     await _auth.sendPasswordResetEmail(email: email);
   }
 
+ Future<void> confirmPasswordReset(String oobCode, String newPassword) async {
+    await _auth.confirmPasswordReset(
+      code: oobCode,
+      newPassword: newPassword,
+    );
+  }
   Future<void> updatePassword(String newPassword) async {
     User? user = _auth.currentUser;
     if (user != null) {
