@@ -16,7 +16,6 @@ import 'screens/form/pwd_reset_congrats.dart';
 import 'screens/form/resetpwd.dart';
 import 'screens/form/trash/forgotpwd.dart';
 import 'screens/form/login.dart';
-import 'screens/form/trash/login_trash.dart';
 import 'screens/form/providers/forgotpwd_providers.dart';
 import 'screens/form/verifyemail.dart';
 import 'screens/profile.dart';
@@ -82,7 +81,7 @@ class MyApp extends StatelessWidget {
 '/congratulations': (context) => const CongratulatoryScreen(),
 '/reset-password': (context) => const ResetPasswordScreen(),
           '/reset-congratulations': (context) => PasswordResetSuccessScreen(),
-          '/new_password': (context) => NewPasswordScreen(oobCode: '',),
+          '/new_password': (context) => NewPasswordScreen(email: '',),
         },
     );
   }

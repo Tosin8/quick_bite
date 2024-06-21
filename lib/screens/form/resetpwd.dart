@@ -37,24 +37,34 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   //     _isLoading = false;
   //   });
   // }
-Future<void> _resetPassword() async {
+// Future<void> _resetPassword() async {
 
-    if (_formKey.currentState!.validate()) {
-                    String email = _emailController.text;
-                    await Provider.of<AuthService>(context, listen: false)
-                        .sendPasswordResetEmail(email);
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => NewPasswordScreen(email: email, oobCode: '',),
-                    //   ),
-                    // );
+//     if (_formKey.currentState!.validate()) {
+//                     String email = _emailController.text;
+//                     await Provider.of<AuthService>(context, listen: false)
+//                         .sendPasswordResetEmail(email);
+//                     // Navigator.push(
+//                     //   context,
+//                     //   MaterialPageRoute(
+//                     //     builder: (context) => NewPasswordScreen(email: email, oobCode: '',),
+//                     //   ),
+//                     // );
 
-                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text('Password reset link sent to $email'),
-                    ));
-                  }
-}
+//                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+//                       content: Text('Password reset link sent to $email'),
+//                     ));
+//                   }
+// }
+
+void _navigateToNewPasswordScreen() {
+    if (_formKey.currentState?.validate() ?? false) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => NewPasswordScreen(email: _emailController.text)),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,7 +132,7 @@ Future<void> _resetPassword() async {
               _isLoading
                   ? const CircularProgressIndicator()
                    : AppButton(text: 'Reset Password', 
-                   onTap: _resetPassword,)
+                   onTap: _navigateToNewPasswordScreen,)
                    
                    //ElevatedButton(
                   //     onPressed: _resetPassword,
