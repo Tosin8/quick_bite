@@ -130,7 +130,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                        hintText: 'Password',
                          labelText: 'Password', 
              hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),    
-                        //labelText: 'Password'
+                       
                          suffixIcon: IconButton(
                         icon: Icon(
                           _isPasswordVisible ? Icons.visibility : Icons.visibility_off,

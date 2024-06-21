@@ -1,15 +1,13 @@
+
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/firebase_options.dart';
-import 'package:quick_bite/model/restaurant.dart';
-import 'package:quick_bite/screens/form/providers/login_providers.dart';import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:quick_bite/screens/form/signup.dart';
 import 'package:quick_bite/screens/home.dart';
-// ignore: unused_import
-import 'package:quick_bite/services/auth/auth_gate.dart';
 
-
+import 'model/restaurant.dart';
 import 'screens/form/congrats_screen.dart';
 import 'screens/form/newpwdscreen.dart';
 import 'screens/form/pwd_reset_congrats.dart';
@@ -40,7 +38,7 @@ void main() async {
     ), 
 
 
-        ChangeNotifierProvider(create: (_) => LoginProvider()),
+     
          ChangeNotifierProvider(create: (_) => ForgotPasswordProvider()),
     // restaurant provider
     ChangeNotifierProvider(create: (context) => Restaurant()), 
@@ -61,11 +59,11 @@ class MyApp extends StatelessWidget {
           Locale('en', ''), // English, no country code
           // Add other supported locales here
         ],
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
+        // localizationsDelegates: [
+        //   GlobalMaterialLocalizations.delegate,
+        //   GlobalWidgetsLocalizations.delegate,
+        //   GlobalCupertinoLocalizations.delegate,
+        // ],
       home: SplashScreen(), 
      // home: const AuthGate(), 
        theme: Provider.of<ThemeProvider>(context).themeData,
