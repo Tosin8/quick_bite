@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 import 'package:quick_bite/components/form/app_button.dart';
+import 'package:quick_bite/services/auth/auth_services.dart';
+
+import 'newpwdscreen.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});
@@ -14,26 +18,39 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
 
-  Future<void> _resetPassword() async {
-    if (!_formKey.currentState!.validate()) {
-      return;
-    }
-    setState(() {
-      _isLoading = true;
-    });
+  // Future<void> _resetPassword() async {
+  //   if (!_formKey.currentState!.validate()) {
+  //     return;
+  //   }
+  //   setState(() {
+  //     _isLoading = true;
+  //   });
 
-    try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: _emailController.text.trim());
-      Navigator.pushReplacementNamed(context, '/reset-congratulations');
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Failed to reset password. Please try again.')));
-    }
+  //   try {
+  //     await FirebaseAuth.instance.sendPasswordResetEmail(email: _emailController.text.trim());
+  //     Navigator.pushReplacementNamed(context, '/reset-congratulations');
+  //   } catch (e) {
+  //     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Failed to reset password. Please try again.')));
+  //   }
 
-    setState(() {
-      _isLoading = false;
-    });
-  }
+  //   setState(() {
+  //     _isLoading = false;
+  //   });
+  // }
+Future<void> _resetPassword() async {
 
+    if (_formKey.currentState!.validate()) {
+                    String email = _emailController.text;
+                    await Provider.of<AuthService>(context, listen: false)
+                        .sendPasswordResetEmail(email);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NewPasswordScreen(email: email),
+                      ),
+                    );
+                  }
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
