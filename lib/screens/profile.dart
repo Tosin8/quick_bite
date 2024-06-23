@@ -248,7 +248,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
+        backgroundColor: Colors.grey[300],
         title: Text('Profile'),
+        centerTitle: true,
       ),
       body: FutureBuilder<UserModel>(
         future: _userFuture,
