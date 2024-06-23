@@ -223,6 +223,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quick_bite/components/drawer/app_drawer.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../model/usermodel.dart';
@@ -245,81 +246,84 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[300],
-      appBar: AppBar(
+    return SafeArea(
+      child: Scaffold(
         backgroundColor: Colors.grey[300],
-        title: Text('Profile'),
-        centerTitle: true,
-      ),
-      body: FutureBuilder<UserModel>(
-        future: _userFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return _buildShimmer();
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData) {
-            return Center(child: Text('No user data found'));
-          }
-
-          UserModel user = snapshot.data!;
-          return ListView(
-            padding: const EdgeInsets.all(16.0),
-            children: [
-              ListTile(
-                title: Text('Email'),
-                subtitle: Text(user.email),
-              ),
-              ListTile(
-                title: Text('First Name'),
-                subtitle: Text(user.firstName),
-              ),
-              ListTile(
-                title: Text('Last Name'),
-                subtitle: Text(user.lastName),
-              ),
-              Divider(),
-              _buildProfileOption(Icons.edit, 'Edit Profile', () {
-                // Navigate to Edit Profile screen
-              }),
-              _buildProfileOption(Icons.history, 'Order History', () {
-                // Navigate to Order History screen
-              }),
-              _buildProfileOption(Icons.rate_review, 'Reviews', () {
-                // Navigate to Reviews screen
-              }),
-              _buildProfileOption(Icons.share, 'Share App', () {
-                // Share app link
-              }),
-              _buildProfileOption(Icons.help, 'FAQ', () {
-                // Navigate to FAQ screen
-              }),
-              _buildProfileOption(Icons.settings, 'Settings', () {
-                // Navigate to Settings screen
-              }),
-              _buildProfileOption(Icons.update, 'Update App', () {
-                // Check for app updates
-              }),
-              _buildProfileOption(Icons.notifications, 'Notification', () {
-                // Handle notification settings
-              }),
-              _buildProfileOption(Icons.delete, 'Delete Account', () {
-                // Handle account deletion
-              }),
-              ElevatedButton(
-                onPressed: () async {
-                  await Provider.of<AuthService>(context, listen: false).signOut();
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text('Logout successful'),
-                  ));
-                  Navigator.pushReplacementNamed(context, '/login');
-                },
-                child: Text('Logout'),
-              ),
-            ],
-          );
-        },
+        appBar: AppBar(
+          backgroundColor: Colors.grey[300],
+          title: Text('Profile'),
+          centerTitle: true,
+        ),
+        drawer: AppDrawer(),
+        body: FutureBuilder<UserModel>(
+          future: _userFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return _buildShimmer();
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else if (!snapshot.hasData) {
+              return Center(child: Text('No user data found'));
+            }
+      
+            UserModel user = snapshot.data!;
+            return ListView(
+              padding: const EdgeInsets.all(16.0),
+              children: [
+                ListTile(
+                  title: Text('Email'),
+                  subtitle: Text(user.email),
+                ),
+                ListTile(
+                  title: Text('First Name'),
+                  subtitle: Text(user.firstName),
+                ),
+                ListTile(
+                  title: Text('Last Name'),
+                  subtitle: Text(user.lastName),
+                ),
+                Divider(),
+                _buildProfileOption(Icons.edit, 'Edit Profile', () {
+                  // Navigate to Edit Profile screen
+                }),
+                _buildProfileOption(Icons.history, 'Order History', () {
+                  // Navigate to Order History screen
+                }),
+                _buildProfileOption(Icons.rate_review, 'Reviews', () {
+                  // Navigate to Reviews screen
+                }),
+                _buildProfileOption(Icons.share, 'Share App', () {
+                  // Share app link
+                }),
+                _buildProfileOption(Icons.help, 'FAQ', () {
+                  // Navigate to FAQ screen
+                }),
+                _buildProfileOption(Icons.settings, 'Settings', () {
+                  // Navigate to Settings screen
+                }),
+                _buildProfileOption(Icons.update, 'Update App', () {
+                  // Check for app updates
+                }),
+                _buildProfileOption(Icons.notifications, 'Notification', () {
+                  // Handle notification settings
+                }),
+                _buildProfileOption(Icons.delete, 'Delete Account', () {
+                  // Handle account deletion
+                }),
+                ElevatedButton(
+                  onPressed: () async {
+                    await Provider.of<AuthService>(context, listen: false).signOut();
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text('Logout successful'),
+                    ));
+                    Navigator.pushReplacementNamed(context, '/login');
+                  },
+                  child: Text('Logout'),
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
