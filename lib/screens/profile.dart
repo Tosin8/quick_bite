@@ -376,8 +376,29 @@ Future<void> _loadUserProfile() async {
                                 radius: 26,
                                 backgroundImage: _profileImageUrl != null
                                     ? NetworkImage(_profileImageUrl!)
-                                    : const AssetImage('assets/avatar_placeholder.png') as ImageProvider,
+                                    : const AssetImage('assets/icons/user.png') as ImageProvider,
                               ),
+                              Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: IconButton(
+                            icon: Icon(Icons.camera_alt),
+                            onPressed: _pickImage,
+                          ),
+                        ),
+                          if (_isUploading)
+                          Positioned.fill(
+                            child: Shimmer.fromColors(
+                              baseColor: Colors.grey[300]!,
+                              highlightColor: Colors.grey[100]!,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                            ),
+                          ),
                          ] ),
                             const SizedBox(width: 10,), 
                             Expanded(
@@ -386,17 +407,21 @@ Future<void> _loadUserProfile() async {
                               children: [
                                 Row(
                         children: [
-                          Text(user.firstName, 
-                          style: const TextStyle(fontSize: 16, 
-                          fontWeight: FontWeight.w600),),
-                          const SizedBox(width: 5,), 
-                          Text(user.lastName, 
-                          style: const TextStyle(
-                            fontSize: 16, 
-                            fontWeight: FontWeight.w600),), 
+                             Text(
+                          _firstName ?? '',
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          _lastName ?? '',
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                       
                         ],
                       ), 
-                      Text(user.email, style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 12),), 
+                       Text(
+                          _email ?? '',
+                          style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                        ), 
                       
                               ],
                             ))
@@ -404,98 +429,9 @@ Future<void> _loadUserProfile() async {
                       ),
                     ),
                   ),
-        ), 
+       ] ), 
               
-                const Divider(), FutureBuilder<UserModel>(
-          future: _userFuture,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return _buildShimmer();
-            } else if (snapshot.hasError) {
-              return Center(child: Text('Error: ${snapshot.error}'));
-            } else if (!snapshot.hasData) {
-              return const Center(child: Text('No user data found'));
-            }
-      
-            UserModel user = snapshot.data!;
-            return ListView(
-              padding: const EdgeInsets.all(16.0),
-              children: [
-               
-                _buildProfileOption(Icons.edit, 'Edit Profile', () {
-                  // Navigate to Edit Profile screen
-                }),
-                _buildProfileOption(Icons.history, 'Order History', () {
-                  // Navigate to Order History screen
-                }),
-                _buildProfileOption(Icons.rate_review, 'Reviews', () {
-                  // Navigate to Reviews screen
-                }),
-                _buildProfileOption(Icons.share, 'Share App', () {
-                  // Share app link
-                }),
-                _buildProfileOption(Icons.help, 'FAQ', () {
-                  // Navigate to FAQ screen
-                }),
-                _buildProfileOption(Icons.settings, 'Settings', () {
-                  // Navigate to Settings screen
-                }),
-                _buildProfileOption(Icons.update, 'Update App', () {
-                  // Check for app updates
-                }),
-                _buildProfileOption(Icons.notifications, 'Notification', () {
-                  // Handle notification settings
-                }),
-                _buildProfileOption(Icons.delete, 'Delete Account', () {
-                  // Handle account deletion
-                }),
-                ElevatedButton(
-                  onPressed: () async {
-                    await Provider.of<AuthService>(context, listen: false).signOut();
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text('Logout successful'),
-                    ));
-                    Navigator.pushReplacementNamed(context, '/login');
-                  },
-                  child: const Text('Logout'),
-                ),
-              ],
-            );
-          },
-        ),
-      ),
-    );
-  }
-
-  Widget _buildProfileOption(IconData icon, String title, VoidCallback onTap) {
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(title),
-      onTap: onTap,
-    );
-  }
-
-  Widget _buildShimmer() {
-    return ListView.builder(
-      padding: const EdgeInsets.all(16.0),
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        return ListTile(
-          leading: Shimmer.fromColors(
-            baseColor: Colors.grey[300]!,
-            highlightColor: Colors.grey[100]!,
-            child: const CircleAvatar(),
-          ),
-          title: Shimmer.fromColors(
-            baseColor: Colors.grey[300]!,
-            highlightColor: Colors.grey[100]!,
-            child: Container(
-              height: 20,
-              color: Colors.grey[300],
-            ),
-          ),
-        );
-      },
-    );
+              
+    ));
   }
 }
