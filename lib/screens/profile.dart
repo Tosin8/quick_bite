@@ -221,10 +221,15 @@
 
 
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/components/drawer/app_drawer.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 import '../model/usermodel.dart';
 import '../services/auth/auth_services.dart';
@@ -237,6 +242,10 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   late Future<UserModel> _userFuture;
+  bool _notificationsEnabled = true;
+  bool _isUploading = false;
+  String? _profileImageUrl;
+  final ImagePicker _picker = ImagePicker();
 
   @override
   void initState() {
@@ -244,6 +253,88 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _userFuture = Provider.of<AuthService>(context, listen: false).getUserData();
   }
 
+Future<void> _loadUserProfile() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DocumentSnapshot doc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+      setState(() {
+        _profileImageUrl = doc['profileImageUrl'];
+      });
+    }
+  }
+
+  Future<void> _pickImage() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _isUploading = true;
+      });
+      try {
+        User? user = FirebaseAuth.instance.currentUser;
+        if (user != null) {
+          File file = File(pickedFile.path);
+          String filePath = 'profile_images/${user.uid}.png';
+          await FirebaseStorage.instance.ref(filePath).putFile(file);
+          String downloadUrl = await FirebaseStorage.instance.ref(filePath).getDownloadURL();
+          await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
+            'profileImageUrl': downloadUrl,
+          });
+          setState(() {
+            _profileImageUrl = downloadUrl;
+            _isUploading = false;
+          });
+        }
+      } catch (e) {
+        setState(() {
+          _isUploading = false;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+      }
+    }
+  }
+
+  void _toggleNotifications(bool value) {
+    setState(() {
+      _notificationsEnabled = value;
+    });
+    // Here you can add the logic to enable/disable notifications in your app
+  }
+
+  Future<void> _confirmDeleteAccount(BuildContext context) async {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Delete Account'),
+          content: const Text('Are you sure you want to delete your account?'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('No'),
+            ),
+            TextButton(
+              onPressed: () async {
+                Navigator.of(context).pop();
+                try {
+                  User? user = FirebaseAuth.instance.currentUser;
+                  await user?.delete();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Account deleted successfully')),
+                  );
+                  Navigator.pushReplacementNamed(context, '/');
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(e.toString())),
+                  );
+                }
+              },
+              child: const Text('Yes'),
+            ),
+          ],
+        );
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -251,10 +342,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         backgroundColor: Colors.grey[300],
         appBar: AppBar(
           backgroundColor: Colors.grey[300],
-          title: Text('Profile'),
+          title: const Text('Profile'),
           centerTitle: true,
         ),
-        drawer: AppDrawer(),
+        drawer: const AppDrawer(),
         body: FutureBuilder<UserModel>(
           future: _userFuture,
           builder: (context, snapshot) {
@@ -263,7 +354,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (!snapshot.hasData) {
-              return Center(child: Text('No user data found'));
+              return const Center(child: Text('No user data found'));
             }
       
             UserModel user = snapshot.data!;
@@ -271,18 +362,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               padding: const EdgeInsets.all(16.0),
               children: [
                 ListTile(
-                  title: Text('Email'),
+                  title: const Text('Email'),
                   subtitle: Text(user.email),
                 ),
                 ListTile(
-                  title: Text('First Name'),
+                  title: const Text('First Name'),
                   subtitle: Text(user.firstName),
                 ),
                 ListTile(
-                  title: Text('Last Name'),
+                  title: const Text('Last Name'),
                   subtitle: Text(user.lastName),
                 ),
-                Divider(),
+                const Divider(),
                 _buildProfileOption(Icons.edit, 'Edit Profile', () {
                   // Navigate to Edit Profile screen
                 }),
@@ -313,12 +404,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ElevatedButton(
                   onPressed: () async {
                     await Provider.of<AuthService>(context, listen: false).signOut();
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text('Logout successful'),
                     ));
                     Navigator.pushReplacementNamed(context, '/login');
                   },
-                  child: Text('Logout'),
+                  child: const Text('Logout'),
                 ),
               ],
             );
@@ -345,7 +436,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           leading: Shimmer.fromColors(
             baseColor: Colors.grey[300]!,
             highlightColor: Colors.grey[100]!,
-            child: CircleAvatar(),
+            child: const CircleAvatar(),
           ),
           title: Shimmer.fromColors(
             baseColor: Colors.grey[300]!,
