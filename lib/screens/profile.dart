@@ -241,16 +241,19 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  late Future<UserModel> _userFuture;
+ 
   bool _notificationsEnabled = true;
   bool _isUploading = false;
   String? _profileImageUrl;
+  String? _firstName;
+  String? _lastName;
+  String? _email;
   final ImagePicker _picker = ImagePicker();
 
   @override
   void initState() {
     super.initState();
-    _userFuture = Provider.of<AuthService>(context, listen: false).getUserData();
+    _loadUserProfile();
   }
 
 Future<void> _loadUserProfile() async {
@@ -259,6 +262,9 @@ Future<void> _loadUserProfile() async {
       DocumentSnapshot doc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
       setState(() {
         _profileImageUrl = doc['profileImageUrl'];
+        _firstName = doc['firstName'];
+        _lastName = doc['lastName'];
+        _email = user.email;
       });
     }
   }
@@ -337,6 +343,7 @@ Future<void> _loadUserProfile() async {
   }
   @override
   Widget build(BuildContext context) {
+     final user = Provider.of<User?>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.grey[300],
@@ -346,7 +353,60 @@ Future<void> _loadUserProfile() async {
           centerTitle: true,
         ),
         drawer: const AppDrawer(),
-        body: FutureBuilder<UserModel>(
+        body: 
+        user == null
+          ? Center(child: CircularProgressIndicator()): 
+        ListView(
+           padding: EdgeInsets.all(16.0),
+          children:[
+             Container(
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), 
+                    color: Colors.white,),
+                    
+                    width: MediaQuery.of(context).size.width, 
+                    height: 100, 
+                    child: Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Stack(
+                            children:[ CircleAvatar(
+                                radius: 26,
+                                backgroundImage: _profileImageUrl != null
+                                    ? NetworkImage(_profileImageUrl!)
+                                    : const AssetImage('assets/avatar_placeholder.png') as ImageProvider,
+                              ),
+                         ] ),
+                            const SizedBox(width: 10,), 
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                        children: [
+                          Text(user.firstName, 
+                          style: const TextStyle(fontSize: 16, 
+                          fontWeight: FontWeight.w600),),
+                          const SizedBox(width: 5,), 
+                          Text(user.lastName, 
+                          style: const TextStyle(
+                            fontSize: 16, 
+                            fontWeight: FontWeight.w600),), 
+                        ],
+                      ), 
+                      Text(user.email, style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 12),), 
+                      
+                              ],
+                            ))
+                        ],
+                      ),
+                    ),
+                  ),
+        ), 
+              
+                const Divider(), FutureBuilder<UserModel>(
           future: _userFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -361,29 +421,7 @@ Future<void> _loadUserProfile() async {
             return ListView(
               padding: const EdgeInsets.all(16.0),
               children: [
-                Column(
-                  children: [
-                    CircleAvatar(
-                        radius: 50,
-                        backgroundImage: _profileImageUrl != null
-                            ? NetworkImage(_profileImageUrl!)
-                            : AssetImage('assets/avatar_placeholder.png') as ImageProvider,
-                      ),
-                  ],
-                ), 
-                ListTile(
-                  title: const Text('Email'),
-                  subtitle: Text(user.email),
-                ),
-                ListTile(
-                  title: const Text('First Name'),
-                  subtitle: Text(user.firstName),
-                ),
-                ListTile(
-                  title: const Text('Last Name'),
-                  subtitle: Text(user.lastName),
-                ),
-                const Divider(),
+               
                 _buildProfileOption(Icons.edit, 'Edit Profile', () {
                   // Navigate to Edit Profile screen
                 }),
