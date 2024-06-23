@@ -361,6 +361,16 @@ Future<void> _loadUserProfile() async {
             return ListView(
               padding: const EdgeInsets.all(16.0),
               children: [
+                Column(
+                  children: [
+                    CircleAvatar(
+                        radius: 50,
+                        backgroundImage: _profileImageUrl != null
+                            ? NetworkImage(_profileImageUrl!)
+                            : AssetImage('assets/avatar_placeholder.png') as ImageProvider,
+                      ),
+                  ],
+                ), 
                 ListTile(
                   title: const Text('Email'),
                   subtitle: Text(user.email),
