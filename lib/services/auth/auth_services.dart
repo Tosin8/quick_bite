@@ -48,7 +48,7 @@ import 'package:flutter/material.dart';
 import '../../model/usermodel.dart';
 
 
-class AuthService with ChangeNotifier{
+class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
