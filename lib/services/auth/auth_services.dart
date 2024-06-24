@@ -43,11 +43,12 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 import '../../model/usermodel.dart';
 
 
-class AuthService {
+class AuthService with ChangeNotifier{
   final FirebaseAuth _auth = FirebaseAuth.instance;
    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseFirestore _db = FirebaseFirestore.instance;

@@ -22,6 +22,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _phoneNumberController = TextEditingController();
+   final _addressController = TextEditingController();
 
   bool _isLoading = false;
    bool _isPasswordVisible = false;
