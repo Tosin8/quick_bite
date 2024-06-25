@@ -71,7 +71,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:  [
-                  const SizedBox(height:30), 
+                  const SizedBox(height:50), 
                   // logo
                   Container(
                     width: 80, height: 80, child: Image.asset('assets/icons/logo.png'),
@@ -111,6 +111,62 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
                         return 'Please enter a valid email';
                       }
+                        return null;
+                      },
+                    ),
+                  ),
+      
+       // First Name
+                  Padding(
+                     padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical:10),
+                    child: TextFormField(
+                       keyboardType: TextInputType.name,
+       textInputAction: TextInputAction.next,
+                      controller: _firstNameController,
+                      decoration: InputDecoration(
+                           errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
+                               enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
+            ), 
+                    hintText: 'First Name',
+                    labelText: 'First Name', 
+             hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),      
+                      //  labelText: 'First Name'
+                        
+                        ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your first name';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+      
+                  // Last Name. 
+                  Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical:10),
+                    child: TextFormField(
+                        keyboardType: TextInputType.name,
+                      textInputAction: TextInputAction.next,
+                      controller: _lastNameController,
+                      decoration: InputDecoration(
+                           errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
+                        enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
+            ), 
+                    hintText: 'Last Name',
+                    labelText: 'Last Name', 
+             hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),      
+                        //labelText: 'Last Name'
+                        
+                        ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your last name';
+                        }
                         return null;
                       },
                     ),
@@ -197,62 +253,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
       
-                  // First Name
-                  Padding(
-                     padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical:10),
-                    child: TextFormField(
-                       keyboardType: TextInputType.name,
-       textInputAction: TextInputAction.next,
-                      controller: _firstNameController,
-                      decoration: InputDecoration(
-                           errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
-                               enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-                          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
-            ), 
-                    hintText: 'First Name',
-                    labelText: 'First Name', 
-             hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),      
-                      //  labelText: 'First Name'
-                        
-                        ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your first name';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-      
-                  // Last Name. 
-                  Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical:10),
-                    child: TextFormField(
-                        keyboardType: TextInputType.name,
-                      textInputAction: TextInputAction.next,
-                      controller: _lastNameController,
-                      decoration: InputDecoration(
-                           errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
-                        enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-                          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), 
-            ), 
-                    hintText: 'Last Name',
-                    labelText: 'Last Name', 
-             hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),      
-                        //labelText: 'Last Name'
-                        
-                        ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your last name';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-      
+                 
       
                   // phone no
                   Padding(
@@ -341,7 +342,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ), 
                   ],
                 ), 
-const SizedBox(height: 10,), 
+const SizedBox(height: 20,), 
                 ],
               ),
             ),
