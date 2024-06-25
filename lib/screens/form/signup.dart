@@ -70,8 +70,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(height:20), 
+                children:  [
+                  const SizedBox(height:30), 
                   // logo
                   Container(
                     width: 80, height: 80, child: Image.asset('assets/icons/logo.png'),
@@ -288,7 +288,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: TextFormField(
                        keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.done,
-                      controller: _phoneNumberController,
+                      controller: _addressController,
                       decoration: InputDecoration(
                         errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
                         enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
@@ -301,9 +301,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         
                         //labelText: 'Phone Number'
                         ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty || value.length != 11) {
-                          return 'Please enter a valid phone number';
+                   validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your address';
                         }
                         return null;
                       },
