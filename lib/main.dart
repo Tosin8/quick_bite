@@ -26,18 +26,27 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
-    MultiProvider(
+   
+       const MyApp(),
+      
+  ); 
+}
 
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
       providers: [
         Provider<AuthService>(
           create: (_) => AuthService(),
-        ), 
-         StreamProvider<User?>.value(
-          value: AuthService().authStateChanges,
+        ),
+        StreamProvider<User?>(
+          create: (context) => context.read<AuthService>().authStateChanges,
           initialData: null,
         ),
-        // theme provider
-    ChangeNotifierProvider(
+        ChangeNotifierProvider(
       create: (context) => ThemeProvider(), 
       child: const MyApp(), 
     ), 
@@ -50,18 +59,8 @@ void main() async {
          ChangeNotifierProvider(create: (_) => ForgotPasswordProvider()),
     // restaurant provider
     ChangeNotifierProvider(create: (context) => Restaurant()), 
-      ], 
-      child: const MyApp(),
-      ), 
-  ); 
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return   MaterialApp(
+      ],
+      child:   MaterialApp(
       debugShowCheckedModeBanner: false, 
         supportedLocales: const [
           Locale('en', ''), // English, no country code
@@ -78,7 +77,7 @@ class MyApp extends StatelessWidget {
    initialRoute: '/',
         routes: {
          // '/': (context) => SplashScreen(),
-         '/': (context) => AuthWrapper(),
+         '/': (context) => const AuthWrapper(),
           '/home': (context) => const HomeScreen(),
           '/signup': (context) =>  const SignUpScreen(),
           '/login': (context) => LoginScreen(),
@@ -90,7 +89,7 @@ class MyApp extends StatelessWidget {
           '/reset-congratulations': (context) => PasswordResetSuccessScreen(),
           '/new_password': (context) => NewPasswordScreen(email: '',),
         },
-    );
+    ));
   }
 }
 
