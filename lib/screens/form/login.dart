@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/components/form/app_button.dart';
@@ -29,7 +30,8 @@ class _LoginScreenState extends State<LoginScreen> {
       try {
         final _authService = Provider.of<AuthService>(context, listen: false);
 
-        await _authService.signIn(
+      
+        UserCredential userCredential =  await _authService.signIn(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
