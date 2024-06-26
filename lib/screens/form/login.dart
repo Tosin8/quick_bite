@@ -26,20 +26,22 @@ class _LoginScreenState extends State<LoginScreen> {
         _isLoading = true;
       });
 
-      String? error = await Provider.of<AuthService>(context, listen: false).login(
-        _emailController.text,
-        _passwordController.text,
-      );
+      try {
+        final _authService = Provider.of<AuthService>(context, listen: false);
 
-      setState(() {
-        _isLoading = false;
-      });
+        await _authService.signIn(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
 
-      if (error == null) {
         // Navigate to home screen
-        Navigator.pushNamed(context, '/home');
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login failed: $error')));
+        Navigator.pushReplacementNamed(context, '/home');
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
       }
     }
   }

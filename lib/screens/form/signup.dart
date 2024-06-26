@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/components/form/app_button.dart';
@@ -28,33 +29,37 @@ class _SignUpScreenState extends State<SignUpScreen> {
    bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
 
-  void _signUp(BuildContext context) async {
+  
+
+ void _signUp(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       setState(() {
         _isLoading = true;
       });
 
-      String? error = await Provider.of<AuthService>(context, listen: false).signUp(
-        _emailController.text,
-        _passwordController.text,
-        _firstNameController.text,
-        _lastNameController.text,
-        _phoneNumberController.text,
-      );
+      try {
+        final _authService = Provider.of<AuthService>(context, listen: false);
 
-      setState(() {
-        _isLoading = false;
-      });
+        UserCredential userCredential = await _authService.signUp(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+          firstName: _firstNameController.text.trim(),
+          lastName: _lastNameController.text.trim(),
+          phoneNumber: _phoneNumberController.text.trim(),
+          address: _addressController.text.trim(),
+        );
 
-      if (error == null) {
         // Navigate to verify email screen
-        Navigator.pushNamed(context, '/verify_email');
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign up failed: $error')));
+        Navigator.pushReplacementNamed(context, '/verify_email');
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
       }
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(

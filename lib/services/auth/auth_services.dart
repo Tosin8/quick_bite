@@ -52,39 +52,77 @@ class AuthService {
    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  Future<String?> signUp(String email, String password, String firstName, String lastName, String phoneNumber) async {
-    try {
-      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
-      User? user = userCredential.user;
+  // Future<String?> signUp(String email, String password, String firstName, String lastName, String phoneNumber) async {
+  //   try {
+  //     UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+  //     User? user = userCredential.user;
 
-      if (user != null) {
-        await user.sendEmailVerification();
-        await _db.collection('users').doc(user.uid).set({
-          'firstName': firstName,
-          'lastName': lastName,
-          'phoneNumber': phoneNumber,
-          'email': email,
-          'uid': user.uid,
-        });
-      }
-      return null;
-    } on FirebaseAuthException catch (e) {
-      return e.message;
-    } catch (e) {
-      return e.toString();
+  //     if (user != null) {
+  //       await user.sendEmailVerification();
+  //       await _db.collection('users').doc(user.uid).set({
+  //         'firstName': firstName,
+  //         'lastName': lastName,
+  //         'phoneNumber': phoneNumber,
+  //         'email': email,
+          
+  //         'uid': user.uid,
+  //       });
+  //     }
+  //     return null;
+  //   } on FirebaseAuthException catch (e) {
+  //     return e.message;
+  //   } catch (e) {
+  //     return e.toString();
+  //   }
+  // }
+
+  Future<UserCredential> signUp({
+    required String email, 
+    required String password, 
+    required String firstName,
+    required String lastName,
+    required String phoneNumber,
+    required String address,
+    
+    }) async {
+    UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    User? user = userCredential.user;
+     if (user != null) {
+      await _firestore.collection('users').doc(user.uid).set({
+        'firstName': firstName,
+        'lastName': lastName,
+        'email': email,
+        'phoneNumber': phoneNumber,
+        'address': address,
+      });
     }
+    return userCredential;
   }
 
-  Future<String?> login(String email, String password) async {
-    try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(email: email, password: password);
-      return null;
-    } on FirebaseAuthException catch (e) {
-      return e.message;
-    } catch (e) {
-      return e.toString();
-    }
+  // Future<String?> login(String email, String password) async {
+  //   try {
+  //     UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+  //     return null;
+  //   } on FirebaseAuthException catch (e) {
+  //     return e.message;
+  //   } catch (e) {
+  //     return e.toString();
+  //   }
+  // }
+
+    Future<UserCredential> signIn({
+    required String email,
+    required String password,
+  }) async {
+    return await _auth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
   }
+
 
  User? get currentUser => _auth.currentUser;
 
