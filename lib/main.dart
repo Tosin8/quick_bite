@@ -32,10 +32,10 @@ void main() async {
         Provider<AuthService>(
           create: (_) => AuthService(),
         ), 
-        //  StreamProvider<User?>.value(
-        //   value: AuthService().authStateChanges,
-        //   initialData: null,
-        // ),
+         StreamProvider<User?>.value(
+          value: AuthService().authStateChanges,
+          initialData: null,
+        ),
         // theme provider
     ChangeNotifierProvider(
       create: (context) => ThemeProvider(), 
@@ -75,9 +75,10 @@ class MyApp extends StatelessWidget {
       home: SplashScreen(), 
      // home: const AuthGate(), 
        theme: Provider.of<ThemeProvider>(context).themeData,
-   // initialRoute: '/',
+   initialRoute: '/',
         routes: {
          // '/': (context) => SplashScreen(),
+         '/': (context) => AuthWrapper(),
           '/home': (context) => const HomeScreen(),
           '/signup': (context) =>  const SignUpScreen(),
           '/login': (context) => LoginScreen(),
@@ -90,5 +91,20 @@ class MyApp extends StatelessWidget {
           '/new_password': (context) => NewPasswordScreen(email: '',),
         },
     );
+  }
+}
+
+class AuthWrapper extends StatelessWidget {
+  const AuthWrapper({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final user = Provider.of<User?>(context);
+
+    if (user != null) {
+      return const HomeScreen();
+    } else {
+      return LoginScreen();
+    }
   }
 }
