@@ -97,6 +97,7 @@ class AuthService {
         'email': email,
         'phoneNumber': phoneNumber,
         'address': address,
+        'profileImageUrl': '', 
       });
     }
     return userCredential;
