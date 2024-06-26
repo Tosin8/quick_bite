@@ -46,10 +46,10 @@ class MyApp extends StatelessWidget {
           create: (context) => context.read<AuthService>().authStateChanges,
           initialData: null,
         ),
-        ChangeNotifierProvider(
-      create: (context) => ThemeProvider(), 
-      child: const MyApp(), 
-    ), 
+       
+     ChangeNotifierProvider<ThemeProvider>(
+          create: (_) => ThemeProvider(),
+        ),
 
   StreamProvider<User?>.value(
           value: AuthService().authStateChanges,
@@ -60,7 +60,9 @@ class MyApp extends StatelessWidget {
     // restaurant provider
     ChangeNotifierProvider(create: (context) => Restaurant()), 
       ],
-      child:   MaterialApp(
+      child:  Consumer<ThemeProvider>(
+        builder: (context, themeProvider, child) {
+          return MaterialApp(
       debugShowCheckedModeBanner: false, 
         supportedLocales: const [
           Locale('en', ''), // English, no country code
@@ -74,7 +76,7 @@ class MyApp extends StatelessWidget {
       home: SplashScreen(), 
      // home: const AuthGate(), 
        theme: Provider.of<ThemeProvider>(context).themeData,
-   initialRoute: '/',
+   //initialRoute: '/',
         routes: {
          // '/': (context) => SplashScreen(),
          '/': (context) => const AuthWrapper(),
@@ -89,7 +91,8 @@ class MyApp extends StatelessWidget {
           '/reset-congratulations': (context) => PasswordResetSuccessScreen(),
           '/new_password': (context) => NewPasswordScreen(email: '',),
         },
-    ));
+    );
+  }));
   }
 }
 
