@@ -102,13 +102,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('First Name: ${userData['firstName']}'),
-                        Text('Last Name: ${userData['lastName']}'),
-                        Text('Email: ${userData['email']}'),
+                        Row(
+                          children: [
+                            Text(userData['firstName'], style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                            SizedBox(width: 4,), 
+                             Text(userData['lastName'], style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                          ],
+                        ), 
+                        // Text('First Name: ${userData['firstName']}'),
+                        // Text('Last Name: ${userData['lastName']}'),
+                       // Text('Email: ${userData['email']}'),
+                         Text(userData['email'], style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400,),),
+                        
                       ],
                     ),
                   ],
                 ),
+                SizedBox(height: 2,), 
                 const Divider(color: Colors.white,thickness: 2,), 
                 ListTile(
                   leading: const Icon(Icons.edit),
