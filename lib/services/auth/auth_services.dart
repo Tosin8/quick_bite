@@ -163,4 +163,12 @@ class AuthService {
   Future<void> signOut() async {
     await _auth.signOut();
   }
+
+  Future<void> deleteUser() async {
+    User? user = _auth.currentUser;
+    if (user != null) {
+      await _firestore.collection('users').doc(user.uid).delete();
+      await user.delete();
+    }
+  }
 }
