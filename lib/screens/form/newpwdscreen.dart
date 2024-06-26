@@ -155,6 +155,12 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                 onPressed: _resetPassword,
                 child: Text('Reset Password'),
               ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/login');
+                },
+                child: Text('Back to Login'),
+              )
                   
                 ],
               ),
