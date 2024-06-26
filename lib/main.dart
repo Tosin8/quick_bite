@@ -42,7 +42,10 @@ void main() async {
       child: const MyApp(), 
     ), 
 
-
+  StreamProvider<User?>.value(
+          value: AuthService().authStateChanges,
+          initialData: null,
+        ),
      
          ChangeNotifierProvider(create: (_) => ForgotPasswordProvider()),
     // restaurant provider
