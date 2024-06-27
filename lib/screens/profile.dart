@@ -176,7 +176,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       radius: 40,
                                       backgroundImage: profileImageUrl.isNotEmpty
                                           ? NetworkImage(profileImageUrl)
-                                          : const AssetImage('assets/default_avatar.png'),
+                                          : const AssetImage('assets/icons/user.png'),
                                     ),
                               Positioned(
                                 bottom: 0,
