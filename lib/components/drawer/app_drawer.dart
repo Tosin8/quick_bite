@@ -59,6 +59,24 @@ class AppDrawer extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const HomeScreen()));
               },
               ),
+               AppDrawerTile(
+            text: 'Orders',
+             icon: Icons.shopping_bag,
+              //onTap: () => Navigator.pop(context)
+              onTap: (){
+                Navigator.push(context, 
+                MaterialPageRoute(builder: (context) => const HomeScreen()));
+              },
+              ),
+               AppDrawerTile(
+            text: 'Inbox',
+             icon: Icons.message, 
+              //onTap: () => Navigator.pop(context)
+              onTap: (){
+                Navigator.push(context, 
+                MaterialPageRoute(builder: (context) => const HomeScreen()));
+              },
+              ),
               AppDrawerTile(
             text: 'Settings',
              icon: Icons.settings,
