@@ -12,6 +12,7 @@ import 'package:quick_bite/services/auth/auth_services.dart';
 import 'package:quick_bite/themes/theme_provider.dart';
 import 'package:shimmer/shimmer.dart';
 
+import 'components/profile/edit_profile.dart';
 import 'splash.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -111,7 +112,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       print('Error deleting account: $e');
     } finally {
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => SplashScreen()),
+        MaterialPageRoute(builder: (context) => const SplashScreen()),
         (Route<dynamic> route) => false,
       );
     }
@@ -146,7 +147,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 }
                  final userData = snapshot.data!.data() as Map<String, dynamic>;
                    if (userData == null) {
-                  return Center(child: Text('User data not available'));
+                  return const Center(child: Text('User data not available'));
                 }
                 final profileImageUrl = userData['profileImageUrl'] ?? '';
                 final firstName = userData['firstName'] ?? '';
@@ -226,6 +227,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     title: const Text('Edit Profile'),
                     onTap: () {
                       // Navigate to Edit Profile screen
+                      Navigator.push(context, 
+                      MaterialPageRoute(builder: (context)  => const EditProfile()));
                     },
                   ),
                 ),
