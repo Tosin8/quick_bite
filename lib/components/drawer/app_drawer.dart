@@ -96,7 +96,7 @@ class AppDrawer extends StatelessWidget {
              icon: Icons.person,
               onTap: (){
                 Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => ProfileScreen()));
+                MaterialPageRoute(builder: (context) => ProfileScreen(userId: '',)));
               }),
 
 

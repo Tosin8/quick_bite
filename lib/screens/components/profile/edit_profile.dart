@@ -1,8 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:quick_bite/components/form/app_button.dart';
 
 class EditProfile extends StatefulWidget {
-  const EditProfile({super.key});
+ 
+  final String userId;
+  final Map<String, dynamic> userData;
+
+  const EditProfile({required this.userId, required this.userData});
+
 
   @override
   State<EditProfile> createState() => _EditProfileState();
@@ -10,12 +16,42 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
 final _formKey = GlobalKey<FormState>();
-final _firstNameController = TextEditingController(); 
-final _lastNameController = TextEditingController(); 
-final _phoneNumberController = TextEditingController(); 
-final _addressController = TextEditingController(); 
+late TextEditingController _firstNameController;
+  late TextEditingController _lastNameController;
+  late TextEditingController _addressController;
+  late TextEditingController _phoneNumberController;
 
 bool _isLoading = false; 
+
+@override
+    void initState() {
+    super.initState();
+    _firstNameController = TextEditingController(text: widget.userData['first_name']);
+    _lastNameController = TextEditingController(text: widget.userData['last_name']);
+    _addressController = TextEditingController(text: widget.userData['address']);
+    _phoneNumberController = TextEditingController(text: widget.userData['phone_number']);
+  }
+
+
+  void _updateProfile() async {
+    if (_formKey.currentState!.validate()) {
+      await FirebaseFirestore.instance.collection('users').doc(widget.userId).update({
+        'first_name': _firstNameController.text,
+        'last_name': _lastNameController.text,
+        'address': _addressController.text,
+        'phone_number': _phoneNumberController.text,
+      });
+      Navigator.pop(context);
+    }
+  }
+  @override
+  void dispose() {
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _addressController.dispose();
+    _phoneNumberController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +69,7 @@ bool _isLoading = false;
                 crossAxisAlignment: CrossAxisAlignment.start,
                         
                   children: [
-                    const SizedBox(height:10), 
+                 //   const SizedBox(height:10), 
                     // logo
                     Center(
                       child: Container(
@@ -172,9 +208,9 @@ bool _isLoading = false;
                         ),
                       ),
                       const SizedBox(height: 30,), 
-                      _isLoading? const CircularProgressIndicator() : AppButton(text: 'Update Profile', onTap: () {
+                      _isLoading? const CircularProgressIndicator() : AppButton(text: 'Update Profile', onTap: () => _updateProfile
                         
-                      },)
+                  ,)
                 
                   
                   ],

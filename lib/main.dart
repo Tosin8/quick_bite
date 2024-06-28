@@ -85,7 +85,7 @@ class MyApp extends StatelessWidget {
           '/login': (context) => LoginScreen(),
           '/forgot_password': (context) => const ForgotpwdScreen(),
           '/verify_email': (context) => const VerificationScreen(),
-          '/profile': (context) => ProfileScreen(),
+          '/profile': (context) => ProfileScreen(userId: '',),
 '/congratulations': (context) => const CongratulatoryScreen(),
 '/reset-password': (context) => const ResetPasswordScreen(),
           '/reset-congratulations': (context) => PasswordResetSuccessScreen(),

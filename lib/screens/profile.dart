@@ -16,7 +16,8 @@ import 'components/profile/edit_profile.dart';
 import 'splash.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+  final String userId;
+  const ProfileScreen({super.key, required this.userId});
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -59,7 +60,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   //     }
   //   }
   //}
-
+  
    bool _isUploading = false;
   File? _imageFile;
 
@@ -228,7 +229,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     onTap: () {
                       // Navigate to Edit Profile screen
                       Navigator.push(context, 
-                      MaterialPageRoute(builder: (context)  => const EditProfile()));
+                      MaterialPageRoute(builder: (context)  => EditProfile(userId: user.uid, userData: userData)));
                     },
                   ),
                 ),
