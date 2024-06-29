@@ -33,17 +33,7 @@ bool _isLoading = false;
   }
 
 
-  void _updateProfile() async {
-    if (_formKey.currentState!.validate()) {
-      await FirebaseFirestore.instance.collection('users').doc(widget.userId).update({
-        'first_name': _firstNameController.text,
-        'last_name': _lastNameController.text,
-        'address': _addressController.text,
-        'phone_number': _phoneNumberController.text,
-      });
-      Navigator.pop(context);
-    }
-  }
+ 
   @override
   void dispose() {
     _firstNameController.dispose();
@@ -53,6 +43,17 @@ bool _isLoading = false;
     super.dispose();
   }
 
+ void _updateProfile() async {
+    if (_formKey.currentState!.validate()) {
+      await FirebaseFirestore.instance.collection('users').doc(widget.userId).update({
+        'first_name': _firstNameController.text,
+        'last_name': _lastNameController.text,
+        'address': _addressController.text,
+        'phone_number': _phoneNumberController.text,
+      });
+      Navigator.pop(context, true);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

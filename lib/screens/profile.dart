@@ -24,43 +24,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  // bool _notificationsEnabled = false;
-
-  // Future<void> _pickImage(BuildContext context) async {
-  //   final picker = ImagePicker();
-  //   final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-
-  //   if (pickedFile != null) {
-  //     File imageFile = File(pickedFile.path);
-  //     String userId = Provider.of<User?>(context, listen: false)!.uid;
-
-  //     // Show loading indicator while the image is uploading
-  //     showDialog(
-  //       context: context,
-  //       barrierDismissible: false,
-  //       builder: (context) => const Center(child: CircularProgressIndicator()),
-  //     );
-
-  //     try {
-  //       Reference storageRef = FirebaseStorage.instance.ref().child('profile_images/$userId.jpg');
-  //       await storageRef.putFile(imageFile);
-  //       String downloadUrl = await storageRef.getDownloadURL();
-
-  //       // Update Firestore with the new profile image URL
-  //       await FirebaseFirestore.instance.collection('users').doc(userId).update({
-  //         'profileImageUrl': downloadUrl,
-  //       });
-
-  //       // Dismiss the loading indicator
-  //       Navigator.of(context).pop();
-  //     } catch (e) {
-  //       // Dismiss the loading indicator
-  //       Navigator.of(context).pop();
-  //       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Failed to upload image')));
-  //     }
-  //   }
-  //}
-  
+ 
    bool _isUploading = false;
   File? _imageFile;
 
@@ -118,6 +82,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       );
     }
   }
+    Future<void> _loadUserData() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,9 +117,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   return const Center(child: Text('User data not available'));
                 }
                  final userData = snapshot.data!.data() as Map<String, dynamic>;
-                   if (userData == null) {
-                  return const Center(child: Text('User data not available'));
-                }
+                //    if (userData == null) {
+                //   return const Center(child: Text('User data not available'));
+                // }
                 final profileImageUrl = userData['profileImageUrl'] ?? '';
                 final firstName = userData['firstName'] ?? '';
                 final lastName = userData['lastName'] ?? '';
@@ -178,7 +148,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       radius: 40,
                                       backgroundImage: profileImageUrl.isNotEmpty
                                           ? NetworkImage(profileImageUrl)
-                                          : const AssetImage('assets/icons/user.png'),
+                                          : const AssetImage('assets/icons/user.png')  as ImageProvider,
                                     ),
                               Positioned(
                                 bottom: 0,
@@ -226,10 +196,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: ListTile(
                     leading: const Icon(Icons.edit),
                     title: const Text('Edit Profile'),
-                    onTap: () {
+                    onTap: () async {
                       // Navigate to Edit Profile screen
-                      Navigator.push(context, 
+                    final result = await Navigator.push(context, 
                       MaterialPageRoute(builder: (context)  => EditProfile(userId: user.uid, userData: userData)));
+                         if (result == true) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Profile updated successfully'),
+                                ),
+                              );
+                              setState(() {
+                                _loadUserData(); // Refresh the data
+                              });
+                            }
                     },
                   ),
                 ),
@@ -319,22 +299,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           content: const Text('Are you sure you want to delete your account?'),
                           actions: [
                             TextButton(
-                              onPressed: () => Navigator.of(context).pop(),
+                              onPressed: () => Navigator.of(context).pop(false),
                               child: const Text('No'),
                             ),
                             TextButton(
-                              onPressed: () { Navigator.of(context).pop(true);
-                               _deleteAccount();
-                              },
+                              onPressed: () => Navigator.of(context).pop(true),
+                           
+                              
                               child: const Text('Yes'),
                             ),
                           ],
                         ),
-                      );
+                      ) ?? false;
                   
                       if (confirm) {
-                        await Provider.of<AuthService>(context, listen: false).deleteUser();
-                        Navigator.pushReplacementNamed(context, '/signup');
+                        await _deleteAccount();
                       }
                     },
                   ),
