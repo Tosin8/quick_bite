@@ -26,10 +26,10 @@ bool _isLoading = false;
 @override
     void initState() {
     super.initState();
-    _firstNameController = TextEditingController(text: widget.userData['first_name']);
-    _lastNameController = TextEditingController(text: widget.userData['last_name']);
+    _firstNameController = TextEditingController(text: widget.userData['firstName']);
+    _lastNameController = TextEditingController(text: widget.userData['lastName']);
     _addressController = TextEditingController(text: widget.userData['address']);
-    _phoneNumberController = TextEditingController(text: widget.userData['phone_number']);
+    _phoneNumberController = TextEditingController(text: widget.userData['phoneNumber']);
   }
 
 
@@ -45,15 +45,23 @@ bool _isLoading = false;
 
  void _updateProfile() async {
     if (_formKey.currentState!.validate()) {
-      await FirebaseFirestore.instance.collection('users').doc(widget.userId).update({
-        'first_name': _firstNameController.text,
-        'last_name': _lastNameController.text,
-        'address': _addressController.text,
-        'phone_number': _phoneNumberController.text,
-      });
-      Navigator.pop(context, true);
+      try {
+        await FirebaseFirestore.instance.collection('users').doc(widget.userId).update({
+          'firstName': _firstNameController.text,
+          'lastName': _lastNameController.text,
+          'address': _addressController.text,
+          'phoneNumber': _phoneNumberController.text,
+        });
+        Navigator.pop(context, true); // Pass true to indicate success
+      } catch (e) {
+        print('Error updating profile: $e');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error updating profile: $e')),
+        );
+      }
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -209,9 +217,13 @@ bool _isLoading = false;
                         ),
                       ),
                       const SizedBox(height: 30,), 
-                      _isLoading? const CircularProgressIndicator() : AppButton(text: 'Update Profile', onTap: () => _updateProfile
+                      _isLoading? const CircularProgressIndicator() : AppButton(text: 'Update Profile', onTap: () => _updateProfile,
                         
-                  ,)
+                  ), 
+                  ElevatedButton(
+                onPressed: _updateProfile,
+                child: Text('Update Profile'),
+              ),
                 
                   
                   ],
