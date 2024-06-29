@@ -245,7 +245,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     onTap: () {
                       // Navigate to Settings screen
                        Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => const SettingsScreen()));
+                MaterialPageRoute(builder: (context) => SettingsScreen()));
                     },
                                     ),
                   ),
