@@ -13,6 +13,7 @@ import 'package:quick_bite/themes/theme_provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'components/profile/edit_profile.dart';
+import 'settings.dart';
 import 'splash.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -243,6 +244,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     title: const Text('Settings'),
                     onTap: () {
                       // Navigate to Settings screen
+                       Navigator.push(context, 
+                MaterialPageRoute(builder: (context) => const SettingsScreen()));
                     },
                                     ),
                   ),

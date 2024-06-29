@@ -77,13 +77,13 @@ class AppDrawer extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const HomeScreen()));
               },
               ),
-              AppDrawerTile(
-            text: 'Settings',
-             icon: Icons.settings,
-              onTap: (){
-                Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => const SettingsScreen()));
-              }),
+            //   AppDrawerTile(
+            // text: 'Settings',
+            //  icon: Icons.settings,
+            //   onTap: (){
+            //     Navigator.push(context, 
+            //     MaterialPageRoute(builder: (context) => const SettingsScreen()));
+            //   }),
               AppDrawerTile(
             text: 'Favorites',
              icon: Icons.favorite,

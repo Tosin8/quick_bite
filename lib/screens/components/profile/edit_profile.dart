@@ -67,10 +67,10 @@ bool _isLoading = false;
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
-        
+        title: Text('Edit your Profile'), 
+        centerTitle: true,
       ) ,
-      body: Center(
-        child:  
+      body:   
             Form(
               key: _formKey, 
               child: SingleChildScrollView(
@@ -78,26 +78,16 @@ bool _isLoading = false;
                 crossAxisAlignment: CrossAxisAlignment.start,
                         
                   children: [
-                 //   const SizedBox(height:10), 
-                    // logo
-                    Center(
-                      child: Container(
-                        width: 80, height: 80, child: Image.asset('assets/icons/logo.png'),
-                      ),
-                    ),
-                    const SizedBox(height: 20,), 
-                    Center(
-                      child: Text('Quick Bite', style: TextStyle(fontSize: 16, 
-                      color: Theme.of(context).colorScheme.inverseSurface,  ),),
-                    ), 
-                    const SizedBox(height: 5,), 
-                    Center(
-                      child: Text('Update your Profile', 
-                      style: TextStyle(
-                        fontSize: 16, 
-                        color: Theme.of(context).colorScheme.inverseSurface, 
-                      ),),
-                    ),  
+                 
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),
+                    child: Text('Kindly complete the form below', 
+                        style: TextStyle(
+                          fontSize: 16, 
+                          color: Theme.of(context).colorScheme.inverseSurface, 
+                        ),),
+                  ),
+                     
                    
                     const SizedBox(height: 15,), 
                       
@@ -231,7 +221,7 @@ bool _isLoading = false;
               ))
           
         
-      ),
+      
     );
   }
 }
