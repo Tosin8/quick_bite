@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'components/settings/notifications.dart';
 import 'components/settings/paymentsettings.dart';
+import 'components/settings/preference.dart';
+import 'components/settings/privacysettings.dart';
 
 
 class SettingsScreen extends StatelessWidget {
