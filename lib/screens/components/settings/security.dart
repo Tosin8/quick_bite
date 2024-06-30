@@ -40,4 +40,7 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
+     body: Center(child: Text('helo'),)
+    ); 
+  }
+}
