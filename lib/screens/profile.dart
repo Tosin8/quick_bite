@@ -28,13 +28,15 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
 
-  Future<void> share() async {
-    await FlutterShare.share(
-        title: 'Quick Bite',
-        text: 'Example share text',
-        linkUrl: 'https://flutter.dev/',
-        chooserTitle: 'Example Chooser Title');
-  }
+  void shareApp() async {
+  await FlutterShare.share(
+    title: 'Check out Quick Bite!',
+    text: 'It’s the easiest way to order delicious food online. Download now: [Your App Store Link]',
+    linkUrl: '[Your App Store Link]',
+    chooserTitle: 'Share with'
+  );
+}
+
  
    bool _isUploading = false;
   File? _imageFile;
@@ -294,7 +296,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     title: const Text('Share App'),
                     onTap: () => 
                       // Share app logic
-                      share, 
+                      shareApp(), 
                     
                   ),
                 ),
