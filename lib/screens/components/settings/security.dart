@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class SecuritySettingsScreen extends StatefulWidget {
   @override
@@ -18,29 +16,42 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
   }
 
   Future<void> _loadSettings() async {
-    final user = FirebaseAuth.instance.currentUser;
-    final doc = await FirebaseFirestore.instance.collection('settings').doc(user!.uid).get();
-
-    if (doc.exists) {
-      setState(() {
-        _biometricAuth = doc['biometricAuth'];
-        _twoFactorAuth = doc['twoFactorAuth'];
-      });
-    }
+    // Load the settings from Firestore or SharedPreferences
+    setState(() {});
   }
 
   Future<void> _saveSettings() async {
-    final user = FirebaseAuth.instance.currentUser;
-    await FirebaseFirestore.instance.collection('settings').doc(user!.uid).set({
-      'biometricAuth': _biometricAuth,
-      'twoFactorAuth': _twoFactorAuth,
-    });
+    // Save the settings to Firestore or SharedPreferences
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     body: Center(child: Text('helo'),)
-    ); 
+      appBar: AppBar(
+        title: Text('Security Settings'),
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(16.0),
+        children: [
+          SwitchListTile(
+            title: Text('Enable Biometric Authentication'),
+            value: _biometricAuth,
+            onChanged: (bool value) {
+              setState(() {
+                _biometricAuth = value;
+              });
+              _saveSettings();
+            },
+          ),
+          ListTile(
+            title: Text('Set up Two-Factor Authentication'),
+            trailing: Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              // Navigate to Two-Factor Authentication setup screen
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
