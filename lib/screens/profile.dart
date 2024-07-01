@@ -30,7 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<void> share() async {
     await FlutterShare.share(
-        title: 'Example share',
+        title: 'Quick Bite',
         text: 'Example share text',
         linkUrl: 'https://flutter.dev/',
         chooserTitle: 'Example Chooser Title');
@@ -292,9 +292,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: ListTile(
                     leading: const Icon(Icons.share),
                     title: const Text('Share App'),
-                    onTap: () {
+                    onTap: () => 
                       // Share app logic
-                    },
+                      share, 
+                    
                   ),
                 ),
                const SizedBox(height: 10,), 
