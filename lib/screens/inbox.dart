@@ -1,6 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:quick_bite/components/drawer/app_drawer.dart';
 import 'package:quick_bite/main.dart';
 
 class InboxScreen extends StatefulWidget {
@@ -38,10 +39,10 @@ class _InboxScreenState extends State<InboxScreen> {
   // Show notification using flutter_local_notifications plugin
   void _showNotification(RemoteMessage message) async {
     AndroidNotificationDetails androidPlatformChannelSpecifics =
-        AndroidNotificationDetails(
+        const AndroidNotificationDetails(
       'your_channel_id', // Change to your channel ID
       'your_channel_name', // Change to your channel name
-      'your_channel_description', // Change to your channel description
+     /// 'your_channel_description', // Change to your channel description
       importance: Importance.max,
       priority: Priority.high,
     );
@@ -60,9 +61,10 @@ class _InboxScreenState extends State<InboxScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Inbox'),
+        title: const Text('Inbox'),
       ),
-      body: Center(
+      drawer: AppDrawer(),
+      body: const Center(
         child: Text('Inbox Screen'),
       ),
     );

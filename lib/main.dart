@@ -36,6 +36,21 @@ void main() async {
   const InitializationSettings initializationSettings =
       InitializationSettings(android: initializationSettingsAndroid);
   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+
+   // Define your notification channel
+  const AndroidNotificationChannel channel = AndroidNotificationChannel(
+    'your_channel_id', // Change to your channel ID
+    'Your Channel Name', // Change to your channel name
+    //'Channel Description', // Change to your channel description
+    importance: Importance.max,
+   // priority: Priority.high,
+  );
+
+  // Create the notification channel
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
   runApp(
    
        const MyApp(),
