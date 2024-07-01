@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/firebase_options.dart';
 import 'package:quick_bite/screens/form/signup.dart';
@@ -21,6 +22,9 @@ import 'screens/profile.dart';
 import 'screens/splash.dart';
 import 'services/auth/auth_services.dart';
 import 'themes/theme_provider.dart';
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 
 void main() async { 
   WidgetsFlutterBinding.ensureInitialized();
