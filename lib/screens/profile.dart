@@ -13,6 +13,7 @@ import 'package:quick_bite/themes/theme_provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'components/profile/edit_profile.dart';
+import 'components/profile/faq.dart';
 import 'settings.dart';
 import 'splash.dart';
 
@@ -272,6 +273,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                        title: const Text('FAQ'),
                                        onTap: () {
                       // Navigate to FAQ screen
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const FaqScreen()));
                                        },
                                      ),
                    ),
