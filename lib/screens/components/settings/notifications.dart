@@ -43,7 +43,9 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       appBar: AppBar(
+          backgroundColor: Colors.grey[300],
         title: Text('Notification Settings'),
       ),
       body: ListView(
