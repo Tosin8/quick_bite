@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quick_bite/components/drawer/app_drawer_tile.dart';
 import 'package:quick_bite/screens/fav.dart';
+import 'package:quick_bite/screens/inbox.dart';
 import 'package:quick_bite/screens/profile.dart';
 
 import '../../screens/form/login.dart';
@@ -74,7 +75,7 @@ class AppDrawer extends StatelessWidget {
               //onTap: () => Navigator.pop(context)
               onTap: (){
                 Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => const HomeScreen()));
+                MaterialPageRoute(builder: (context) => InboxScreen()));
               },
               ),
             //   AppDrawerTile(

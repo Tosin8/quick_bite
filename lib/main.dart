@@ -29,6 +29,13 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 void main() async { 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  // Initialize the local notifications plugin
+  const AndroidInitializationSettings initializationSettingsAndroid =
+      AndroidInitializationSettings('@mipmap/ic_launcher');
+  const InitializationSettings initializationSettings =
+      InitializationSettings(android: initializationSettingsAndroid);
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
   runApp(
    
        const MyApp(),
@@ -77,7 +84,7 @@ class MyApp extends StatelessWidget {
         //   GlobalWidgetsLocalizations.delegate,
         //   GlobalCupertinoLocalizations.delegate,
         // ],
-      home: SplashScreen(), 
+      home: const SplashScreen(), 
      // home: const AuthGate(), 
        theme: Provider.of<ThemeProvider>(context).themeData,
    //initialRoute: '/',
@@ -86,10 +93,10 @@ class MyApp extends StatelessWidget {
        //  '/': (context) => const AuthWrapper(),
           '/home': (context) => const HomeScreen(),
           '/signup': (context) =>  const SignUpScreen(),
-          '/login': (context) => LoginScreen(),
+          '/login': (context) => const LoginScreen(),
           '/forgot_password': (context) => const ForgotpwdScreen(),
           '/verify_email': (context) => const VerificationScreen(),
-          '/profile': (context) => ProfileScreen(userId: '',),
+          '/profile': (context) => const ProfileScreen(userId: '',),
 '/congratulations': (context) => const CongratulatoryScreen(),
 '/reset-password': (context) => const ResetPasswordScreen(),
           '/reset-congratulations': (context) => PasswordResetSuccessScreen(),
@@ -110,7 +117,7 @@ class AuthWrapper extends StatelessWidget {
     if (user != null) {
       return const HomeScreen();
     } else {
-      return LoginScreen();
+      return const LoginScreen();
     }
   }
 }
