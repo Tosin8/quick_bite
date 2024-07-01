@@ -14,15 +14,15 @@ class SettingsScreen extends StatelessWidget {
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         backgroundColor: Colors.grey[300],
-        title: Text('Settings'),
+        title: const Text('Settings'),
         centerTitle: true,
       ),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
           ListTile(
-            title: Text('Notification Settings'),
-            trailing: Icon(Icons.arrow_forward_ios),
+            title: const Text('Notification Settings'),
+            trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               Navigator.push(
                 context,
@@ -30,10 +30,10 @@ class SettingsScreen extends StatelessWidget {
               );
             },
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('Payment Settings'),
-            trailing: Icon(Icons.arrow_forward_ios),
+            title: const Text('Payment Settings'),
+            trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               Navigator.push(
                 context,
@@ -41,10 +41,10 @@ class SettingsScreen extends StatelessWidget {
               );
             },
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('Privacy Settings'),
-            trailing: Icon(Icons.arrow_forward_ios),
+            title: const Text('Privacy Settings'),
+            trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               Navigator.push(
                 context,
@@ -52,10 +52,10 @@ class SettingsScreen extends StatelessWidget {
               );
             },
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('Preferences'),
-            trailing: Icon(Icons.arrow_forward_ios),
+            title: const Text('Preferences'),
+            trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               Navigator.push(
                 context,
@@ -63,10 +63,10 @@ class SettingsScreen extends StatelessWidget {
               );
             },
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('Security Settings'),
-            trailing: Icon(Icons.arrow_forward_ios),
+            title: const Text('Security Settings'),
+            trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               Navigator.push(
                 context,
