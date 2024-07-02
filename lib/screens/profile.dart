@@ -9,7 +9,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:quick_bite/components/drawer/app_drawer.dart';
 import 'dart:io';
 
-import 'package:quick_bite/services/auth/auth_services.dart';
 import 'package:quick_bite/themes/theme_provider.dart';
 import 'package:shimmer/shimmer.dart';
 

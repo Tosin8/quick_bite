@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/components/app/home/app_current_location.dart';
@@ -6,6 +7,7 @@ import 'package:quick_bite/components/app/home/app_silver_app.dart';
 import 'package:quick_bite/components/app/home/app_tab_bar.dart';
 import 'package:quick_bite/model/food.dart';
 import 'package:quick_bite/model/restaurant.dart';
+import 'package:quick_bite/model/usermodel.dart';
 import 'package:quick_bite/screens/components/food_page.dart';
 
 import '../components/app/home/app_food_tile.dart';
@@ -29,6 +31,13 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     super.initState();
    // _tabController = TabController(length: 2, vsync: this);
    _tabController = TabController(length: FoodCategory.values.length, vsync: this); 
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    final userId = FirebaseAuth.instance.currentUser?.uid;
+    if (userId != null) {
+      userProvider.fetchUser(userId); // Fetch the user data
+    }
+    //Provider.of<Restaurant>(context, listen: false).fetchMenu();
+  
   }
 
   @override
