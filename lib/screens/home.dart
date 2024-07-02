@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quick_bite/components/app/home/app_current_location.dart';
 import 'package:quick_bite/components/app/home/app_description_box.dart';
 import 'package:quick_bite/components/app/home/app_silver_app.dart';
 import 'package:quick_bite/components/app/home/app_tab_bar.dart';
@@ -96,20 +95,37 @@ List<Widget> getFoodInThisCategory(List<Food> fullMenu){
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
  AppSilverApp(
   title: AppTabBar(tabController: _tabController), 
-  child: const Column(
+  child:  Column(
     mainAxisAlignment: MainAxisAlignment.end,
     children: [
-Divider(
+const Divider(
   indent: 15,
    endIndent: 20, 
   color: Colors.white
 ), 
 
-/// current location
-AppCurrentLocation(), 
+//AppCurrentLocation(), 
+
+// User Current Location Address. 
+Padding(
+  padding: const EdgeInsets.all(20.0), 
+child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  mainAxisAlignment: MainAxisAlignment.start,
+  children: [
+    const Text('Delivery Address', 
+    style: TextStyle(color: Colors.grey),), 
+    if (user != null) Text(
+      user.address,
+      style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+    )
+  ],
+  
+),), 
+
 
 // description box
-AppDescriptionBox(), 
+const AppDescriptionBox(), 
     ],
   ))
         ], 

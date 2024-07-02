@@ -47,6 +47,7 @@ void openLocationSearchBox(BuildContext context) {
         children: [
           const Text('Delivery Address', 
           style: TextStyle(color: Colors.grey),), 
+         
           // address
           GestureDetector(
             onTap: () => openLocationSearchBox(context),

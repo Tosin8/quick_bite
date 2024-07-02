@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +24,24 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool _isLoading = false;
   bool _isPasswordVisible = false;
+   String? _iconUrl;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchIconUrl();
+  }
+
+  void _fetchIconUrl() async {
+    try {
+      DocumentSnapshot doc = await FirebaseFirestore.instance.collection('appConfig').doc('loginScreen').get();
+      setState(() {
+        _iconUrl = doc['loginIconUrl'];
+      });
+    } catch (e) {
+      print('Error fetching icon URL: $e');
+    }
+  }
 
   void _login(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
