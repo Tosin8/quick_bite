@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:quick_bite/components/form/app_button.dart';
 import 'package:quick_bite/screens/form/login.dart';
@@ -15,6 +16,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final _emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
+  String? _logoUrl; 
 
   // Future<void> _resetPassword() async {
   //   if (!_formKey.currentState!.validate()) {
@@ -54,6 +56,12 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 //                   }
 // }
 
+ @override
+  void initState() {
+    super.initState();
+  _loadLogo();
+  }
+
 void _navigateToNewPasswordScreen() {
     if (_formKey.currentState?.validate() ?? false) {
       Navigator.push(
@@ -63,6 +71,17 @@ void _navigateToNewPasswordScreen() {
     }
   }
 
+Future<void> _loadLogo() async {
+    try {
+      final ref = FirebaseStorage.instance.ref().child('assets/logo.png');
+      final url = await ref.getDownloadURL();
+      setState(() {
+        _logoUrl = url;
+      });
+    } catch (e) {
+      print('Failed to load logo: $e');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,9 +95,16 @@ void _navigateToNewPasswordScreen() {
             children: [
 
               // logo
-               Container(
-                width: 80, height: 80,
-                child: Image.asset('assets/icons/logo.png')),
+              //  Container(
+              //   width: 80, height: 80,
+              //   child: Image.asset('assets/icons/logo.png')),
+
+                if (_logoUrl != null)
+                    Container(
+                      width: 80,
+                      height: 80,
+                      child: Image.network(_logoUrl!),
+                    ),
           
               const SizedBox(height: 20,), 
               Text('Quick Bite', 
