@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/components/form/app_button.dart';
@@ -28,7 +29,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool _isLoading = false;
    bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
+  String? _logoUrl;
 
+   @override
+  void initState() {
+    super.initState();
+  _loadLogo();
+  }
+
+Future<void> _loadLogo() async {
+    try {
+      final ref = FirebaseStorage.instance.ref().child('assets/logo.png');
+      final url = await ref.getDownloadURL();
+      setState(() {
+        _logoUrl = url;
+      });
+    } catch (e) {
+      print('Failed to load logo: $e');
+    }
+  }
   
 
  void _signUp(BuildContext context) async {
@@ -78,9 +97,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 children:  [
                   const SizedBox(height:50), 
                   // logo
-                  Container(
-                    width: 80, height: 80, child: Image.asset('assets/icons/logo.png'),
-                  ),
+                  // Container(
+                  //   width: 80, height: 80, child: Image.asset('assets/icons/logo.png'),
+                  // ),
+
+                   if (_logoUrl != null)
+                    Container(
+                      width: 80,
+                      height: 80,
+                      child: Image.network(_logoUrl!),
+                    ),
                   const SizedBox(height: 20,), 
                   Text('Quick Bite', style: TextStyle(fontSize: 16, 
                   color: Theme.of(context).colorScheme.inverseSurface,  ),), 
