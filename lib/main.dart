@@ -31,7 +31,7 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 void main() async { 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-   await uploadFoodDetails();
+   //await uploadFoodDetails();
 
   // Initialize the local notifications plugin
   const AndroidInitializationSettings initializationSettingsAndroid =
