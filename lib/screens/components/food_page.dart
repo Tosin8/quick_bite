@@ -43,7 +43,8 @@ class _FoodPageState extends State<FoodPage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children:[ Scaffold(
+      children:[
+         Scaffold(
       // appBar: AppBar(
       //   leading: IconButton(onPressed: () => Navigator.pop(context), 
       //   icon: Icon(Icons.arrow_back_ios)), 
@@ -102,8 +103,15 @@ class _FoodPageState extends State<FoodPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(widget.food.name, 
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(widget.food.name, 
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                       Icon(Icons.favorite_border_outlined,
+                          size: 30,)
+                      ],
+                    ),
                 
         const SizedBox(height: 10,), 
                 // food price 
