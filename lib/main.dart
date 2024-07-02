@@ -9,6 +9,7 @@ import 'package:quick_bite/firebase_options.dart';
 import 'package:quick_bite/screens/form/signup.dart';
 import 'package:quick_bite/screens/home.dart';
 
+import 'food_upload.dart';
 import 'model/restaurant.dart';
 import 'model/usermodel.dart';
 import 'screens/form/congrats_screen.dart';
@@ -30,6 +31,7 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 void main() async { 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+   await uploadFoodDetails();
 
   // Initialize the local notifications plugin
   const AndroidInitializationSettings initializationSettingsAndroid =
