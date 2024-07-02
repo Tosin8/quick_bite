@@ -10,6 +10,7 @@ import 'package:quick_bite/screens/form/signup.dart';
 import 'package:quick_bite/screens/home.dart';
 
 import 'model/restaurant.dart';
+import 'model/usermodel.dart';
 import 'screens/form/congrats_screen.dart';
 import 'screens/form/newpwdscreen.dart';
 import 'screens/form/pwd_reset_congrats.dart';
@@ -85,6 +86,7 @@ class MyApp extends StatelessWidget {
          ChangeNotifierProvider(create: (_) => ForgotPasswordProvider()),
     // restaurant provider
     ChangeNotifierProvider(create: (context) => Restaurant()), 
+    ChangeNotifierProvider(create: (_) => UserProvider()),
       ],
       child:  Consumer<ThemeProvider>(
         builder: (context, themeProvider, child) {

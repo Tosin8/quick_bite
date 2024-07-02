@@ -82,6 +82,7 @@ List<Widget> getFoodInThisCategory(List<Food> fullMenu){
 }
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context).user;
     return Scaffold( 
       backgroundColor: Colors.grey[300],
       // appBar: AppBar(
