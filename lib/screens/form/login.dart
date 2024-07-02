@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/components/form/app_button.dart';
@@ -24,22 +25,23 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool _isLoading = false;
   bool _isPasswordVisible = false;
-   String? _iconUrl;
+   String? _logoUrl;
 
   @override
   void initState() {
     super.initState();
-    _fetchIconUrl();
+  _loadLogo();
   }
 
-  void _fetchIconUrl() async {
+Future<void> _loadLogo() async {
     try {
-      DocumentSnapshot doc = await FirebaseFirestore.instance.collection('appConfig').doc('loginScreen').get();
+      final ref = FirebaseStorage.instance.ref().child('assets/logo.png');
+      final url = await ref.getDownloadURL();
       setState(() {
-        _iconUrl = doc['loginIconUrl'];
+        _logoUrl = url;
       });
     } catch (e) {
-      print('Error fetching icon URL: $e');
+      print('Failed to load logo: $e');
     }
   }
 
@@ -84,10 +86,16 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    width: 80, height: 80, 
-                    child: Image.asset('assets/icons/logo.png'),
-                  ), 
+                  //Container(
+                    // width: 80, height: 80, 
+                    // child: Image.asset('assets/icons/logo.png'),
+                //  ), 
+                  if (_logoUrl != null)
+                    Container(
+                      width: 80,
+                      height: 80,
+                      child: Image.network(_logoUrl!),
+                    ),
                    const SizedBox(height: 20,), 
                   Text('Quick Bite', 
                   style: TextStyle(
