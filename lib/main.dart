@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:quick_bite/firebase_options.dart';
 import 'package:quick_bite/screens/form/signup.dart';
 import 'package:quick_bite/screens/home.dart';
+import 'package:quick_bite/services/messaging/fcm.dart';
 
 import 'food_upload.dart';
 import 'model/restaurant.dart';
@@ -25,35 +26,18 @@ import 'screens/splash.dart';
 import 'services/auth/auth_services.dart';
 import 'themes/theme_provider.dart';
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+
 
 void main() async { 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+await FirebaseApi().initNotifications(); 
    //await uploadFoodDetails();
 
-  // Initialize the local notifications plugin
-  const AndroidInitializationSettings initializationSettingsAndroid =
-      AndroidInitializationSettings('@mipmap/ic_launcher');
-  const InitializationSettings initializationSettings =
-      InitializationSettings(android: initializationSettingsAndroid);
-  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
-   // Define your notification channel
-  const AndroidNotificationChannel channel = AndroidNotificationChannel(
-    'your_channel_id', // Change to your channel ID
-    'Your Channel Name', // Change to your channel name
-    //'Channel Description', // Change to your channel description
-    importance: Importance.max,
-   // priority: Priority.high,
-  );
 
-  // Create the notification channel
-  await flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
-      ?.createNotificationChannel(channel);
+
   runApp(
    
        const MyApp(),
