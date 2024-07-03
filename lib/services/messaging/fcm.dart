@@ -10,8 +10,11 @@ Future initPushNotifications() async {
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,
     badge: true,
-    sound: true,
-  )
+    sound: true, 
+  ); 
+
+  FirebaseMessaging.instance.getInitialMessage().then(handleMessage);
+  FirebaseMessaging.onMessageOpenedApp.listen(hanleMessage);  
 }
 class FirebaseApi{
   final _firebaseMessaging = FirebaseMessaging.instance;
