@@ -13,8 +13,9 @@ Future initPushNotifications() async {
     sound: true, 
   ); 
 
-  FirebaseMessaging.instance.getInitialMessage().then(handleMessage);
-  FirebaseMessaging.onMessageOpenedApp.listen(hanleMessage);  
+  // FirebaseMessaging.instance.getInitialMessage().then(handleMessage);
+  // FirebaseMessaging.onMessageOpenedApp.listen(hanleMessage);  
+  FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage); 
 }
 class FirebaseApi{
   final _firebaseMessaging = FirebaseMessaging.instance;
