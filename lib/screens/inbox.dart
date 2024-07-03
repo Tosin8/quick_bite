@@ -10,6 +10,25 @@ class InboxScreen extends StatefulWidget {
 }
 
 class _InboxScreenState extends State<InboxScreen> {
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    final message = ModalRoute.of(context)!.settings.arguments as String?;
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Inbox'),
+      ),
+      drawer: AppDrawer(),
+      body: const Center(
+        child: Text('Inbox Screen'),
+      ),
+    );
+  }
+}
+
+
  // final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
   // @override
@@ -56,17 +75,3 @@ class _InboxScreenState extends State<InboxScreen> {
   //     payload: 'item x',
   //   );
   // }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Inbox'),
-      ),
-      drawer: AppDrawer(),
-      body: const Center(
-        child: Text('Inbox Screen'),
-      ),
-    );
-  }
-}
