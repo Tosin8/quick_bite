@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:quick_bite/firebase_options.dart';
 import 'package:quick_bite/screens/form/signup.dart';
 import 'package:quick_bite/screens/home.dart';
+import 'package:quick_bite/screens/inbox.dart';
 import 'package:quick_bite/services/messaging/fcm.dart';
 
 import 'food_upload.dart';
@@ -104,6 +105,7 @@ class MyApp extends StatelessWidget {
 '/reset-password': (context) => const ResetPasswordScreen(),
           '/reset-congratulations': (context) => PasswordResetSuccessScreen(),
           '/new_password': (context) => NewPasswordScreen(email: '',),
+          '/inbox': (context) =>  InboxScreen(),
         },
     );
   }));

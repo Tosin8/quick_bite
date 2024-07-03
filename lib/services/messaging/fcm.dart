@@ -1,9 +1,21 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
+import 'package:quick_bite/screens/inbox.dart';
 
 Future<void> handleBackgroundMessage(RemoteMessage message) async {
   print('Title: ${message.notification?.title}');
    print('Body: ${message.notification?.body}');
     print('Payload: ${message.data}');
+}
+
+void handleMessage(RemoteMessage? message) {
+  if (message != null)  {
+    // Navigator.push(context, MaterialPageRoute(builder: (context) => InboxScreen()));
+Navigator.pushNamed(context, '/inbox');
+
+  }
+
+
 }
 
 Future initPushNotifications() async {
@@ -13,8 +25,8 @@ Future initPushNotifications() async {
     sound: true, 
   ); 
 
-  // FirebaseMessaging.instance.getInitialMessage().then(handleMessage);
-  // FirebaseMessaging.onMessageOpenedApp.listen(hanleMessage);  
+  FirebaseMessaging.instance.getInitialMessage().then(handleMessage);
+  FirebaseMessaging.onMessageOpenedApp.listen(handleMessage);  
   FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage); 
 }
 class FirebaseApi{
