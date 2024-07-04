@@ -1,9 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:quick_bite/components/drawer/app_drawer.dart';
-import 'package:quick_bite/main.dart';
 
 class InboxScreen extends StatefulWidget {
   @override
@@ -27,10 +24,12 @@ class _InboxScreenState extends State<InboxScreen> {
         child: Column(
           children: [
             Container(
+              decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.circular(8)),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text('${message.notification?.title}'), 
-                    Text('${message.notification?.body}'),  
+                  Text('${message.notification!.title}'), 
+                    Text('${message.notification!.body}'),  
                      Text('${message.data}'), 
                 ],
               ),
