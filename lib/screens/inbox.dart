@@ -16,7 +16,7 @@ class _InboxScreenState extends State<InboxScreen> {
   @override
   Widget build(BuildContext context) {
 
-    final message = ModalRoute.of(context)!.settings.arguments as String?;
+    final message = ModalRoute.of(context)!.settings.arguments as RemoteMessage; 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Inbox'),

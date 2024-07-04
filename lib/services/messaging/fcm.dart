@@ -1,5 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:quick_bite/main.dart';
 import 'package:quick_bite/screens/inbox.dart';
 
 Future<void> handleBackgroundMessage(RemoteMessage message) async {
@@ -9,15 +10,14 @@ Future<void> handleBackgroundMessage(RemoteMessage message) async {
 }
 
 void handleMessage(RemoteMessage? message) {
-  if (message != null)  {
-    // Navigator.push(context, MaterialPageRoute(builder: (context) => InboxScreen()));
-Navigator.pushNamed(context, '/inbox');
+  if (message != null)  return; 
+    
 
-  }
-
+navigatorKey.currentState?.pushNamed('/inbox', arguments: message);
 
 }
 
+// function to initialize background settings. 
 Future initPushNotifications() async {
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,
@@ -25,7 +25,10 @@ Future initPushNotifications() async {
     sound: true, 
   ); 
 
+// handle notifications if the app was terminated and now opened. 
   FirebaseMessaging.instance.getInitialMessage().then(handleMessage);
+
+  // attach event listenrs for when a notification oens the app. 
   FirebaseMessaging.onMessageOpenedApp.listen(handleMessage);  
   FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage); 
 }
@@ -47,6 +50,6 @@ class FirebaseApi{
     print('Token:  $fcmToken');
     FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage); 
     initPushNotifications();
-    handleMessage(message, context); 
+  
   }
 }
