@@ -30,13 +30,23 @@ Future initPushNotifications() async {
   FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage); 
 }
 class FirebaseApi{
+
+  /// create an instance of firebase messaging. 
   final _firebaseMessaging = FirebaseMessaging.instance;
 
+// function to initialize notifications. 
   Future<void> initNotifications() async {
+
+    // request permission form user. 
     await _firebaseMessaging.requestPermission();
+
+    // fetch the fcm token for this device. 
     final fcmToken = await _firebaseMessaging.getToken();
+
+    // print the fcm token.
     print('Token:  $fcmToken');
     FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage); 
     initPushNotifications();
+    handleMessage(message, context); 
   }
 }

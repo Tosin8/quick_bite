@@ -28,6 +28,9 @@ import 'services/auth/auth_services.dart';
 import 'themes/theme_provider.dart';
 
 
+// adding navigating key to easy navigation between apps. 
+final navigatorKey = GlobalKey<NavigatorState>();
+
 
 void main() async { 
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,5 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:quick_bite/components/drawer/app_drawer.dart';
 import 'package:quick_bite/main.dart';
@@ -21,8 +22,21 @@ class _InboxScreenState extends State<InboxScreen> {
         title: const Text('Inbox'),
       ),
       drawer: AppDrawer(),
-      body: const Center(
-        child: Text('Inbox Screen'),
+      body:  Padding(
+        padding: EdgeInsets.all(12),
+        child: Column(
+          children: [
+            Container(
+              child: Column(
+                children: [
+                  Text('${message.notification?.title}'), 
+                    Text('${message.notification?.body}'),  
+                     Text('${message.data}'), 
+                ],
+              ),
+            )
+          ]
+        )
       ),
     );
   }
