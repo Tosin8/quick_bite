@@ -129,16 +129,7 @@ const AppDescriptionBox(),
     ],
   ))
         ], 
-        // body: TabBarView(
-        //   controller : _tabController, 
-        //   children: const [
-        //     Text('Hello'), 
-        //     Text('hello 2'), 
-        //     Text('hello 2'), 
-        //     Text('hello 2'), 
-        //     Text('hello 2'), 
-        //   ]), 
-
+      
         body: 
         Consumer<Restaurant>(
           builder: (context, restaurant, child) => TabBarView(
