@@ -3,7 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
 import 'package:provider/provider.dart';
 import 'package:quick_bite/firebase_options.dart';
 import 'package:quick_bite/screens/form/signup.dart';
@@ -11,7 +11,7 @@ import 'package:quick_bite/screens/home.dart';
 import 'package:quick_bite/screens/inbox.dart';
 import 'package:quick_bite/services/messaging/fcm.dart';
 
-import 'food_upload.dart';
+
 import 'model/restaurant.dart';
 import 'model/usermodel.dart';
 import 'screens/form/congrats_screen.dart';
