@@ -37,7 +37,7 @@ class FoodCategoryTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('foods').where('category', isEqualTo: category).snapshots(),
+      stream: FirebaseFirestore.instance.collection('products').where('category', isEqualTo: category).snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
