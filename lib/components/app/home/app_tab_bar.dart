@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
+import 'package:QuickBite/model/food.dart';
 import 'package:flutter/material.dart';
-import 'package:quick_bite/model/food.dart';
+
 
 class AppTabBar extends StatelessWidget {
   final TabController tabController; 

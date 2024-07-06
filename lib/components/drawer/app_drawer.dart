@@ -1,12 +1,13 @@
+import 'package:QuickBite/screens/fav.dart';
+import 'package:QuickBite/screens/inbox.dart';
+import 'package:QuickBite/screens/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:quick_bite/components/drawer/app_drawer_tile.dart';
-import 'package:quick_bite/screens/fav.dart';
-import 'package:quick_bite/screens/inbox.dart';
-import 'package:quick_bite/screens/profile.dart';
+
 
 import '../../screens/form/login.dart';
 import '../../screens/home.dart';
+import 'app_drawer_tile.dart';
 
 
 class AppDrawer extends StatelessWidget {

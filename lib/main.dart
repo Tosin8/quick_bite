@@ -5,27 +5,28 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
-import 'package:quick_bite/firebase_options.dart';
-import 'package:quick_bite/screens/form/signup.dart';
-import 'package:quick_bite/screens/home.dart';
-import 'package:quick_bite/screens/inbox.dart';
-import 'package:quick_bite/services/messaging/fcm.dart';
 
 
 
+
+import 'firebase_options.dart';
 import 'model/restaurant.dart';
 import 'model/usermodel.dart';
 import 'screens/form/congrats_screen.dart';
 import 'screens/form/newpwdscreen.dart';
 import 'screens/form/pwd_reset_congrats.dart';
 import 'screens/form/resetpwd.dart';
+import 'screens/form/signup.dart';
 import 'screens/form/trash/forgotpwd.dart';
 import 'screens/form/login.dart';
 import 'screens/form/providers/forgotpwd_providers.dart';
 import 'screens/form/verifyemail.dart';
+import 'screens/home.dart';
+import 'screens/inbox.dart';
 import 'screens/profile.dart';
 import 'screens/splash.dart';
 import 'services/auth/auth_services.dart';
+import 'services/messaging/fcm.dart';
 import 'themes/theme_provider.dart';
 
 
@@ -130,3 +131,5 @@ class AuthWrapper extends StatelessWidget {
     }
   }
 }
+
+ //android:label="quick_bite"

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
@@ -6,12 +8,11 @@ import 'package:provider/provider.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:quick_bite/components/drawer/app_drawer.dart';
-import 'dart:io';
 
-import 'package:quick_bite/themes/theme_provider.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../components/drawer/app_drawer.dart';
+import '../themes/theme_provider.dart';
 import 'components/profile/edit_profile.dart';
 import 'components/profile/faq.dart';
 import 'settings.dart';

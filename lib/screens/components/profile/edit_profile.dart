@@ -1,6 +1,7 @@
+import 'package:QuickBite/components/form/app_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:quick_bite/components/form/app_button.dart';
+
 
 class EditProfile extends StatefulWidget {
  

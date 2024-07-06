@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quick_bite/model/restaurant.dart';
+
+
+import '../../../model/restaurant.dart';
 
 class AppCurrentLocation extends StatefulWidget {
   const AppCurrentLocation({super.key});

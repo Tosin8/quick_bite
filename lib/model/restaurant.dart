@@ -1,7 +1,9 @@
+
+import 'package:QuickBite/model/food.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:quick_bite/model/food.dart';
+
 
 import 'cart_item.dart';
 
