@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quick_bite/model/food.dart';
+import 'package:quick_bite/backend/food.dart';
 
 
 import '../model/backend/restuarant.dart';

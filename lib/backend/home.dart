@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:quick_bite/model/food.dart';
+import 'package:quick_bite/backend/food.dart';
 
 import 'productdetail.dart';
 
@@ -56,6 +56,7 @@ class FoodCategoryTab extends StatelessWidget {
           itemBuilder: (context, index) {
             final foodData = snapshot.data!.docs[index];
             final food = Food(
+              id: foodData.id,
               name: foodData['name'],
               description: foodData['description'],
               image: foodData['image'],
@@ -63,7 +64,7 @@ class FoodCategoryTab extends StatelessWidget {
               category: FoodCategory.values.firstWhere((e) => e.toString() == 'FoodCategory.${foodData['category']}'),
               availableAddons: (foodData['availableAddons'] as List)
                   .map((addon) => Addon(name: addon['name'], price: addon['price']))
-                  .toList(),
+                  .toList(), 
             );
 
             return FoodItemTile(food: food);

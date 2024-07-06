@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:quick_bite/model/food.dart';
+import 'package:quick_bite/backend/food.dart';
 
 class Restaurant extends ChangeNotifier {
   List<Food> _menu = [];
@@ -28,7 +28,7 @@ class Restaurant extends ChangeNotifier {
         category: FoodCategory.values.firstWhere((e) => e.toString() == data['category']),
         availableAddons: (data['availableAddons'] as List<dynamic>).map((addon) {
           return Addon(name: addon['name'], price: addon['price']);
-        }).toList(),
+        }).toList(), id: '${doc.id}',
       );
     }).toList();
 
