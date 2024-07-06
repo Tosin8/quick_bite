@@ -6,13 +6,16 @@ class Restaurant extends ChangeNotifier {
   List<Food> _menu = [];
 
   List<Food> get menu => _menu;
+  final List<Food> _favorites = [];
+
+  List<Food> get favorites => _favorites;
 
   Restaurant() {
     fetchMenu();
   }
 
   Future<void> fetchMenu() async {
-    final QuerySnapshot result = await FirebaseFirestore.instance.collection('menu').get();
+    final QuerySnapshot result = await FirebaseFirestore.instance.collection('products').get();
     final List<DocumentSnapshot> documents = result.docs;
 
     _menu = documents.map((doc) {
@@ -36,6 +39,19 @@ class Restaurant extends ChangeNotifier {
     // Add food to the cart
     notifyListeners();
   }
+
+  void toggleFavorite(Food food) {
+    if (_favorites.contains(food)) {
+      _favorites.remove(food);
+    } else {
+      _favorites.add(food);
+    }
+    notifyListeners();
+  }
+
+  bool isFavorite(Food food) {
+    return _favorites.contains(food);
+  }
 }
 
-final List<CartItem> _cart = [];
+

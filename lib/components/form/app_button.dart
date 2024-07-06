@@ -9,6 +9,9 @@ class AppButton extends StatelessWidget {
     super.key,
     this.onTap,
     required this.text, 
+    //required String label, 
+    
+    //required void Function() onPressed, 
   });
 
   @override
