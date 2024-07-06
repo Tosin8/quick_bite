@@ -45,33 +45,13 @@ class _FoodPageState extends State<FoodPage> {
     return Stack(
       children:[
          Scaffold(
-      // appBar: AppBar(
-      //   leading: IconButton(onPressed: () => Navigator.pop(context), 
-      //   icon: Icon(Icons.arrow_back_ios)), 
-      // ),
+     
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
             children: [
         
-              // food image
-              // Container(
-              //   decoration: const BoxDecoration(
-              //     gradient: LinearGradient(
-              //       colors: [
-              //         Colors.black, 
-              //         Colors.transparent, 
-              //         Colors.black12, 
-              //       ],
-              //       begin: Alignment.centerLeft, 
-              //       end: Alignment.topRight, 
-              //       ), 
-                    
-              //   ),
-              //   child: Hero(
-              //     tag: widget.food.image,
-              //     child: Image.asset(widget.food.image)),
-              // ), 
+              
         Hero(
           tag: widget.food.image, 
           child: Container(
