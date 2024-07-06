@@ -1,8 +1,9 @@
+import 'package:QuickBite/components/form/app_button.dart';
+import 'package:QuickBite/model/restaurant.dart';
+import 'package:QuickBite/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quick_bite/components/form/app_button.dart';
-import 'package:quick_bite/model/restaurant.dart';
-import 'package:quick_bite/screens/home.dart';
+
 
 class AppReceipt extends StatelessWidget {
   const AppReceipt({super.key});

@@ -1,5 +1,6 @@
+import 'package:QuickBite/main.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:quick_bite/main.dart';
+
 
 Future<void> handleBackgroundMessage(RemoteMessage message) async {
   print('Title: ${message.notification?.title}');

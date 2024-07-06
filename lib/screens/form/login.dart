@@ -1,9 +1,9 @@
+import 'package:QuickBite/components/form/app_button.dart';
+import 'package:QuickBite/screens/form/resetpwd.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quick_bite/components/form/app_button.dart';
-import 'package:quick_bite/screens/form/resetpwd.dart';
 
 import '../../services/auth/auth_services.dart';
 import 'signup.dart';

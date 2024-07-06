@@ -2,6 +2,7 @@
 
 import 'package:QuickBite/components/app/cart/app_quantity_selector.dart';
 import 'package:QuickBite/model/cart_item.dart';
+import 'package:QuickBite/model/restaurant.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

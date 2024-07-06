@@ -1,6 +1,7 @@
+import 'package:QuickBite/components/drawer/app_drawer.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:quick_bite/components/drawer/app_drawer.dart';
+
 
 class InboxScreen extends StatefulWidget {
   @override

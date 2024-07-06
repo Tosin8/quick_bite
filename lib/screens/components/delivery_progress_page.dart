@@ -1,8 +1,9 @@
+import 'package:QuickBite/model/restaurant.dart';
+import 'package:QuickBite/screens/components/app_receipt.dart';
+import 'package:QuickBite/services/database/firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quick_bite/model/restaurant.dart';
-import 'package:quick_bite/screens/components/app_receipt.dart';
-import 'package:quick_bite/services/database/firestore.dart';
+
 
 class DeliveryProgressPage extends StatefulWidget {
   const DeliveryProgressPage({super.key});

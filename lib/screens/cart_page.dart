@@ -1,9 +1,10 @@
+import 'package:QuickBite/components/app/cart/app_cart_tile.dart';
+import 'package:QuickBite/components/form/app_button.dart';
+import 'package:QuickBite/model/restaurant.dart';
+import 'package:QuickBite/screens/components/payment_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quick_bite/components/app/cart/app_cart_tile.dart';
-import 'package:quick_bite/components/form/app_button.dart';
-import 'package:quick_bite/model/restaurant.dart';
-import 'package:quick_bite/screens/components/payment_page.dart';
+
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
