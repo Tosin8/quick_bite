@@ -37,3 +37,5 @@ class Restaurant extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+final List<CartItem> _cart = [];

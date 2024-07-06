@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_bite/firebase_options.dart';
 import 'package:quick_bite/screens/form/signup.dart';
-import 'package:quick_bite/screens/home.dart';
+import 'package:quick_bite/screens/home_backend.dart';
 import 'package:quick_bite/screens/inbox.dart';
 import 'package:quick_bite/services/messaging/fcm.dart';
 
