@@ -17,7 +17,7 @@ import 'screens/form/newpwdscreen.dart';
 import 'screens/form/pwd_reset_congrats.dart';
 import 'screens/form/resetpwd.dart';
 import 'screens/form/signup.dart';
-import 'screens/form/trash/forgotpwd.dart';
+
 import 'screens/form/login.dart';
 import 'screens/form/providers/forgotpwd_providers.dart';
 import 'screens/form/verifyemail.dart';

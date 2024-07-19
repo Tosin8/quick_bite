@@ -6,6 +6,7 @@ import 'package:QuickBite/model/restaurant.dart';
 import 'package:QuickBite/model/usermodel.dart';
 import 'package:QuickBite/screens/components/food_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
