@@ -103,7 +103,7 @@ class MyApp extends StatelessWidget {
           '/home': (context) =>  const HomeScreen(),
           '/signup': (context) =>  const SignUpScreen(),
           '/login': (context) => const LoginScreen(),
-          '/forgot_password': (context) => const ForgotpwdScreen(),
+         // '/forgot_password': (context) => const ForgotpwdScreen(),
           '/verify_email': (context) => const VerificationScreen(),
           '/profile': (context) => const ProfileScreen(userId: '',),
 '/congratulations': (context) => const CongratulatoryScreen(),
