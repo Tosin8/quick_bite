@@ -158,7 +158,7 @@ class PaymentPage extends StatefulWidget {
   const PaymentPage({
     super.key,
     required this.amount,
-    required this.email,
+    this.email = 'tosinezekiel8@gmail.com',
     required this.reference,
   });
 
