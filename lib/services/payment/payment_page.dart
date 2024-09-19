@@ -79,26 +79,7 @@ class _PaymentPageState extends State<PaymentPage> {
         future: initializeTransaction(),
         builder: (context, snapshot) {
              final url = snapshot.data;
-        //   if (snapshot.connectionState == ConnectionState.waiting) {
-        //     return const Center(child: CircularProgressIndicator());
-        //   } else if (snapshot.hasError) {
-        //     return Center(child: Text('Error: ${snapshot.error}'));
-        //   } else if (snapshot.hasData) {
-         
-        //     return Center(
-        //       child: ElevatedButton(
-        //         onPressed: () {
-        //           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>
-        //           PaymentScreen(url: url!)));
-        //         },
-        //         child: const Text('Pay Now'),
-        //       ),
-        //     );
-        //   } else {
-        //     return const Center(child: Text('No data available'));
-        //   }
-
-        // },
+        
 
       return WebViewWidget(
         controller = WebViewController()
@@ -136,3 +117,24 @@ class _PaymentPageState extends State<PaymentPage> {
     
   }
 }
+
+//   if (snapshot.connectionState == ConnectionState.waiting) {
+        //     return const Center(child: CircularProgressIndicator());
+        //   } else if (snapshot.hasError) {
+        //     return Center(child: Text('Error: ${snapshot.error}'));
+        //   } else if (snapshot.hasData) {
+         
+        //     return Center(
+        //       child: ElevatedButton(
+        //         onPressed: () {
+        //           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>
+        //           PaymentScreen(url: url!)));
+        //         },
+        //         child: const Text('Pay Now'),
+        //       ),
+        //     );
+        //   } else {
+        //     return const Center(child: Text('No data available'));
+        //   }
+
+        // },
