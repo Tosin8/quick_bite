@@ -9,11 +9,13 @@ class FavScreen extends StatelessWidget {
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         backgroundColor: Colors.grey[300],
-        title: Text('Favorites'), 
+        title: const Text('Favorites'), 
         centerTitle: true,
       ),
-      drawer: AppDrawer(),
-      body: Center(child: Text('Fav Screen'))
+      drawer: const AppDrawer(),
+      body: const Center(child: Text('Fav Screen'))
     );
   }
 }
+
+// favs. screen. 
