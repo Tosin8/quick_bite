@@ -1,5 +1,5 @@
 class FavoriteProvider with ChangeNotifier {
-  List<Product> _favorites = [];
+  final List<Product> _favorites = [];
 
   List<Product> get favorites => _favorites;
 
