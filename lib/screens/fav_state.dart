@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-import '../model/favorite.dart';
+import '../model/food.dart';
 
 class FavoriteProvider with ChangeNotifier {
-  final List<Product> _favorites = [];
+  final List<Food> _favorites = [];
 
-  List<Product> get favorites => _favorites;
+  List<Food> get favorites => _favorites;
 
-  void toggleFavorite(Product product) {
-    if (_favorites.contains(product)) {
-      _favorites.remove(product);
-      product.isFavorite = false;
+  void toggleFavorite(Food food) {
+    if (_favorites.contains(food)) {
+      _favorites.remove(food);
+      food.isFavorite = false;
     } else {
-      _favorites.add(product);
-      product.isFavorite = true;
+      _favorites.add(food);
+      food.isFavorite = true;
     }
     notifyListeners();
   }

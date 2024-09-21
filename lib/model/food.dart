@@ -6,6 +6,7 @@ class Food {
   final double price; 
   final FoodCategory category;
   List <Addon> availableAddons; 
+  bool isFavorite;  
 
   Food({
     required this.name,
@@ -14,6 +15,7 @@ class Food {
     required this.price,
     required this.category,
     required this.availableAddons,
+    this.isFavorite = false, 
   });
 }
 

@@ -1,5 +1,6 @@
 // // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:QuickBite/components/form/app_button.dart';
+import 'package:QuickBite/screens/fav_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -89,8 +90,21 @@ class _FoodPageState extends State<FoodPage> {
                       children: [
                         Text(widget.food.name, 
                         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-                       Icon(Icons.favorite_border_outlined,
-                          size: 30,)
+                        
+                      //  const Icon(Icons.favorite_border_outlined,
+                      //     size: 30,), 
+ IconButton(
+  icon: Icon(
+    widget.food.isFavorite ? Icons.favorite : Icons.favorite_border,
+    color: widget.food.isFavorite ? Colors.red : Colors.grey,
+  ),
+  onPressed: () {
+    Provider.of<FavoriteProvider>(context, listen: false)
+        .toggleFavorite(widget.food);
+  },
+)
+
+
                       ],
                     ),
                 
