@@ -3,6 +3,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 import 'package:provider/provider.dart';
 
@@ -43,7 +46,9 @@ await FirebaseApi().initNotifications();
    //await uploadFoodDetails();
 
 
-
+OneSignal.Debug.setLogLevel(OsLogLevel.verbose); 
+OneSignal.initialize(''); 
+OneSignal.Notification.requestPermission(true); 
 
   runApp(
    
@@ -112,7 +117,7 @@ class MyApp extends StatelessWidget {
 '/reset-password': (context) => const ResetPasswordScreen(),
           '/reset-congratulations': (context) => PasswordResetSuccessScreen(),
           '/new_password': (context) => NewPasswordScreen(email: '',),
-          '/inbox': (context) =>  InboxScreen(),
+          '/inbox': (context) =>  const InboxScreen(),
         },
     );
   }));
