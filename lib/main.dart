@@ -3,8 +3,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 import 'package:provider/provider.dart';
@@ -46,9 +44,9 @@ await FirebaseApi().initNotifications();
    //await uploadFoodDetails();
 
 
-OneSignal.Debug.setLogLevel(OsLogLevel.verbose); 
-OneSignal.initialize(''); 
-OneSignal.Notification.requestPermission(true); 
+OneSignal.Debug.setLogLevel(OSLogLevel.verbose); 
+OneSignal.initialize('7b2a0537-1f28-4550-b7d4-6e654ab7313f'); 
+OneSignal.Notifications.requestPermission(true); 
 
   runApp(
    
