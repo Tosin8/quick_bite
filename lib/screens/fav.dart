@@ -20,65 +20,83 @@ class FavScreen extends StatelessWidget {
               itemCount: favoriteProducts.length,
               itemBuilder: (ctx, i) {
                 final product = favoriteProducts[i];
-                return Card(
-                  elevation: 5,
-                  margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Product Image
-                        Image.asset(
-                          product.image, // Assuming product has an imageUrl property
-                          fit: BoxFit.cover,
-                          height: 150,
-                          width: double.infinity,
-                        ),
-                        const SizedBox(height: 10),
-                        // Product Name
-                        Text(
-                          product.name,
-                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 5),
-                        // Product Price
-                        Text(
-                          '\$${product.price}', // Assuming product has a price property
-                          style: const TextStyle(color: Colors.green, fontSize: 16),
-                        ),
-                        const SizedBox(height: 5),
-                        // Product Description
-                        Text(
-                          product.description, // Assuming product has a description property
-                          style: const TextStyle(color: Colors.grey, fontSize: 14),
-                        ),
-                        const SizedBox(height: 10),
-                        // Favorite Icon Button
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: IconButton(
-                            icon: Icon(
-                              product.isFavorite ? Icons.favorite : Icons.favorite_border,
-                              color: product.isFavorite ? Colors.red : null,
-                            ),
-                            onPressed: () {
-                              // Toggle favorite status
-                              Provider.of<FavoriteProvider>(context, listen: false)
-                                  .toggleFavorite(product);
+                return Dismissible(
+                  key: ValueKey(product.id), // Assuming product has a unique id
+                  direction: DismissDirection.endToStart,
+                  background: Container(
+                    color: Colors.red,
+                    alignment: Alignment.centerRight,
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Icon(
+                      Icons.delete,
+                      color: Colors.white,
+                    ),
+                  ),
+                  onDismissed: (direction) {
+                    // Remove the item from favorites
+                    Provider.of<FavoriteProvider>(context, listen: false)
+                        .toggleFavorite(product);
 
-                              // Show a Scaffold message
-                              final snackBar = SnackBar(
-                                content: Text(
-                                  '${product.name} has been removed from favorites.',
-                                ),
-                                duration: const Duration(seconds: 2),
-                              );
-                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                            },
+                    // Show a Scaffold message
+                    final snackBar = SnackBar(
+                      content: Text(
+                        '${product.name} has been removed from favorites.',
+                      ),
+                      duration: const Duration(seconds: 2),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  },
+                  child: Card(
+                    elevation: 5,
+                    margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Product Image
+                          Image.asset(
+                            product.image, // Assuming product has an imageUrl property
+                            fit: BoxFit.cover,
+                            height: 150,
+                            width: double.infinity,
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 10),
+                          // Product Name
+                          Text(
+                            product.name,
+                            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(height: 5),
+                          // Product Price
+                          Text(
+                            '\$${product.price}', // Assuming product has a price property
+                            style: const TextStyle(color: Colors.green, fontSize: 16),
+                          ),
+                          const SizedBox(height: 5),
+                          // Product Description
+                          Text(
+                            product.description, // Assuming product has a description property
+                            style: const TextStyle(color: Colors.grey, fontSize: 14),
+                          ),
+                          const SizedBox(height: 10),
+                          // Favorite Icon Button
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: IconButton(
+                              icon: Icon(
+                                product.isFavorite ? Icons.favorite : Icons.favorite_border,
+                                color: product.isFavorite ? Colors.red : null,
+                              ),
+                              onPressed: () {
+                                // Toggle favorite status
+                                Provider.of<FavoriteProvider>(context, listen: false)
+                                    .toggleFavorite(product);
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );

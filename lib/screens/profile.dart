@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:QuickBite/screens/components/profile/history.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
@@ -234,6 +235,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     title: const Text('Order History'),
                     onTap: () {
                       // Navigate to Order History screen
+                       Navigator.push(context, 
+                MaterialPageRoute(builder: (context) => const HistoryScreen()));
                     },
                   ),
                 ),

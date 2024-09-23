@@ -7,6 +7,7 @@ class Food {
   final FoodCategory category;
   List <Addon> availableAddons; 
   bool isFavorite;  
+  final String id; 
 
   Food({
     required this.name,
@@ -16,6 +17,7 @@ class Food {
     required this.category,
     required this.availableAddons,
     this.isFavorite = false, 
+    this.id = '1', 
   });
 }
 
