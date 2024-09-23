@@ -1,5 +1,6 @@
 import 'package:QuickBite/screens/fav.dart';
 import 'package:QuickBite/screens/inbox.dart';
+import 'package:QuickBite/screens/order.dart';
 import 'package:QuickBite/screens/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class AppDrawer extends StatelessWidget {
   Future<void> _logout(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => LoginScreen()),
+      MaterialPageRoute(builder: (context) => const LoginScreen()),
     );
   }
 
@@ -62,7 +63,7 @@ class AppDrawer extends StatelessWidget {
               //onTap: () => Navigator.pop(context)
               onTap: (){
                 Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => const HomeScreen()));
+                MaterialPageRoute(builder: (context) => const OrderScreen()));
               },
               ),
                AppDrawerTile(
@@ -71,7 +72,7 @@ class AppDrawer extends StatelessWidget {
               //onTap: () => Navigator.pop(context)
               onTap: (){
                 Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => InboxScreen()));
+                MaterialPageRoute(builder: (context) => const InboxScreen()));
               },
               ),
             //   AppDrawerTile(
@@ -93,7 +94,7 @@ class AppDrawer extends StatelessWidget {
              icon: Icons.person,
               onTap: (){
                 Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => ProfileScreen(userId: '',)));
+                MaterialPageRoute(builder: (context) => const ProfileScreen(userId: '',)));
               }),
 
 
@@ -107,7 +108,7 @@ class AppDrawer extends StatelessWidget {
                 () async {
               await FirebaseAuth.instance.signOut();
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
+                const SnackBar(
                   content: Text('Logout successful'),
                 ),
               );

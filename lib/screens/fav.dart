@@ -29,7 +29,7 @@ class FavScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // Product Image
-                        Image.network(
+                        Image.asset(
                           product.image, // Assuming product has an imageUrl property
                           fit: BoxFit.cover,
                           height: 150,

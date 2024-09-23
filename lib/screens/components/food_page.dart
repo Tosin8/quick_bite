@@ -101,6 +101,18 @@ class _FoodPageState extends State<FoodPage> {
   onPressed: () {
     Provider.of<FavoriteProvider>(context, listen: false)
         .toggleFavorite(widget.food);
+  // Show a Scaffold message
+                              final snackBar = SnackBar(
+                                
+                           
+                                
+                                content: Text(
+                                  '${widget.food.name} has been added to your favorites.',
+                                ),
+                                duration: const Duration(seconds: 2),
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        
   },
 )
 

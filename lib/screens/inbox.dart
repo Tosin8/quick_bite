@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 
 class InboxScreen extends StatefulWidget {
+  const InboxScreen({super.key});
+
   @override
   _InboxScreenState createState() => _InboxScreenState();
 }
@@ -19,9 +21,9 @@ class _InboxScreenState extends State<InboxScreen> {
       appBar: AppBar(
         title: const Text('Inbox'),
       ),
-      drawer: AppDrawer(),
+      drawer: const AppDrawer(),
       body:  Padding(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         child: Column(
           children: [
             Container(
