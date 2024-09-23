@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'model/restaurant.dart';
 import 'model/usermodel.dart';
+import 'screens/fav_state.dart';
 import 'screens/form/congrats_screen.dart';
 import 'screens/form/newpwdscreen.dart';
 import 'screens/form/pwd_reset_congrats.dart';
@@ -76,6 +77,7 @@ class MyApp extends StatelessWidget {
         ),
      
          ChangeNotifierProvider(create: (_) => ForgotPasswordProvider()),
+         ChangeNotifierProvider(create: (_) => FavoriteProvider()),
     // restaurant provider
     ChangeNotifierProvider(create: (context) => Restaurant()), 
     ChangeNotifierProvider(create: (_) => UserProvider()),
