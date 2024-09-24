@@ -29,12 +29,14 @@ class OrderScreen extends StatelessWidget {
     // Order(id: 1, products: [Product(id: 1, name: 'Burger', price: 5.99)]),
   ];
 
+   OrderScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Your Orders')),
+      appBar: AppBar(title: const Text('Your Orders')),
       body: orders.isEmpty
-          ? Center(
+          ? const Center(
               child: Text(
                 'Your cart is empty',
                 style: TextStyle(fontSize: 20, color: Colors.grey),
