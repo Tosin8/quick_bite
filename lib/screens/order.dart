@@ -14,7 +14,7 @@ class _OrderScreenState extends State<OrderScreen> {
     return  Scaffold( 
       appBar: AppBar(title: const Text("Your Orders")),
       drawer: const AppDrawer(),
-      body: const Text('Order is empty'), 
+      body: const Center(child: Text('Order is empty')), 
     );
   }
 }
