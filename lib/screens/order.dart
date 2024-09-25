@@ -21,6 +21,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../components/drawer/app_drawer.dart';
+
 class OrderScreen extends StatelessWidget {
   final List<Order> orders = [
     // Replace with data retrieved from your database (e.g., Firestore)
@@ -35,6 +37,7 @@ class OrderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Your Orders')),
+       drawer: const AppDrawer(), 
       body: orders.isEmpty
           ? const Center(
               child: Text(
