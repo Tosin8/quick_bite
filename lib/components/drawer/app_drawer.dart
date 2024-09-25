@@ -72,7 +72,7 @@ class AppDrawer extends StatelessWidget {
               //onTap: () => Navigator.pop(context)
               onTap: (){
                 Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => const InboxScreen()));
+                MaterialPageRoute(builder: (context) =>  InboxScreen()));
               },
               ),
             //   AppDrawerTile(
